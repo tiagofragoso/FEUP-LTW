@@ -1,0 +1,56 @@
+body {
+	background-color: #74B2B7;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.screen-wrapper {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.wrapper {
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.8);
+	width: 500px;
+	height: 500px;
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+input {
+	text-align: center;
+	display: block;
+	font-size: 20px;
+	border: none;
+	margin: 0px auto;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+	background-color: transparent;
+	border-bottom: 1px solid black;
+	margin-bottom: 15px;
+}
+
+input[type="submit"] {
+	background-color:white;
+	border: none;
+	color: #707070;
+	padding: 16px 32px;
+	cursor: pointer;
+}
+
+input:focus {
+	outline: none;
+}
+
+#logo {
+	margin-bottom: 25px;
+	width: 80%;
+}
+
+

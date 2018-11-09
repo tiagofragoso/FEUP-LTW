@@ -11,7 +11,7 @@ CREATE TABLE User (
                         NOT NULL,
     email       TEXT    UNIQUE
                         NOT NULL,
-    name        TEXT    NOT NULL,
+    name        TEXT,
     password    TEXT    NOT NULL,
     profilePic  BLOB,
     points      INTEGER DEFAULT(0)
