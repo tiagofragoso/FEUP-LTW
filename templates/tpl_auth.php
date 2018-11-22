@@ -8,6 +8,7 @@
 			<input type="password" name="password" placeholder="password" required="required">
 			<input type="submit" name="submit" value="LOGIN">
 		</form>
+	<div id="js-test"></div>
 	</div>
 
 <?php } ?>

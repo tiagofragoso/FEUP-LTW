@@ -34,15 +34,14 @@ CREATE TABLE Language (
 
 CREATE TABLE Snippet (
     id                  INTEGER PRIMARY KEY,
-    creationDate        DATE    NOT NULL,
+    creationDate        DATE,
     title               TEXT    NOT NULL,
     description         TEXT,
+    code                TEXT,
     rating              INTEGER DEFAULT(0)
                                 NOT NULL,
-    author              INTEGER REFERENCES User (id)
-                                NOT NULL,
+    author              INTEGER REFERENCES User (id),
     language            INTEGER REFERENCES Language (id)
-                                NOT NULL
 );
 
 -- Table: FollowUser

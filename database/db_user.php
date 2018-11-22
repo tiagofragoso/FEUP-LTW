@@ -13,4 +13,12 @@
 		$stmt = $db->prepare('INSERT INTO user (email, username, password) VALUES(?, ?, ?)');
 		$stmt->execute(array($email, $username, sha1($password)));
 	}
+
+	function getSnippets() {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT * FROM Snippet');
+		$stmt->execute();
+		return $stmt->fetchAll();
+	}
+
 ?>
