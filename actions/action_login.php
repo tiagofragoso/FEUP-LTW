@@ -5,8 +5,9 @@
 	$user = $_POST['username'];
 	$password = $_POST['password'];
 
-	if (validUser($user, $password)) {
-		$_SESSION['username'] = $user;
+	if (($res = validUser($user, $password))) {
+		$_SESSION['user'] = $res['id'];
+		$_SESSION['username'] = $res['username'];
 		header('Location: ../pages/feed.php');
 	} else {
 		header('Location: ../pages/login.php');

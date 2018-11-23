@@ -21,6 +21,20 @@ CREATE TABLE User (
 -- Table: Snippet
 DROP TABLE IF EXISTS Snippet;
 
+CREATE TABLE Snippet (
+    id                  INTEGER PRIMARY KEY,
+    date        DATE    NOT NULL,
+    title               TEXT    NOT NULL,
+    description         TEXT,
+    code                TEXT,
+    rating              INTEGER DEFAULT(0)
+                                NOT NULL,
+    author              INTEGER REFERENCES User (id)
+                                NOT NULL,
+    language            INTEGER REFERENCES Language (id)
+                                NOT NULL
+);
+
 -- Table: Language
 DROP TABLE IF EXISTS Language;
 
@@ -30,19 +44,6 @@ CREATE TABLE Language (
                     NOT NULL,
     name    TEXT    UNIQUE
                     NOT NULL
-);
-
-CREATE TABLE Snippet (
-    id                  INTEGER PRIMARY KEY,
-    creationDate        DATE    NOT NULL,
-    title               TEXT    NOT NULL,
-    description         TEXT,
-    rating              INTEGER DEFAULT(0)
-                                NOT NULL,
-    author              INTEGER REFERENCES User (id)
-                                NOT NULL,
-    language            INTEGER REFERENCES Language (id)
-                                NOT NULL
 );
 
 -- Table: FollowUser

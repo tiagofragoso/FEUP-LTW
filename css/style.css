@@ -1,0 +1,98 @@
+body {
+	font-family: 'Montserrat', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #cecece;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.center {
+	margin: 0px auto;
+}
+
+.flex-col-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-row-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-space-between {
+	justify-content: space-between;
+}
+
+.flex-vert-center {
+	align-items: center;
+}
+
+.flex-hor-center {
+	justify-content: center;
+}
+
+.snippet-left-wrapper {
+	width: 60%;
+	flex-shrink: 0;
+}
+
+.main-content {
+	max-width: 960px;
+	margin-top: 30px;
+	padding: 30px;
+}
+
+.full-card {
+	margin-top: 1em;
+	max-width: 1024px;
+	background-color: white;	
+	border-radius: 5px;
+}
+
+.card-title {
+	font-size: 28px;
+	padding: 0.5em;
+}
+
+.card-content {
+	background-color: white;
+}
+
+.snippet-left-wrapper pre {
+	border-radius: 0px 0px 0px 5px !important;
+	height: 100%;
+}
+
+.info-wrapper {
+	padding: 1em 2em;
+	width: 100%;
+	align-self: flex-start;
+}
+
+.author-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex: 1 1 auto;
+	justify-content: space-between;
+	align-items: center;
+	flex-grow: 99;
+}
+
+.author-name {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.round-img {
+	border-radius: 100%;
+	height: 50px;
+}

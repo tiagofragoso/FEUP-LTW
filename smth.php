@@ -29,7 +29,7 @@
 	<?php
 		$db = new PDO('sqlite:test.db');
 		$stmt = $db->prepare('SELECT * FROM snippets');
-  		$stmt->execute();
+  		$stmt->execute();	
 		$snippets = $stmt->fetchAll();
 		
 		foreach ($snippets as $snippet) {

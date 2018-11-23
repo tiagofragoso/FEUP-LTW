@@ -1,14 +1,10 @@
-body {
-	background-color: #74B2B7;
-	font-family: 'Montserrat', sans-serif;
-}
-
 .screen-wrapper {
 	width: 100vw;
 	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: #74B2B7;
 }
 
 .wrapper {
@@ -48,7 +44,7 @@ input:focus {
 	outline: none;
 }
 
-#logo {
+.wrapper > #logo {
 	margin-bottom: 25px;
 	width: 80%;
 }
