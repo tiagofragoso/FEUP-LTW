@@ -13,6 +13,8 @@
 			<link rel="stylesheet" type="text/css" media="screen" href="/css/nav.css" />
 			<link rel="stylesheet" type="text/css" media="screen" href="/prism.css" />
 			<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
 			<script src="/prism.js"></script>
 		</head>
 		<body>
@@ -25,15 +27,18 @@
 ?>
 		<nav>
 			<div class="nav-wrapper">
-				<?php include("../includes/logo.php") ?>
+				<a href="/pages/feed.php"><?php include("../includes/logo.php") ?></a>
 				<div class="menu">
 					<div class="search">
-						<!-- input form -->
+						<form action="#">
+							<input type="text" name="search" placeholder="Looking for something?" size="22">
+							<button type="submit"><i class="fas fa-search"></i></button>
+						</form>
 					</div>
 					<?php if (isset($user)) { ?>
-					<a href="../actions/action_logout.php">Logout</a>
+					<a href="../actions/action_logout.php"><i class="fas fa-sign-out-alt"></i></a>
 				<?php } else { ?>
-					<a href="../pages/login.php">Login</a>
+					<a href="../pages/login.php"><i class="fas fa-sign-in-alt"></i></a>
 				<?php } ?>
 				</div>
 			</div>
@@ -104,3 +109,11 @@
 <?php
 	}
 ?>
+
+<?php
+	function draw_subtitle($title) { ?>
+		<div class="subtitle-wrapper">
+			<span class="subtitle"><?=$title?></span>
+			<div class="separator"></div>
+		</div>
+	<?php } ?>

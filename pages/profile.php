@@ -5,12 +5,12 @@ include_once('../templates/snippet.php');
 include_once('../database/db_user.php');
 
 if (!isset($_GET['id']))
-	die("Invalid snippet id");
+	die("Invalid user id");
 
-$snippet = getSnippet($_GET['id']);
+$user = getUser($_GET['id']);
 
-if (!isset($snippet))
-	die("Invalid snippet id");
+if (!isset($user))
+	die("Invalid user id");
 
 $comments = getSnippetComments($_GET['id']);
 

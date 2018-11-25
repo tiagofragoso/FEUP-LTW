@@ -28,16 +28,19 @@
 
 	function getSnippet($id) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name, User.profilePic 
-		FROM Snippet, User 
-		WHERE Snippet.id = ? AND Snippet.author = User.id');
+		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name, User.profilePic,
+		Language.name AS languageName
+		FROM Snippet, User, Language
+		WHERE Snippet.id = ? AND Snippet.author = User.id AND Language.code = Snippet.language');
 		$stmt->execute(array($id));
 		return $stmt->fetch();
 	}
 
 	function getSnippetComments($id) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT * FROM Comment where snippet = ?');
+		$stmt = $db->prepare('SELECT Comment.*, User.username AS username, User.name AS name 
+		FROM Comment, User
+		WHERE snippet = ? AND Comment.user = User.id');
 		$stmt->execute(array($id));
 		return $stmt->fetchAll();
 	}
@@ -54,6 +57,13 @@
 		$stmt = $db->prepare('INSERT INTO Snippet(title, description, code, 
 		language, date, author) VALUES (?, ?, ?, ?, ?, ?)');
 		$stmt->execute(array($title, $description, $snippet, $language, $currDate, $author));
+	}
+
+	function postComment($user, $snippet, $text, $date) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('INSERT INTO Comment(user, snippet, text, date) 
+		VALUES (?, ?, ?, ?)');
+		$stmt->execute(array($user, $snippet, $text, $date));
 	}
 
 ?>
