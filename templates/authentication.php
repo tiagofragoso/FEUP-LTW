@@ -9,6 +9,10 @@
 				<input type="password" name="password" placeholder="password" required="required">
 				<input type="submit" name="submit" value="LOGIN">
 			</form>
+			<div class="auth-form-link">
+				<span>New to SNIPZ?</span>
+				<a href="/pages/signup.php">Sign up</a>
+			</div>
 		</div>
 	</div>
 
@@ -26,6 +30,10 @@
 				<input type="password" name="password" placeholder="password" required="required">
 				<input type="submit" name="submit" value="SIGNUP">
 			</form>
+			<div class="auth-form-link">
+				<span>Already have an account?</span>
+				<a href="/pages/login.php">Log in</a>
+			</div>
 		</div>
 	</div>
 <?php } ?>

@@ -21,9 +21,21 @@
 
 	function getSnippets() {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT * FROM Snippet');
+		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name,
+		Language.name AS languageName
+		FROM Snippet, User, Language
+		WHERE Snippet.author = User.id AND Language.code = Snippet.language');
 		$stmt->execute();
 		return $stmt->fetchAll();
+	}
+
+	function getSnippetCommentCount($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT Count(*) as count
+		FROM Snippet, Comment
+		WHERE Snippet.id = ? AND Comment.snippet = Snippet.id');
+		$stmt->execute(array($id));
+		return $stmt->fetch();
 	}
 
 	function getSnippet($id) {
