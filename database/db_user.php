@@ -48,6 +48,14 @@
 		return $stmt->fetch();
 	}
 
+	function getUserSnippets($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT * FROM Snippet, Language 
+		WHERE Snippet.user = ? AND Snippet.language = Language.code');
+		$stmt->execute(array($id));
+		return $stmt->fetchAll();
+	}
+
 	function getSnippetComments($id) {
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('SELECT Comment.*, User.username AS username, User.name AS name 

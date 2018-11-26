@@ -25,23 +25,47 @@
 ?>
 
 <?php
-	function draw_nav($user) {
+	include_once('../includes/session.php');
+	include_once('utils.php');
+	function draw_nav() {
 ?>
 		<nav>
 			<div class="nav-wrapper">
 				<a href="/pages/feed.php"><?php include("../includes/logo.php") ?></a>
-				<div class="menu">
+				<div class="navbar">
 					<div class="search">
 						<form action="#">
 							<input type="text" name="search" placeholder="Looking for something?" size="22">
 							<button type="submit"><i class="fas fa-search"></i></button>
 						</form>
 					</div>
-					<?php if (isset($user)) { ?>
-					<a href="../actions/action_logout.php"><i class="fas fa-sign-out-alt"></i></a>
-				<?php } else { ?>
-					<a href="../pages/login.php"><i class="fas fa-sign-in-alt"></i></a>
-				<?php } ?>
+					<div class="menu">
+						<ul class="nav-items">
+								<li><a href="/pages/feed.php">Feed</a></li>
+								<li><a href="/pages/channels.php">Channels</a></li>
+						</ul>
+						<ul class="menu-right">
+							<?php if (isset($_SESSION['user'])) { 
+								$pic = getPicture($_SESSION['picture']);
+								?>
+								<li><a href="../pages/new.php"><i class="fas fa-plus"></i> SNIP</a></li>
+								<li class="dropdown">
+									<a class="dropdown-button" href="/pages/profile">
+										<img src="<?=$pic?>"/>
+									</a>
+									<div class="dropdown-content">
+										<a>username</a>
+										<a>log out</a>
+									</div>
+								</li>
+								<li><a href="../actions/action_logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
+							<?php } else { ?>
+								<li><a href="../pages/login.php"><i class="fas fa-sign-in-alt"></i></a></li>
+							<?php } ?>
+						</ul>	
+						
+					</div>
+					
 				</div>
 			</div>
 		</nav>
