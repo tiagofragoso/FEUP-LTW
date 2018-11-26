@@ -100,7 +100,7 @@
 		$languages = getLanguages();
 ?>
 	<div class="main-content flex-col-container center">
-		<form action="../actions/post_snippet.php" enctype="multipart/form-data" method="post">
+		<form class="row" action="../actions/post_snippet.php" enctype="multipart/form-data" method="post">
 			<label for="title">Title</label>
 			<input type="text" name="title">
 			<br>
@@ -114,8 +114,8 @@
 				} ?>
 			</select>
 			<br>
-			<label for="snippet">File</label>
-			<input type="file" name="snippet">
+			<label for="file-input">File</label>
+			<input type="file" name="snippet" id="file-input">
 			<br>
 			<input type="hidden" name="author" value="<?=$_SESSION['user']?>" />
 			<input type="submit">

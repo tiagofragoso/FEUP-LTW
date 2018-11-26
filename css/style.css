@@ -76,11 +76,19 @@ a {
 
 .rating-wrapper > i:first-of-type{
 	margin-right: 0.5em;
-	color: #74B2B7;
 }
 
 .rating-wrapper > i:last-of-type{
 	margin-left: 0.5em;
+}
+
+.rating-wrapper > i:first-of-type:hover  {
+	cursor: pointer;
+	color: #74B2B7;
+}
+
+.rating-wrapper > i:last-of-type:hover  {
+	cursor: pointer;
 	color: #ffac68;
 }
 
@@ -216,4 +224,13 @@ a {
 	height: 1px;
 	background-color: #707070cc;
 	flex-grow: 99;
+}
+
+form input[type="file"] {
+	display: none;
+}
+
+form label[for="file-input"] {
+	padding: 10px 12px;
+	background-color: #74B2B7;
 }
