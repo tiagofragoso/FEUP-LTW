@@ -2,7 +2,7 @@
 	include_once('../includes/session.php');
 
 	if (isset($_SESSION['user'])){
-		die(header('feed.php'));
+		die(header('Location: feed.php'));
 	}
 
 	include_once('../templates/common.php');
