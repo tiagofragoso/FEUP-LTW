@@ -8,6 +8,7 @@
 	if (($res = validUser($user, $password))) {
 		$_SESSION['user'] = $res['id'];
 		$_SESSION['username'] = $res['username'];
+		$_SESSION['picture'] = $res['profilePic'];
 		header('Location: ../pages/feed.php');
 	} else {
 		header('Location: ../pages/login.php');

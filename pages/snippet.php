@@ -15,7 +15,7 @@ if (!isset($snippet))
 $comments = getSnippetComments($_GET['id']);
 
 draw_header('SNIPZ - ' . $snippet['title']);
-draw_nav($_SESSION['user']);
+draw_nav();
 draw_full_snippet($snippet, $comments);
 draw_footer();
 
