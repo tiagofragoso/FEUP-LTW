@@ -54,4 +54,22 @@
 	width: 80%;
 }
 
+.auth-form-link {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 60px;
+}
+
+.auth-form-link a {
+	color: #74B2B7;
+	margin-bottom: 15px;
+
+}
+
+.auth-form-link span {
+	color: #707070;
+	margin-bottom: 15px;
+}
+
 

@@ -1,4 +1,6 @@
 <?php
+
+	include_once('utils.php');
 	function draw_header($title) {
 ?>
 	<!DOCTYPE html>
@@ -51,18 +53,34 @@
 	include_once('../database/db_user.php');
 	function draw_feed() {
 		$snippets = getSnippets();
-?>
+		?>
 	<div class="main-content center">
 		<?php foreach ($snippets as $snippet) { 
+			$name = isset($snippet['name'])? $snippet['name']: $snippet['username'];
+			$countComments = getSnippetCommentCount($snippet['id']);
 			$lang = 'language-' . $snippet['language']; ?>
-			 <div class="snippet-wrapper">
-				 <header class="toolbar">
-					 <span class="title"><?=$snippet['title']?></span>
-					 <span class="language"><?=$snippet['language']?></span>
-				 </header>
+			 <div class="snippet-wrapper-feed">
+			 	<header class="snippet-header flex-row-container flex-space-between flex-vert-center">
+					<div class="rating-wrapper">
+						<i class="fas fa-caret-up"></i>
+						<span class="snippet-rating"><?=$snippet['rating']?></span>
+						<i class="fas fa-caret-down"></i>
+					</div>
+					<h1 class="card-title"><?=$snippet['title']?></h1>
+					<div class="language-wrapper">
+						<?=$snippet['languageName']?>
+					</div>
+				</header>
 				 <a href="/pages/snippet.php?id=<?=$snippet['id']?>" target="_blank">
 					<pre class="line-numbers"><code class="<?=$lang?>"><?=htmlspecialchars($snippet['code'])?></code></pre>
 				</a>
+				<footer class="snippet-footer flex-row-container flex-space-between flex-vert-center">
+					<div class="snippet-author-date flex-row-container flex-vert-center">
+						<span class="author-name"><?=$name?></span>
+						<span class="date-posted"><?=getTimeElapsed($snippet['date'])?></span>
+					</div>
+						<span class="comments"><?=$countComments['count']?></span>
+				</footer>
 			</div>
 		<?php } ?>
 	</div>
