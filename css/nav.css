@@ -4,7 +4,8 @@ nav {
 	padding-bottom: 18px;
 	color: white;
 	overflow: hidden;
-	position: fixed;
+	position: sticky;
+	position: -webkit-sticky;
 	top: 0;
 	width: 100%;
 	z-index: 1;
@@ -37,6 +38,7 @@ nav {
 	flex: 1 1 auto;
 	margin-left: 20px;
 	align-items: center;
+	font-weight: 700;
 }
 
 .nav-items {

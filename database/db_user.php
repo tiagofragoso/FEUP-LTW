@@ -24,7 +24,8 @@
 		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name,
 		Language.name AS languageName
 		FROM Snippet, User, Language
-		WHERE Snippet.author = User.id AND Language.code = Snippet.language');
+		WHERE Snippet.author = User.id AND Language.code = Snippet.language
+		ORDER BY Snippet.date DESC');
 		$stmt->execute();
 		return $stmt->fetchAll();
 	}
