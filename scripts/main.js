@@ -2,6 +2,8 @@ document.querySelector('.new-snippet-wrapper').querySelectorAll('button').forEac
 	btn => btn.addEventListener('click', tabSwitcher)
 );
 
+document.querySelector('.new-snippet-wrapper form').addEventListener('submit', alert('n faz nada '));
+
 function reloadPrism() {
 	const prism = document.createElement('script');
 	prism.id = 'prism';
@@ -11,6 +13,7 @@ function reloadPrism() {
 }
 
 let codeTextArea = document.querySelector('#code-area');
+codeTextArea.addEventListener('keydown', catchTab);
 let previewArea = document.querySelector('#preview-area');
 let previewCodeElem = previewArea.querySelector('code');
 
@@ -36,4 +39,22 @@ function tabSwitcher(event){
 		previewArea.style.display = 'none';
 		codeTextArea.style.display = 'block';
 	}
+}
+
+const KeyTab = 9; // key tab => magic constant
+
+function catchTab(event) {
+	const key = event.keyCode || event.which;
+	if (key == KeyTab) {
+		event.preventDefault();
+		event.stopPropagation();
+		return insertTab();
+	}
+}
+
+function insertTab() {
+	const start = codeTextArea.selectionStart;
+	const end = codeTextArea.selectionEnd;
+	codeTextArea.value = codeTextArea.value.substring(0, start) + String.fromCharCode(KeyTab) +
+		codeTextArea.value.substring(end);
 }
