@@ -24,7 +24,8 @@
 		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name,
 		Language.name AS languageName
 		FROM Snippet, User, Language
-		WHERE Snippet.author = User.id AND Language.code = Snippet.language');
+		WHERE Snippet.author = User.id AND Language.code = Snippet.language
+		ORDER BY Snippet.date DESC');
 		$stmt->execute();
 		return $stmt->fetchAll();
 	}
@@ -86,14 +87,14 @@
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('INSERT INTO Snippet(title, description, code, 
 		language, date, author) VALUES (?, ?, ?, ?, ?, ?)');
-		$stmt->execute(array($title, $description, $snippet, $language, $currDate, $author));
+		return $stmt->execute(array($title, $description, $snippet, $language, $currDate, $author));
 	}
 
 	function postComment($user, $snippet, $text, $date) {
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('INSERT INTO Comment(user, snippet, text, date) 
 		VALUES (?, ?, ?, ?)');
-		$stmt->execute(array($user, $snippet, $text, $date));
+		return $stmt->execute(array($user, $snippet, $text, $date));
 	}
 
 	function getFollowing($id) {
