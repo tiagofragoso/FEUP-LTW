@@ -333,6 +333,7 @@ a {
 	justify-content: space-between;
 	align-items: center;
 	border-bottom: 1px solid var(--lightgrey);
+	margin-bottom: 1px;
 }
 
 .new-snippet-wrapper #description {
@@ -343,20 +344,30 @@ a {
 .new-snippet-wrapper .row > label {
 	font-size: 18px;
 	margin-bottom: 0.5em;
+	color: var(--darkgrey);
 }
 
 .new-snippet-wrapper button {
-	font-size: 14px;
-	padding: 10px 12px;
-	height: 100%;
 	border: none;
-	background-color: none;
-	margin-right: 0.5em;
+	border-top-left-radius: 5px;
+	color: var(--darkgrey);
 	cursor: pointer;
+	font-size: 14px;
+	height: 100%;
+	padding: 12px 16px;
+}
+
+.new-snippet-wrapper .tabs {
+	display: flex;
+	flex-direction: row;
 }
 
 .new-snippet-wrapper button.active {
 	border-bottom: 5px solid var(--blue);
+}
+
+.new-snippet-wrapper button:not(.active):hover {
+	border-bottom: 5px solid var(--lightgrey);
 }
 
 .new-snippet-wrapper #file-upload {
@@ -368,6 +379,13 @@ a {
 	padding: 10px 12px;
 	color: var(--blue);
 	font-weight: bold;
+	cursor: pointer;
+}
+
+/* TODO: Add disabled functionality programatically */
+.new-snippet-wrapper label[for="file-upload"]:disabled {
+	cursor: default;
+	color: var(--lightgrey);
 }
 
 .new-snippet-wrapper #code-area {
@@ -379,4 +397,12 @@ a {
 .new-snippet-wrapper #preview-area {
 	width: 100%;
 	display: none;
+}
+
+.new-snippet-wrapper input[type="submit"] {
+	background-color: var(--blue);
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
 }

@@ -43,6 +43,7 @@ const languages = {
 	'Visual Basic': 'visual-basic',
 	'YAML': 'yaml',
 	'HTML': 'html',
+	'Plain Text': 'none',
 }
 let query = '';
 

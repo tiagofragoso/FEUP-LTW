@@ -1,3 +1,4 @@
+DELETE FROM Language WHERE 1 = 1; 
 INSERT INTO Language(code, name) VALUES('markup', 'Markup');
 INSERT INTO Language(code, name) VALUES('css', 'CSS');
 INSERT INTO Language(code, name) VALUES('clike', 'Clike');
@@ -42,3 +43,4 @@ INSERT INTO Language(code, name) VALUES('vbnet', 'VB.net');
 INSERT INTO Language(code, name) VALUES('visual-basic', 'Visual Basic');
 INSERT INTO Language(code, name) VALUES('yaml', 'YAML');
 INSERT INTO Language(code, name) VALUES('html', 'HTML');
+INSERT INTO Language(code, name) VALUES('none', 'Plain Text');
