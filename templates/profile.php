@@ -45,7 +45,7 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 					<?php foreach ($snippets as $snippet) { ?>
 						<div class="snippet-preview flex-row-container flex-space-between flex-vert-center">
 							<div class="snippet-rat-date flex-row-container flex-space-between">
-								<span class="snippet-rating"><?=$snippet['rating']?></span>
+								<span class="snippet-rating"><?=$snippet['points']?></span>
 							</div>
 							<a class="card-title" href="/pages/snippet.php?id=<?=$snippet['id']?>"><?=$snippet['title']?></a>
 							<div class="language-wrapper">
