@@ -50,7 +50,7 @@
 								?>
 								<li><a href="../pages/new.php"><i class="fas fa-plus"></i> SNIP</a></li>
 								<li class="dropdown">
-									<a class="dropdown-button" href="/pages/profile">
+									<a class="dropdown-button" href="/pages/profile.php?id=<?=$_SESSION['user']?>">
 										<img src="<?=$pic?>"/>
 									</a>
 									<div class="dropdown-content">

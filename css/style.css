@@ -264,7 +264,7 @@ a {
 
 .author-name {
 	margin-right: 10px;
-	color: var(--darkgrey)
+	color: var(--blue)
 }
 
 form input[type="file"] {
@@ -274,4 +274,83 @@ form input[type="file"] {
 form label[for="file-input"] {
 	padding: 10px 12px;
 	background-color: #74B2B7;
+}
+
+.profile-pic {
+	border-radius: 5px;
+	height: 230px;
+}
+
+.profile-section-title > h2 {
+	border-left: 1px solid var(--darkgrey);
+	padding: 0 0.5em;
+	font-size: 15px;
+
+}
+
+.profile-section-title > h1 {
+	padding-right: 0.5em;
+	font-size: 22px;
+}
+
+.snippet-preview {
+	background-color: white;
+	margin-top: 1em;
+	padding: 1em;
+	border-radius: 5px;
+}
+
+.snippet-preview > .card-title {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.snippet-preview .snippet-rating {
+	color: var(--blue);
+}
+
+.snippet-preview .language-wrapper {
+	font-size: 12px;
+}
+
+.user-info > h1 {
+	font-size: 25px;
+	margin-bottom: 0;
+}
+
+.user-info > h2 {
+	font-size: 20px;
+	font-weight: normal;
+	margin-top: 0;
+}
+
+.profile-button-follow {
+	background: var(--blue);
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	padding: 0.5em;
+	margin-top: 0.5em;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.profile-button-settings {
+	background: white;
+	font-size: 20px;
+	font-weight: bold;
+	color: var(--blue);
+	padding: 0.5em;
+	margin-top: 0.5em;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.user-profile-wrapper {
+	margin-left: 2em;
+	width: 100%;
+}
+
+.user-followers {
+	margin-left: 1em;
 }

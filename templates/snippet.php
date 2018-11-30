@@ -27,7 +27,7 @@ function draw_full_snippet($snippet, $comments) {
 						draw_subtitle("Comments"); 
 						foreach($comments as $comment) { ?>
 						<div class="comment-wrapper">
-							<a href="/pages/user?id=<?=$comment['user']?>" class="comment-user">
+							<a href="/pages/profile.php?id=<?=$comment['user']?>" class="comment-user">
 								<?=isset($comment['name'])? $comment['name']: $comment['username']?>
 							</a>
 							<span class="comment-text">
