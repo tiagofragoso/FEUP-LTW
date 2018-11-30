@@ -15,7 +15,7 @@ export const request = (endpoint, method, body) => {
 		.then(res => res.json())
 		.then(data => {
 			if (data.success) {
-				resolve();
+				resolve(data.data);
 			} else {
 				reject(data.reason);
 			}
@@ -38,7 +38,7 @@ const GETRequest = (method, endpoint, params) => {
 const POSTRequest = (method, endpoint, body) => {
 	const init = {
 		method: method,
-		body: body,
+		body: JSON.stringify(body),
 		headers: {
 			'Content-type': 'application/json'
 		}

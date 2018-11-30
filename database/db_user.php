@@ -114,7 +114,7 @@
 
 	function postLike($user, $snippet, $isLike) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('INSERT INTO SnippetRating(user, snippet, isLike) 
+		$stmt = $db->prepare('REPLACE INTO SnippetRating(user, snippet, isLike) 
 		VALUES (?, ?, ?)');
 		return $stmt->execute(array($user, $snippet, $isLike));
 	}

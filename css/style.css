@@ -83,6 +83,10 @@ a {
 	font-size: 24px;
 }
 
+.rating-wrapper #snippetId {
+	display: none;
+}
+
 .rating-wrapper > i:first-of-type{
 	margin-right: 0.5em;
 }
@@ -100,6 +104,15 @@ a {
 	cursor: pointer;
 	color: var(--orange);
 }
+
+.upvote {
+	color: var(--blue);
+}
+
+.downvote  {
+	color: var(--orange);
+}
+
 
 .language-wrapper {
 	font-size: 12px;

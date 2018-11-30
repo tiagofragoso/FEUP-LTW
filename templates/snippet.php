@@ -10,6 +10,7 @@ function draw_full_snippet($snippet, $comments) {
 	<div class="full-card center flex-col-container">
 		<header class="snippet-header flex-row-container flex-space-between flex-vert-center">
 			<div class="rating-wrapper">
+				<span id="snippetId"><?=$snippet['id']?></span>
 				<i class="fas fa-caret-up"></i>
 				<span class="snippet-rating"><?=$snippet['points']?></span>
 				<i class="fas fa-caret-down"></i>

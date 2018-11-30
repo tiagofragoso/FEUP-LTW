@@ -103,31 +103,10 @@ async function submitSnippet(event) {
 	const newSnippet = JSON.stringify({title, description, language, code, author});
 
 	try {
-		await request('snippet', 'POST', newSnippet);
+		await request('/api/snippet.php', 'POST', newSnippet);
 		alert('Submitted!');
 		window.location.assign('/pages/feed.php');
 	} catch (err) {
 		alert(err);
 	}
-}
-
-function postSnippet(snippet) {
-	return new Promise( (resolve, reject) => {
-		fetch('/api/snippet.php', {
-			method: 'POST',
-			body: snippet,
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		})
-		.then(res => res.json())
-		.then(data => {
-			if (data.success) {
-				resolve();
-			} else {
-				reject(data.reason);
-			}
-		})
-		.catch(err => reject(err)); 
-	});
 }
