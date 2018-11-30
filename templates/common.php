@@ -90,7 +90,7 @@
 			 	<header class="snippet-header flex-row-container flex-space-between flex-vert-center">
 					<div class="rating-wrapper">
 						<i class="fas fa-caret-up"></i>
-						<span class="snippet-rating"><?=$snippet['rating']?></span>
+						<span class="snippet-rating"><?=$snippet['points']?></span>
 						<i class="fas fa-caret-down"></i>
 					</div>
 					<h1 class="card-title"><?=$snippet['title']?></h1>

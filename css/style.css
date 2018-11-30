@@ -232,6 +232,7 @@ a {
 	outline: none;
 	padding: 0.5em 0;
 	border: none;
+	cursor: pointer;
 }
 
 .subtitle-wrapper {

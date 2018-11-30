@@ -87,4 +87,32 @@
 		return $stmt->execute(array($user, $snippet, $text, $date));
 	}
 
+	function hasLike($user, $snippet) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT isLike FROM SnippetRating 
+		WHERE user = ? AND snippet = ?');
+		$stmt->execute(array($user, $snippet));
+		$res = $stmt->fetch();
+		if (empty($res)) {
+			return 0;
+		} else if ($res['isLike']) {
+			return 1;
+		} else {
+			return -1;
+		}
+	}
+
+	function postLike($user, $snippet, $isLike) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('INSERT INTO SnippetRating(user, snippet, isLike) 
+		VALUES (?, ?, ?)');
+		return $stmt->execute(array($user, $snippet, $isLike));
+	}
+
+	function deleteLike($user, $snippet) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('DELETE FROM SnippetRating WHERE user = ? AND snippet = ?');
+		return $stmt->execute(array($user, $snippet));
+	}
+
 ?>
