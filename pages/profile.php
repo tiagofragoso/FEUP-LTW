@@ -2,6 +2,8 @@
 include_once('../includes/session.php');
 include_once('../templates/common.php');
 include_once('../database/db_user.php');
+include_once('../templates/profile.php');
+include_once('../includes/session.php');
 
 if (!isset($_GET['id'])) {
 	if (!isset($_SESSION['user'])){
@@ -9,16 +11,23 @@ if (!isset($_GET['id'])) {
 	}
 }
 
+
 $user = getUser($_GET['id']);
 
 if (!isset($user))
-	die("Invalid user id");
+die("Invalid user id");
 
+$snippets = getUserSnippets($_GET['id']);
+$following = getFollowing($_GET['id']);
+$followers = getFollowers($_GET['id']);
+$languages = getUserLanguages($_GET['id']);
 $comments = getSnippetComments($_GET['id']);
+$settings = $_GET[id] == $_SESSION['user'];
 
-draw_header('SNIPZ - ' . $snippet['title']);
+draw_header('SNIPZ - ' . $user['username']);
 draw_nav();
-draw_full_snippet($snippet, $comments);
+draw_profile($user, $snippets, $following, $followers, $languages, $settings);
+
 draw_footer();
 
 ?>

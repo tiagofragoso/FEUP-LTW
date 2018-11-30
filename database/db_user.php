@@ -49,10 +49,20 @@
 		return $stmt->fetch();
 	}
 
+	function getUser($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT User.*
+		FROM User
+		WHERE User.id = ?');
+		$stmt->execute(array($id));
+		return $stmt->fetch();
+	}
+
 	function getUserSnippets($id) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT * FROM Snippet, Language 
-		WHERE Snippet.user = ? AND Snippet.language = Language.code');
+		$stmt = $db->prepare('SELECT Snippet.*, Language.name as languageName
+		FROM Snippet, Language 
+		WHERE Snippet.author = ? AND Snippet.language = Language.code');
 		$stmt->execute(array($id));
 		return $stmt->fetchAll();
 	}
@@ -113,6 +123,33 @@
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('DELETE FROM SnippetRating WHERE user = ? AND snippet = ?');
 		return $stmt->execute(array($user, $snippet));
+	}
+
+	function getFollowing($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT FollowUser.user2
+		FROM FollowUser
+		WHERE FollowUser.user1 = ?');
+		$stmt->execute(array($id));
+		return $stmt->fetchAll();
+	}
+
+	function getFollowers($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT FollowUser.user1
+		FROM FollowUser
+		WHERE FollowUser.user2 = ?');
+		$stmt->execute(array($id));
+		return $stmt->fetchAll();
+	}
+
+	function getUserLanguages($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT Language.name
+		FROM Language, FollowLanguage
+		WHERE FollowLanguage.user = ? and FollowLanguage.language = Language.code');
+		$stmt->execute(array($id));
+		return $stmt->fetchAll();
 	}
 
 ?>
