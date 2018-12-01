@@ -3,7 +3,7 @@ include_once('utils.php');
 function draw_profile($user, $snippets, $following, $followers, $languages, $settings){ 
 	$pic = getPicture($user['profilePic']);
 	?>
-	<div class="full-card center flex-row-container ">
+	<div class="full-card center flex-row-container">
 			<div class="user-info flex-col-container">
 				<img class="profile-pic" src="<?=$pic?>" />
 				<h1><?=$user['name']?></h1>
@@ -17,16 +17,26 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 		
 		<div class="user-profile-wrapper flex-col-container">
 			<div class="profile-top flex-row-container ">
-				<div class="user-following">
+				<div class="user-following flex-col-container">
 					<div class="profile-section-title flex-row-container flex-vert-center">
 						<h1>Following</h1>
 						<h2><?=count($following)?></h2> 
 					</div>
+					<div class="user-following-wrapper grid4x2">
+						<?php foreach (array_slice($following, 0, 8) as $f) { ?>
+						<img class="mini-user-pic" src="<?=getPicture($f['profilePic'])?>" /> 
+						<?php } ?>
+					</div>
 				</div>
-				<div class="user-followers">
+				<div class="user-followers flex-col-container">
 					<div class="profile-section-title flex-row-container  flex-vert-center">
 						<h1>Followers</h1>
 						<h2><?=count($followers)?></h2>
+					</div>
+					<div class="user-followers-wrapper grid4x2">
+						<?php foreach (array_slice($followers, 0, 8) as $f) { ?>
+						<img class="mini-user-pic" src="<?=getPicture($f['profilePic'])?>" /> 
+						<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -34,6 +44,13 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 				<div class="profile-section-title flex-row-container  flex-vert-center">
 					<h1>Languages</h1>
 					<h2><?=count($languages)?></h2>
+				</div>
+				<div class="languages flex-row-container">
+					<?php foreach ($languages as $language) { ?>
+						<div class="language-wrapper">
+							<?=$language['name']?>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
 			<div class="user-snippets">

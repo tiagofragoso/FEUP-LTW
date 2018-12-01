@@ -129,18 +129,18 @@
 
 	function getFollowing($id) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT FollowUser.user2
-		FROM FollowUser
-		WHERE FollowUser.user1 = ?');
+		$stmt = $db->prepare('SELECT u2.*
+		FROM FollowUser, User as u2
+		WHERE FollowUser.user1 = ? AND FollowUser.user2 = u2.id');
 		$stmt->execute(array($id));
 		return $stmt->fetchAll();
 	}
 
 	function getFollowers($id) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT FollowUser.user1
-		FROM FollowUser
-		WHERE FollowUser.user2 = ?');
+		$stmt = $db->prepare('SELECT u1.*
+		FROM FollowUser, User as u1
+		WHERE FollowUser.user2 = ? AND FollowUser.user1 = u1.id');
 		$stmt->execute(array($id));
 		return $stmt->fetchAll();
 	}

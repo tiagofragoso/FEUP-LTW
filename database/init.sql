@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS FollowLanguage;
 CREATE TABLE FollowLanguage (
     user     INTEGER REFERENCES User (id) 
                      NOT NULL,
-    language INTEGER REFERENCES Language
+    language INTEGER REFERENCES Language (code)
                      NOT NULL,
     PRIMARY KEY (
         user,

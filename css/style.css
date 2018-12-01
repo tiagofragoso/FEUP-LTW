@@ -401,6 +401,11 @@ a {
 	height: 230px;
 }
 
+.profile-section-title {
+	margin-top: 1em;
+}
+
+
 .profile-section-title > h2 {
 	border-left: 1px solid var(--darkgrey);
 	padding: 0 0.5em;
@@ -414,7 +419,7 @@ a {
 }
 
 .snippet-preview {
-	background-color: white;
+	background-color: #EBEBEB;
 	margin-top: 1em;
 	padding: 1em;
 	border-radius: 5px;
@@ -429,7 +434,7 @@ a {
 	color: var(--blue);
 }
 
-.snippet-preview .language-wrapper {
+.snippet-preview > .language-wrapper {
 	font-size: 12px;
 }
 
@@ -469,6 +474,9 @@ a {
 .user-profile-wrapper {
 	margin-left: 2em;
 	width: 100%;
+	background-color: white;
+	padding: 1em 2em 2em 2em;
+	border-radius: 5px;
 }
 
 .user-followers {
@@ -499,4 +507,34 @@ a {
 	cursor: pointer;
 	font-size: 16px;
 	font-weight: bold;
+}
+
+.user-languages .language-wrapper {
+	font-size: 15px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.languages {
+	flex-wrap: wrap;
+}
+
+.mini-user-pic {
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
+	margin-right: 1em;
+	margin-bottom: 1em;
+}
+
+.grid4x2 {
+	display: grid;
+	grid-template-columns: 17% 17% 17% 17%;
+	width: 100%;
+
+}
+
+.user-following, .user-followers {
+	flex-grow: 1;
+	flex-shrink: 0;
 }
