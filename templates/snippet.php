@@ -24,24 +24,12 @@ function draw_full_snippet($snippet, $comments) {
 			<div class="snippet-left-wrapper">
 				<pre class="line-numbers"><code class="<?=$lang?>"><?=htmlspecialchars($snippet['code'])?></code></pre>
 				<div class="comments-wrapper">
-					<?php
-						draw_subtitle("Comments"); 
-						foreach($comments as $comment) { ?>
-						<div class="comment-wrapper">
-							<a href="/pages/profile.php?id=<?=$comment['user']?>" class="comment-user">
-								<?=isset($comment['name'])? $comment['name']: $comment['username']?>
-							</a>
-							<span class="comment-text">
-								<?=$comment['text']?>
-							</span>
-						</div>
-					<?php } ?>
-					<div class="comment-wrapper">
-						<form action="../actions/post_comment.php" method="post">
+					<?=draw_subtitle('Comments')?>
+					<div id="new-comment" class="comment-wrapper">
+						<form action="#" method="post">
 							<input type="hidden" name="snippet" value="<?=$snippet['id']?>"/>
-							<input type="hidden" name="user" value="<?=$_SESSION['user']?>"/>
-							<textarea name="text" rows="3" required="required" 
-							placeholder="Write something about this snippet"></textarea>
+							<input type="hidden" name="user" value="<?=isset($_SESSION['name'])? $_SESSION['name']: $_SESSION['username'] ?>"/>
+							<textarea name="text" rows="3" required="required" placeholder="Write something about this snippet"></textarea>
 							<input type="submit" value="Send">
 						</form>
 					</div>
