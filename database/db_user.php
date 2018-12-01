@@ -114,6 +114,8 @@
 
 	function postLike($user, $snippet, $isLike) {
 		$db = Database::instance()->getConnection();
+		$pragma = $db->prepare('PRAGMA recursive_triggers = 1');
+		$pragma->execute();
 		$stmt = $db->prepare('REPLACE INTO SnippetRating(user, snippet, isLike) 
 		VALUES (?, ?, ?)');
 		return $stmt->execute(array($user, $snippet, $isLike));
