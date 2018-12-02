@@ -538,3 +538,80 @@ a {
 	flex-grow: 1;
 	flex-shrink: 0;
 }
+
+h1 {
+	color: var(--darkgrey);
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+}
+
+.hoverable-card {
+	background-color: white;
+	width: 100%;
+	height: 64px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: row;
+	flex: 1 1 auto;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1em;
+}
+
+.hoverable-card-content {
+	display: flex;
+	flex-direction: row;
+	flex: 1 1 auto;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: row;
+	padding: 18px 16px;
+}
+
+.hoverable-card-title {
+	font-weight: bold;
+	color: var(--blue);
+}
+
+.hoverable-card-info {
+	background-color: #EBEBEB;
+	padding: 0.5em 1em;
+	border-radius: 34px;
+	color: var(--darkgrey);
+	font-size: 12px;
+	text-align: center;
+}
+
+.hover-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--blue);
+	width: 0%;
+	height: 100%;
+	border-radius: 0px 5px 5px 0px;
+	font-size: 1px;
+	overflow: hidden;
+	transition: width ease-out 0.5s, font-size 0.5s;
+}
+
+.hover-content button {
+	background-color: transparent;
+	border: none;
+	color: white;
+	font-size: inherit;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.hoverable-card:hover .hover-content {
+	width: 15%;
+	font-size: 14px;
+}
