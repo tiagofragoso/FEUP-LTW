@@ -154,13 +154,14 @@
 		return $stmt->fetchAll();
 	}
 
-	function getChannels() {
+	function getChannels($id) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT Language.*, COUNT(Snippet.id) AS nr
-		FROM Language LEFT JOIN Snippet ON (Language.code = Snippet.language) 
+		$stmt = $db->prepare('SELECT Language.*, COUNT(Snippet.id) AS nr, FollowLanguage.user AS follows
+		FROM Language LEFT JOIN Snippet ON (Language.code = Snippet.language)
+		LEFT JOIN FollowLanguage ON (Language.code = FollowLanguage.language AND FollowLanguage.user = ?)
 		GROUP BY Language.code
 		ORDER BY nr DESC');
-		$stmt->execute();
+		$stmt->execute(array($id));
 		return $stmt->fetchAll();
 	}
 

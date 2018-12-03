@@ -1,5 +1,6 @@
 <?php
 	include_once('../database/db_user.php');
+	include_once('../includes/session.php');
 	$request = $_SERVER['REQUEST_METHOD'];
 
 	switch($request) {
@@ -11,7 +12,7 @@
 	function get_languages() {
 		header('Content-Type: application/json');
 		try {
-			$res = getChannels();
+			$res = getChannels($_SESSION['user']);
 			http_response_code(200);
 			echo json_encode(array(
 				'success' => true,
