@@ -9,7 +9,7 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 				<h1><?=$user['name']?></h1>
 				<h2><?=$user['username']?></h3>
 				<?php if ($settings) { ?>
-					<span class="profile-button-settings"> Settings </span>
+					<a class="profile-button-settings" href="settings.php"> Settings </a>
 				<?php } else { ?>
 					<div class="profile-button-follow-wrapper flex-row-container">
 						<span class="profile-button-follow"> Follow </span>
@@ -88,5 +88,17 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 		</div>
 	</div>
 
+<?php } ?>
 
+<?php
+function draw_settings_profile() {
+	$pic = getPicture($_SESSION['profilePic']);
+	?>
+	<div class="full-card center flex-row-container">
+	<div class="user-info flex-col-container">
+				<img class="profile-pic" src="<?=$pic?>" />
+				<h1><?=$_SESSION['name']?></h1>
+				<h2><?=$_SESSION['username']?></h3>
+			</div>
+	</div>
 <?php } ?>

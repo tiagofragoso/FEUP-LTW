@@ -20,7 +20,7 @@ function updateVisual() {
             this.button.textContent = 'Follow';
         } else if (this.value === 1) {
             this.button.className = this.button.className.replace('follow', 'unfollow');
-            this.button.textContent = 'Following';
+            this.button.textContent = 'Unfollow';
         } 
     }
 }
