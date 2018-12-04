@@ -347,7 +347,6 @@ a {
 	justify-content: space-between;
 	align-items: center;
 	border-bottom: 1px solid var(--lightgrey);
-	margin-bottom: 1px;
 }
 
 .new-snippet-wrapper #description {
@@ -365,10 +364,12 @@ a {
 	border: none;
 	border-top-left-radius: 5px;
 	color: var(--darkgrey);
+	background-color: transparent;
 	cursor: pointer;
 	font-size: 14px;
 	height: 100%;
 	padding: 12px 16px;
+	margin: 0;
 }
 
 .new-snippet-wrapper .tabs {

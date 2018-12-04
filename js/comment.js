@@ -1,4 +1,5 @@
 import { request } from './request.js';
+import { htmlEntities } from "./utils.js";
 
 const API_ENDPOINT = '/api/comment.php'
 const comments = document.querySelector('.comments-wrapper');
@@ -25,7 +26,7 @@ function createComment(comment) {
 		${comment.name? comment.name : comment.username}
 	</a>
 	<span class="comment-text">
-		${comment.text}
+		${htmlEntities(comment.text)}
 	</span>`;
 	return commentWrapper;
 }

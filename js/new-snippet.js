@@ -1,4 +1,5 @@
 import {request} from "./request.js";
+import { htmlEntities } from "./utils.js";
 
 document.querySelector('.new-snippet-wrapper').querySelectorAll('button').forEach(
 	btn => btn.addEventListener('click', tabSwitcher)
@@ -13,7 +14,7 @@ document.querySelector('.new-snippet-wrapper #file-upload')
 function reloadPrism() {
 	const prism = document.createElement('script');
 	prism.id = 'prism';
-	prism.src = '/prism.js';
+	prism.src = '/js/prism.js';
 	document.querySelector('#prism').remove();
 	document.querySelector('head').appendChild(prism);
 }
@@ -31,7 +32,9 @@ function uploadFile() {
 	}
 	const file = event.currentTarget.files[0];
 	const reader = new FileReader();
-	reader.onload = () => codeTextArea.value = reader.result;
+	reader.onload = () => {
+		codeTextArea.value = htmlEntities(reader.result);
+	}
 	reader.readAsText(file);	
 }
 
@@ -43,7 +46,7 @@ function tabSwitcher(event){
 	if (event.currentTarget.id === 'preview-mode'){
 		const select = document.querySelector('.new-snippet-wrapper select');
 		let currentLang = `language-${select.options[select.selectedIndex].value}`;
-		let textContent = codeTextArea.value;
+		let textContent = htmlEntities(codeTextArea.value);
 		codeTextArea.style.display = 'none';
 		previewCodeElem.className = currentLang;
 		if (codeAreaIsEmtpy()){

@@ -3,15 +3,15 @@ import { request } from "./request.js";
 const API_ENDPOINT = '/api/like.php';
 const ratings = document.querySelectorAll('.rating-wrapper');
 ratings.forEach(snippet => {
-	let rating = {};
-	rating.snippetId = snippet.querySelector('#snippetId').textContent;
-	rating.upvoteBtn = snippet.querySelector('i:first-of-type');
-	rating.downvoteBtn = snippet.querySelector('i:last-of-type');
-	rating.points = snippet.querySelector('.snippet-rating');
-	rating.like = 0;
-	rating.upvoteBtn.addEventListener('click', likeHandler.bind(rating));
-	rating.downvoteBtn.addEventListener('click', likeHandler.bind(rating));
-	checkLike.call(rating);
+	let context = {};
+	context.snippetId = snippet.querySelector('#snippetId').textContent;
+	context.upvoteBtn = snippet.querySelector('i:first-of-type');
+	context.downvoteBtn = snippet.querySelector('i:last-of-type');
+	context.points = snippet.querySelector('.snippet-rating');
+	context.like = 0;
+	context.upvoteBtn.addEventListener('click', likeHandler.bind(context));
+	context.downvoteBtn.addEventListener('click', likeHandler.bind(context));
+	checkLike.call(context);
 })
 
 function updateVisual() {
