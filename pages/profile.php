@@ -24,7 +24,7 @@ $languages = getUserLanguages($_GET['id']);
 $comments = getSnippetComments($_GET['id']);
 $settings = $_GET[id] == $_SESSION['user'];
 
-draw_header('SNIPZ - ' . $user['username']);
+draw_header('SNIPZ - ' . $user['username'], array('follow-user'));
 draw_nav();
 draw_profile($user, $snippets, $following, $followers, $languages, $settings);
 

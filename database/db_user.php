@@ -112,6 +112,19 @@
 		}
 	}
 
+	function hasFollow($user1, $user2) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT * FROM FollowUser
+		WHERE FollowUser.user1 = ? AND FollowUser.user2 = ?');
+		$stmt->execute(array($user1, $user2));
+		$res = $stmt->fetch();
+		if (empty($res)) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
 	function postLike($user, $snippet, $isLike) {
 		$db = Database::instance()->getConnection();
 		$pragma = $db->prepare('PRAGMA recursive_triggers = 1');
@@ -121,10 +134,23 @@
 		return $stmt->execute(array($user, $snippet, $isLike));
 	}
 
+	function followUser($user1, $user2) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('INSERT INTO FollowUser(user1, user2) VALUES(?, ?)');
+		return $stmt->execute(array($user1, $user2));
+	}
+
 	function deleteLike($user, $snippet) {
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('DELETE FROM SnippetRating WHERE user = ? AND snippet = ?');
 		return $stmt->execute(array($user, $snippet));
+	}
+
+	function unfollowUser($user1, $user2) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('DELETE FROM FollowUser
+		WHERE user1 = ? AND user2 = ?');
+		return $stmt->execute(array($user1, $user2));
 	}
 
 	function getFollowing($id) {

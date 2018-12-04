@@ -11,7 +11,10 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 				<?php if ($settings) { ?>
 					<span class="profile-button-settings"> Settings </span>
 				<?php } else { ?>
-					<span class="profile-button-follow"> Follow </span>
+					<div class="profile-button-follow-wrapper flex-row-container">
+						<span class="profile-button-follow"> Follow </span>
+						<span id="userId"><?=$user['id']?></span>
+					</div>
 				<?php } ?>
 			</div>
 		
@@ -24,7 +27,9 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 					</div>
 					<div class="user-following-wrapper grid4x2">
 						<?php foreach (array_slice($following, 0, 8) as $f) { ?>
-						<img class="mini-user-pic" src="<?=getPicture($f['profilePic'])?>" /> 
+						<a href="profile.php?id=<?=$f['id']?>">
+							<img class="mini-user-pic" src="<?=getPicture($f['profilePic'])?>" /> 
+						</a>
 						<?php } ?>
 					</div>
 				</div>
@@ -35,7 +40,9 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 					</div>
 					<div class="user-followers-wrapper grid4x2">
 						<?php foreach (array_slice($followers, 0, 8) as $f) { ?>
-						<img class="mini-user-pic" src="<?=getPicture($f['profilePic'])?>" /> 
+							<a href="profile.php?id=<?=$f['id']?>">
+							<img class="mini-user-pic" src="<?=getPicture($f['profilePic'])?>" /> 
+						</a>
 						<?php } ?>
 					</div>
 				</div>
@@ -71,6 +78,12 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 						</div>
 					<?php } ?>
 				</div>
+			</div>
+			<div class="user-activity">
+				<div class="profile-section-title flex-row-container  flex-vert-center">
+					<h1>Activity</h1>
+				</div>
+				
 			</div>
 		</div>
 	</div>
