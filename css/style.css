@@ -411,6 +411,7 @@ a {
 	border-left: 1px solid var(--darkgrey);
 	padding: 0 0.5em;
 	font-size: 15px;
+	color: var(--darkgrey);
 
 }
 
@@ -448,6 +449,7 @@ a {
 	font-size: 20px;
 	font-weight: normal;
 	margin-top: 0;
+	color: var(--darkgrey);
 }
 
 .profile-button-follow {
@@ -459,9 +461,20 @@ a {
 	margin-top: 0.5em;
 	border-radius: 5px;
 	text-align: center;
+	width: 100%;
 }
 
-.profile-button-settings {
+.profile-button-follow:hover {
+	border: 0.5px solid var(--grey);
+	cursor: pointer;
+}
+
+.profile-button-unfollow:hover {
+	border: 0.5px solid var(--grey);
+	cursor: pointer;
+}
+
+.profile-button-settings, .profile-button-unfollow {
 	background: white;
 	font-size: 20px;
 	font-weight: bold;
@@ -470,6 +483,7 @@ a {
 	margin-top: 0.5em;
 	border-radius: 5px;
 	text-align: center;
+	width: 100%;
 }
 
 .user-profile-wrapper {
@@ -530,8 +544,8 @@ a {
 
 .grid4x2 {
 	display: grid;
-	grid-template-columns: 17% 17% 17% 17%;
-	width: 100%;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	width: 75%;
 
 }
 
@@ -610,9 +624,14 @@ h1 {
 	font-size: inherit;
 	font-weight: bold;
 	cursor: pointer;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .hoverable-card:hover .hover-content {
 	width: 15%;
 	font-size: 16px;
+}
+
+.profile-button-follow-wrapper > #userId {
+	display: none;
 }
