@@ -1,5 +1,4 @@
 import { request } from './request.js';
-import { htmlEntities } from "./utils.js";
 
 const API_ENDPOINT = '/api/comment.php'
 const comments = document.querySelector('.comments-wrapper');
@@ -24,10 +23,11 @@ function createComment(comment) {
 	commentWrapper.innerHTML = 
 	`<a href="/pages/profile.php?id=${comment.user}" class="comment-user">
 		${comment.name? comment.name : comment.username}
-	</a>
-	<span class="comment-text">
-		${htmlEntities(comment.text)}
-	</span>`;
+	</a>`;
+	const commentText = document.createElement('span');
+	commentText.className='comment-text';
+	commentText.textContent = comment.text;
+	commentWrapper.append(commentText);
 	return commentWrapper;
 }
 

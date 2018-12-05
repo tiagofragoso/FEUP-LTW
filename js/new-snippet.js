@@ -1,5 +1,4 @@
 import {request} from "./request.js";
-import { htmlEntities } from "./utils.js";
 
 document.querySelector('.new-snippet-wrapper').querySelectorAll('button').forEach(
 	btn => btn.addEventListener('click', tabSwitcher)
@@ -33,7 +32,7 @@ function uploadFile() {
 	const file = event.currentTarget.files[0];
 	const reader = new FileReader();
 	reader.onload = () => {
-		codeTextArea.value = htmlEntities(reader.result);
+		codeTextArea.textContent = reader.result;
 	}
 	reader.readAsText(file);	
 }
@@ -46,14 +45,14 @@ function tabSwitcher(event){
 	if (event.currentTarget.id === 'preview-mode'){
 		const select = document.querySelector('.new-snippet-wrapper select');
 		let currentLang = `language-${select.options[select.selectedIndex].value}`;
-		let textContent = htmlEntities(codeTextArea.value);
+		let textContent = codeTextArea.value;
 		codeTextArea.style.display = 'none';
 		previewCodeElem.className = currentLang;
 		if (codeAreaIsEmtpy()){
 			textContent = 'Nothing to preview yet!';
 			currentLang = 'language-none';
 		}
-		previewCodeElem.innerHTML = textContent;
+		previewCodeElem.textContent = textContent;
 		previewArea.className = `line-numbers ${currentLang}`;
 		reloadPrism();
 		previewArea.style.display = 'block';
