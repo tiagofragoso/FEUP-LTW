@@ -186,9 +186,23 @@
 		FROM Language LEFT JOIN Snippet ON (Language.code = Snippet.language)
 		LEFT JOIN FollowLanguage ON (Language.code = FollowLanguage.language AND FollowLanguage.user = ?)
 		GROUP BY Language.code
-		ORDER BY nr DESC');
+		ORDER BY nr DESC, Language.name ASC');
 		$stmt->execute(array($id));
 		return $stmt->fetchAll();
+	}
+
+	function followChannel($user, $language){
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('INSERT INTO FollowLanguage (user, language)
+		VALUES(?, ?)');
+		$stmt->execute(array($user, $language));
+	}
+
+	function unfollowChannel($user, $language){
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('DELETE FROM FollowLanguage
+		WHERE user = ? AND language = ?');
+		$stmt->execute(array($user, $language));
 	}
 
 ?>

@@ -147,6 +147,11 @@ a {
 	margin-bottom: 2em;
 }
 
+.snippet-wrapper-feed  pre {
+	max-height: 555px;
+	overflow: hidden!important;
+}
+
 .card-content {
 	margin-top: 1em;
 }
@@ -634,4 +639,14 @@ h1 {
 
 .profile-button-follow-wrapper > #userId {
 	display: none;
+}
+
+.channels-info {
+	text-align: center;
+	color: var(--transparentgrey);
+}
+
+.channels-info > a {
+	color: var(--blue);
+	font-weight: bold;
 }

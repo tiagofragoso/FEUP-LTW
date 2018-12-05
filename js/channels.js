@@ -18,10 +18,23 @@ async function setupChannels(){
 				exploreLanguages.appendChild(createCard(channel));
 			else 
 				userLanguages.appendChild(createCard(channel));
-		}); 	
+		}); 
+			
 	} catch(e) {
 		console.log(e);
 	}
+
+	const span = document.createElement('span');
+	span.className = 'channels-info';
+
+	if (userLanguages.children.length === 0){
+		span.textContent = 'You don\'t follow any languages yet';
+		userLanguages.appendChild(span);
+	} else if (exploreLanguages.children.length === 0) {
+		span.textContent = 'There\'s nothing left for you to explore';
+		exploreLanguages.appendChild(span);
+	}
+		
 }
 
 function createCard(channel) {
@@ -33,7 +46,27 @@ function createCard(channel) {
 			<div class="hoverable-card-info">${channel.nr} snippets</div>
 		</a>
 		<div class="hover-content">
-			<button>${channel.follows? 'Unf': 'F'}ollow</button>
 		</div>`;
-		return card;
+
+	const button = document.createElement('button');
+	button.textContent = `${channel.follows? 'Unf': 'F'}ollow`;
+
+	button.addEventListener('click', async () => {
+		try {
+			await request(API_ENDPOINT, channel.follows? 'DELETE' : 'POST', {channel: channel.code});
+			channel.follows = !channel.follows;
+			button.textContent = `${channel.follows? 'Unf': 'F'}ollow`;
+			moveCard(card, !channel.follows);
+		} catch (e) {
+			console.log(e);
+		}
+	});
+
+	card.querySelector('.hover-content').appendChild(button);
+	return card;
+}
+
+function moveCard(card, to){
+	card.remove();
+	cards[+ to].appendChild(card);
 }
