@@ -136,8 +136,9 @@
 	
 	function updateUser($user, $username, $name, $email) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('REPLACE INTO User(id, usernmame, name, email)
-		VALUES (?, ?, ?, ?)');
+		$stmt = $db->prepare('UPDATE User 
+		SET username = ?, name = ?, email = ?
+		WHERE id = ?');
 		return $stmt->execute(array($user, $username, $name, $email));
 	}
 
