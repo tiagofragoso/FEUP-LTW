@@ -36,7 +36,7 @@ async function submitSettings(event) {
     const name = formSettings.name;
     const username = formSettings.username;
     const email = formSettings.email;
-    const settings = JSON.stringify({name, username, email});
+    const settings = {name, username, email};
     console.log(settings);
     try {
         await request('/api/settings.php', 'POST', settings);

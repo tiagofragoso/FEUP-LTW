@@ -1,5 +1,6 @@
 <?php 
     include_once('../database/db_user.php');
+    include_once('../includes/session.php');
     $request = $_SERVER['REQUEST_METHOD'];
 
     switch($request) {
