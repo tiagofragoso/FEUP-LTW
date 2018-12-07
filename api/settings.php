@@ -13,6 +13,14 @@
     }
 
     function post_settings() {
+        if (empty($_SESSION['user'])){
+            http_response_code(400);
+            echo json_encode(array(
+                'success' => false,
+                'reason' => 'Requires login'
+            ));
+            exit;
+        }
         header('Content-Type: application/json');
         $data = json_decode(file_get_contents('php://input'), true);
         if (!isset($data['username'])) {
