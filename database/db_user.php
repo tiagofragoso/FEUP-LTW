@@ -139,7 +139,7 @@
 		$stmt = $db->prepare('UPDATE User 
 		SET username = ?, name = ?, email = ?
 		WHERE id = ?');
-		return $stmt->execute(array($user, $username, $name, $email));
+		return $stmt->execute(array($username, $name, $email, $user));
 	}
 
 	function followUser($user1, $user2) {

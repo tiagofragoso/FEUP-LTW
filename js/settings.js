@@ -5,9 +5,6 @@ let formSettings = {};
 formSettings.usernameInput = settings.querySelector('#username');
 formSettings.nameInput = settings.querySelector('#name');
 formSettings.emailInput = settings.querySelector('#email');
-formSettings.username = '';
-formSettings.name = '';
-formSettings.email = '';
 getSettings.call(formSettings);
 
 document.querySelector('.user-settings form:first-of-type').addEventListener('submit', submitSettings);
@@ -16,26 +13,19 @@ document.querySelector('.user-settings form:first-of-type').addEventListener('su
 async function getSettings() {
     try {
         const res = await request('/api/settings.php', 'GET', {});
-        this.username = res.username;
-        this.name = res.name;
-        this.email = res.email;
+        this.usernameInput.value = res.username;
+        this.nameInput.value = res.name;
+        this.emailInput.value = res.email;
     } catch (e) {
         console.log(e);
     }
-    updateVisual.call(this);
-}
-
-function updateVisual() {
-    this.usernameInput.value = this.username;
-    this.nameInput.value = this.name;
-    this.emailInput.value = this.email;
 }
 
 async function submitSettings(event) {
     event.preventDefault(event);
-    const name = formSettings.name;
-    const username = formSettings.username;
-    const email = formSettings.email;
+    const name = formSettings.nameInput.value;
+    const username = formSettings.usernameInput.value;
+    const email = formSettings.emailInput.value;
     const settings = {name, username, email};
     console.log(settings);
     try {
