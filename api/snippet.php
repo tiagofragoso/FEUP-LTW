@@ -1,5 +1,6 @@
 <?php
 	include_once('../database/db_user.php');
+	include_once('../includes/session.php');
 	$request = $_SERVER['REQUEST_METHOD'];
 
 	switch($request) {
@@ -13,6 +14,14 @@
 
 	function post_new_snippet() {
 		header('Content-Type: application/json');
+		if (empty($_SESSION['user'])){
+			http_response_code(400);
+			echo json_encode(array(
+				'success' => false,
+				'reason' => 'Requires login'
+			));
+			exit;
+		}
 		$data = json_decode(file_get_contents('php://input'), true);
 		if (empty($data['title'])) {
 			http_response_code(400);
@@ -30,7 +39,7 @@
 			exit;
 		} else {
 			if (postSnippet($data['title'], $data['description'], $data['code'], $data['language'], 
-				(new DateTime())->format('Y-m-d H:i'), $data['author'])){
+				(new DateTime())->format('Y-m-d H:i'), $_SESSION['user'])){
 					http_response_code(200);
 					echo json_encode(array(
 						'success' => true

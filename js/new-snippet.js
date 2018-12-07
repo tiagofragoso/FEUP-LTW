@@ -100,9 +100,7 @@ async function submitSnippet(event) {
 		alert("Empty code");
 		return;
 	}
-	const author = form.querySelector('input[name="author"]').value;
-
-	const newSnippet = JSON.stringify({title, description, language, code, author});
+	const newSnippet = {title, description, language, code, author};
 
 	try {
 		await request('/api/snippet.php', 'POST', newSnippet);
