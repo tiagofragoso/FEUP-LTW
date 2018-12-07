@@ -49,13 +49,12 @@
     function follow() {
         header('Content-Type: application/json');
         $data = json_decode(file_get_contents('php://input'), true);
-        if (!isset($data['id'])) {
+        if (empty($data['id'])) {
             http_response_code(400);
             echo json_encode(array(
                 'success' => false,
                 'reason' => 'Missing user1 id'
             ));
-            var_dump($data);
             exit;
         } else {
             try {

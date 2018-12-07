@@ -94,11 +94,40 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 function draw_settings_profile() {
 	$pic = getPicture($_SESSION['profilePic']);
 	?>
-	<div class="full-card center flex-row-container">
-	<div class="user-info flex-col-container">
-				<img class="profile-pic" src="<?=$pic?>" />
-				<h1><?=$_SESSION['name']?></h1>
-				<h2><?=$_SESSION['username']?></h3>
-			</div>
+	<div class="main-content center flex-row-container">
+		<div class="user-info flex-col-container">
+			<img class="profile-pic" src="<?=$pic?>" />
+			<h1><?=$_SESSION['name']?></h1>
+			<h2><?=$_SESSION['username']?></h3>
+		</div>
+		<div class="user-settings flex-col-container">
+			<h1>Settings</h1>
+			<form action="#" method="post">
+				<div class="row">
+					<label for="name">Name</label>
+					<input type="text" name="name" id="name" />
+				</div>
+				<div class="row">
+					<label for="username">Username</label>
+					<input type="text" name="username" id="username" required="required"/>
+				</div>
+				<div class="row">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email" required="required" />
+				</div>
+				<input type="submit" name="submit" value="Update profile" />
+			</form>
+			<form action="#" method="post">
+				<div class="row">
+					<label for="old_password">Old password</label>
+					<input type="password" name="old_password" id="old_password" required="required" />
+				</div>
+				<div class="row">
+					<label for="new_password">New password</label>
+					<input type="password" name="new_password" id="new_password" required="required" />
+				</div>
+				<input type="submit" name="submit-password" value="Update password" />
+			</form>
+		</div>
 	</div>
 <?php } ?>

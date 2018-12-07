@@ -650,3 +650,47 @@ h1 {
 	color: var(--blue);
 	font-weight: bold;
 }
+
+.user-settings {
+	margin-left: 2em;
+	background-color: white;
+	padding: 1em 2em 2em 2em;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.user-settings > h1 {
+	margin-bottom: 1em;
+	color: var(--darkgrey);
+}
+
+.user-settings > form {
+	padding: 10px;
+	margin-bottom: 2em;
+}
+
+.user-settings .row {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1em;
+	width: 100%;
+}
+
+.user-settings input {
+	font-size: 16px;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+	flex-grow: 99;
+	padding: 16px 18px;
+	background-color: #EBEBEB;
+}
+
+.user-settings input[type="submit"] {
+	background-color: var(--blue);
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px;
+}

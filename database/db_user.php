@@ -124,7 +124,7 @@
 			return 1;
 		}
 	}
-
+	
 	function postLike($user, $snippet, $isLike) {
 		$db = Database::instance()->getConnection();
 		$pragma = $db->prepare('PRAGMA recursive_triggers = 1');
@@ -132,6 +132,13 @@
 		$stmt = $db->prepare('REPLACE INTO SnippetRating(user, snippet, isLike) 
 		VALUES (?, ?, ?)');
 		return $stmt->execute(array($user, $snippet, $isLike));
+	}
+	
+	function updateUser($user, $username, $name, $email) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('REPLACE INTO User(id, usernmame, name, email)
+		VALUES (?, ?, ?, ?)');
+		return $stmt->execute(array($user, $username, $name, $email));
 	}
 
 	function followUser($user1, $user2) {
@@ -204,5 +211,6 @@
 		WHERE user = ? AND language = ?');
 		$stmt->execute(array($user, $language));
 	}
+
 
 ?>
