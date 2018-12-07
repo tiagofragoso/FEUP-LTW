@@ -156,7 +156,6 @@
 				</div>
 				<input type="file" name="file" id="file-upload">
 			</div>
-			<input type="hidden" name="author" value="<?=$_SESSION['user']?>" />
 			<input type="submit">
 		</form>
 	</div>
