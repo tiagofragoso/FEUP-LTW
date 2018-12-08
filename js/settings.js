@@ -73,8 +73,8 @@ function changePhoto() {
 }
 
 async function savePhoto() {
-    const photo = formSettings.photo.src;
-    const photos = {photo};
+    const photo = formSettings.photo.src.replace(/^data:image\/[a-z]+;base64,/, '');
+    const photos = { photo };
     try {
         await request('/api/change-photo.php', 'POST', photos);
     } catch (e) {
@@ -98,5 +98,5 @@ function getImagePortion(imgObj, newWidth, newHeight, startX, startY, ratio) {
     
     /* now we use the drawImage method to take the pixels from our bufferCanvas and draw them into our thumbnail canvas */
     tnCanvasContext.drawImage(bufferCanvas, startX,startY,newWidth * ratio, newHeight * ratio,0,0,newWidth,newHeight);
-    return tnCanvas.toDataURL()
+    return tnCanvas.toDataURL();
 }
