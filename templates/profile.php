@@ -92,13 +92,14 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 
 <?php
 function draw_settings_profile() {
-	$pic = getPicture($_SESSION['profilePic']);
+	$user = getUser($_SESSION['user']);
+	$pic = getPicture($user['profilePic']);
 	?>
 	<div class="main-content center flex-row-container">
 		<div class="user-info flex-col-container">
 			<img class="profile-pic" src="<?=$pic?>" />
-			<h1><?=$_SESSION['name']?></h1>
-			<h2><?=$_SESSION['username']?></h3>
+			<h1><?=$user['name']?></h1>
+			<h2><?=$user['username']?></h3>
 		</div>
 		<div class="user-settings flex-col-container">
 			<h1>Settings</h1>

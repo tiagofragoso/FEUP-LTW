@@ -3,8 +3,20 @@
 
 	function validUser($user, $password) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT * FROM user WHERE username=? AND password=?');
+		$stmt = $db->prepare('SELECT * FROM User WHERE username=? AND password=?');
 		$stmt->execute(array($user, sha1($password)));
+		$result = $stmt->fetch();
+		if (isset($result)){
+			return $result;
+		} else {
+			return null;
+		}
+	}
+
+	function validUserId($id, $password) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT * FROM User WHERE id=? AND password=?');
+		$stmt->execute(array($id, sha1($password)));
 		$result = $stmt->fetch();
 		if (isset($result)){
 			return $result;
@@ -17,6 +29,13 @@
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('INSERT INTO user (email, username, password) VALUES(?, ?, ?)');
 		$stmt->execute(array($email, $username, sha1($password)));
+	}
+
+	function changePassword($user, $newpassword) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('UPDATE User
+		SET password = ? WHERE id = ?');
+		return $stmt->execute(array(sha1($newpassword), $user));
 	}
 
 	function getSnippets() {
@@ -55,6 +74,22 @@
 		FROM User
 		WHERE User.id = ?');
 		$stmt->execute(array($id));
+		return $stmt->fetch();
+	}
+
+	function getUserByUsername($username) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT User.id 
+		FROM User WHERE User.username = ?');
+		$stmt->execute(array($username));
+		return $stmt->fetch();
+	}
+
+	function getUserByEmail($email) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT User.id
+		FROM User WHERE User.email = ?');
+		$stmt->execute(array($email));
 		return $stmt->fetch();
 	}
 
