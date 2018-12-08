@@ -100,6 +100,8 @@ function draw_settings_profile() {
 			<img class="profile-pic" src="<?=$pic?>" />
 			<h1><?=$user['name']?></h1>
 			<h2><?=$user['username']?></h3>
+			<label for="file-input">Change photo</label>
+			<input type="file" id="file-input" accept="image/png, image/jpeg" />
 		</div>
 		<div class="user-settings flex-col-container">
 			<h1>Settings</h1>
