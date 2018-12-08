@@ -1,7 +1,7 @@
 <?php
     include_once('../includes/session.php');
 
-    $request = $_SESSION['REQUEST_METHOD'];
+    $request = $_SERVER['REQUEST_METHOD'];
 
     switch($request) {
         case 'POST':
