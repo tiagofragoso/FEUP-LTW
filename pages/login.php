@@ -8,7 +8,7 @@
 	include_once('../templates/common.php');
 	include_once('../templates/authentication.php');
 
-	draw_header('SNIPZ-LOGIN');
+	draw_header('SNIPZ-LOGIN', array('auth'));
 	draw_login();
 	draw_footer();
 

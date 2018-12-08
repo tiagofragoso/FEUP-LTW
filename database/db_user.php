@@ -1,22 +1,18 @@
 <?php
 	include_once('../includes/database.php');
 
-	function validUser($user, $password) {
+	function validLogin($user, $password) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT * FROM user WHERE username=? AND password=?');
+		$stmt = $db->prepare('SELECT * FROM User WHERE username=? AND password=?');
 		$stmt->execute(array($user, sha1($password)));
-		$result = $stmt->fetch();
-		if (isset($result)){
-			return $result;
-		} else {
-			return null;
-		}
+		return $stmt->fetch();
 	}
 
 	function registerUser($email, $username, $password) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('INSERT INTO user (email, username, password) VALUES(?, ?, ?)');
+		$stmt = $db->prepare('INSERT INTO User (email, username, password) VALUES(?, ?, ?)');
 		$stmt->execute(array($email, $username, sha1($password)));
+		return $db->lastInsertId(); 
 	}
 
 	function getSnippets() {

@@ -11,7 +11,6 @@
 			<title><?=$title?></title>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" type="text/css" media="screen" href="/css/style.css" />
-			<link rel="stylesheet" type="text/css" media="screen" href="/css/auth.css" />
 			<link rel="stylesheet" type="text/css" media="screen" href="/css/nav.css" />
 			<link rel="stylesheet" type="text/css" media="screen" href="/css/prism.css" />
 			<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
