@@ -100,7 +100,7 @@ async function submitSnippet(event) {
 		alert("Empty code");
 		return;
 	}
-	const newSnippet = {title, description, language, code, author};
+	const newSnippet = {title, description, language, code};
 
 	try {
 		await request('/api/snippet.php', 'POST', newSnippet);

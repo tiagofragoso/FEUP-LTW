@@ -290,11 +290,12 @@ a {
 .new-snippet-wrapper {
 	display: flex;
 	flex-direction: column;
-	padding: 30px;
+	padding: 1em 2em 2em 2em;
+	background-color: white;
+	border-radius: 5px;
 }
 
 .new-snippet-wrapper > h1 {
-	margin: 0;
 	margin-bottom: 1em;
 	color: var(--darkgrey);
 }
@@ -319,6 +320,7 @@ a {
 	outline: none;
 	flex-grow: 99;
 	padding: 16px 18px;
+	background-color: #EBEBEB;
 }
 
 .new-snippet-wrapper select {
@@ -330,7 +332,7 @@ a {
     -moz-padding-end: 20px;
     -webkit-padding-start: 2px;
 	-moz-padding-start: 2px;
-	background-color: white;
+	background-color: #EBEBEB;
 	border-radius: 5px;
 	border: none;
 	font-family: 'Montserrat';
@@ -341,7 +343,7 @@ a {
 
 .new-snippet-wrapper .file-input-wrapper {
 	width: 100%;
-	background-color: white;
+	background-color: #EBEBEB;
 	border-radius: 5px;
 }
 
@@ -676,6 +678,12 @@ h1 {
 	width: 100%;
 }
 
+.user-settings .row > label {
+	font-size: 18px;
+	margin-bottom: 0.5em;
+	color: var(--darkgrey);
+}
+
 .user-settings input {
 	font-size: 16px;
 	border-radius: 5px;
@@ -832,3 +840,18 @@ h1 {
 }
 
 
+
+.user-info > input {
+	display: none;
+}
+
+.user-info > label {
+	background-color: var(--blue);
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+}

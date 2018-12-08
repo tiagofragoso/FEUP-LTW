@@ -23,7 +23,7 @@
         }
         header('Content-Type: application/json');
         $data = json_decode(file_get_contents('php://input'), true);
-        if (!isset($data['username'])) {
+        if (empty($data['username'])) {
             http_response_code(400);
             echo json_encode(array(
                 'success' => false,
@@ -38,7 +38,24 @@
             ));
             exit;
         } else {
-            if (updateUser($_SESSION['user'], $data['username'], $data['name'], $data['email'])) {
+            $idUsername = getUserByUsername($data['username'])['id'];
+            $idEmail = getUserByEmail($data['email'])['id'];
+
+            if ($idUsername !== $_SESSION['user'] && isset($idUsername)) {
+                http_response_code(400);
+                echo json_encode(array(
+                    'success' => false,
+                    'reason' => 'Username already in use'
+                ));
+                exit;
+            } else if ($idEmail !== $_SESSION['user'] && isset($idEmail)) {
+                http_response_code(400);
+                echo json_encode(array(
+                    'success' => false,
+                    'reason' => 'Email already in use'
+                ));
+                exit;
+            } else if (updateUser($_SESSION['user'], $data['username'], $data['name'], $data['email'])) {
                 http_response_code(200);
                 echo json_encode(array(
                     'success' => true
