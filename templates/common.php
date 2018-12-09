@@ -150,7 +150,7 @@
 						</div>
 						<label for="file-upload"><i class="fas fa-upload"></i>  Upload a file instead</label>
 					</header>
-					<textarea id="code-area" placeholder="Write or paste here!" rows="10"></textarea>
+					<textarea id="code-area" placeholder="Write or paste here!" rows="10" ></textarea>
 					<pre id="preview-area" class="line-numbers"><code></code></pre>
 				</div>
 				<input type="file" name="file" id="file-upload">

@@ -24,6 +24,11 @@ codeTextArea.addEventListener('keydown', catchTab);
 let previewArea = document.querySelector('#preview-area');
 let previewCodeElem = previewArea.querySelector('code');
 
+function resize() {
+	codeTextArea.style.height = 'auto';
+	codeTextArea.style.height = codeTextArea.scrollHeight+'px';
+}
+
 function uploadFile() {
 	if (!codeAreaIsEmtpy()){
 		if (!confirm('This will override any written code. Proceed?'))
@@ -33,6 +38,7 @@ function uploadFile() {
 	const reader = new FileReader();
 	reader.onload = () => {
 		codeTextArea.textContent = reader.result;
+		resize();
 	}
 	reader.readAsText(file);	
 }
@@ -65,6 +71,7 @@ function tabSwitcher(event){
 const KeyTab = 9; // key tab => magic constant
 
 function catchTab(event) {
+	resize();
 	const key = event.keyCode || event.which;
 	if (key == KeyTab) {
 		event.preventDefault();

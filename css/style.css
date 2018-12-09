@@ -516,6 +516,7 @@ a {
 	width: 100%;
 	resize: none;
 	min-height: 220px;
+	overflow: hidden;
 }
 
 .new-snippet-wrapper #preview-area {
