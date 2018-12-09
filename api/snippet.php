@@ -4,12 +4,42 @@
 	$request = $_SERVER['REQUEST_METHOD'];
 
 	switch($request) {
+		case 'GET':
+			get_snippets();
+			break;
 		case 'POST':
 			post_new_snippet();
 			break;
-		case 'GET':
-			get_snippet();
-			break;
+	}
+	
+	function get_snippets() {
+		header('Content-Type: application/json');
+		if (empty($_GET['id'])){
+			http_response_code(400);
+			echo json_encode(array(
+				'success' => false,
+				'reason' => 'No id'
+			));
+			exit;
+		} else {
+			$res = getSnippet($_GET['id']);
+			if (empty($res)){
+				http_response_code(400);
+				echo json_encode(array(
+					'success' => false,
+					'reason' => 'Invalid id'
+				));
+				exit;
+			} else {
+				http_response_code(200);
+				echo json_encode(array(
+					'success' => true,
+					'data' => $res
+				));
+				exit;
+			}
+			
+		}
 	}
 
 	function post_new_snippet() {
@@ -56,29 +86,4 @@
 		}
 	}
 
-	function get_snippet() {
-		header('Content-Type: application/json');
-		if (isset($_GET['id'])){
-			$res = getSnippet($_GET['id']);
-			if (empty($res)){
-				http_response_code(400);
-				echo json_encode(array(
-					'success' => false,
-					'reason' => 'Invalid id'
-				));
-				exit;
-			} else {
-				http_response_code(200);
-				echo json_encode($res);
-				exit;
-			}
-		} else {
-			http_response_code(400);
-			echo json_encode(array(
-				'success' => false,
-				'reason' => 'No id'
-			));
-			exit;
-		}
-	}
 ?>

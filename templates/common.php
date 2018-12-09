@@ -1,5 +1,5 @@
 <?php
-
+	include_once('../includes/session.php');
 	include_once('utils.php');
 	function draw_header($title, $modules = array()) {
 ?>
@@ -27,8 +27,6 @@
 ?>
 
 <?php
-	include_once('../includes/session.php');
-	include_once('utils.php');
 	function draw_nav() {
 ?>
 		<nav>
