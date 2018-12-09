@@ -5,7 +5,7 @@ include_once('utils.php');
 function draw_full_snippet($snippet, $comments) { 
 	$lang = 'language-' . $snippet['language'];
 	$name = isset($snippet['name'])? $snippet['name']: $snippet['username'];
-	$pic = getPicture($snippet['profilePic']);
+	$pic = getPicture($snippet['id']);
 	?>
 	<div class="full-card center flex-col-container">
 		<header class="snippet-header flex-row-container flex-space-between flex-vert-center">
