@@ -38,7 +38,7 @@
                 http_response_code(400);
                 echo json_encode(array(
                     'success' => false,
-                    'reason' => 'Couln not save photo',
+                    'reason' => 'Could not save photo',
                 ));
                 exit;
             }

@@ -40,10 +40,14 @@
 		return $string;
 	}
 
-	function getPicture($userPic) {
-		return isset($userPic)? 
-				'data:image/jpeg;base64,'.base64_encode($userPic):
-				'../assets/profile-placeholder.png';
+	function getPicture($user) {
+		$photo = "../assets/$user.jpg";
+		$default = "../assets/profile-placeholder.png";
+		if (file_exists($photo)) {
+			return $photo;
+		} else {
+			return $default;
+		}
 	}
 
 

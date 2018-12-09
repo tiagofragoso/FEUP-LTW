@@ -48,7 +48,7 @@
 						</ul>
 						<ul class="menu-right">
 							<?php if (isset($_SESSION['user'])) { 
-								$pic = getPicture($_SESSION['picture']);
+								$pic = getPicture($_SESSION['user']);
 								?>
 								<li><a href="../pages/new.php"><i class="fas fa-plus"></i> SNIP</a></li>
 								<li class="dropdown">

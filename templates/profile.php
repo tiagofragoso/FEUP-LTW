@@ -1,7 +1,7 @@
 <?php
 include_once('utils.php');
 function draw_profile($user, $snippets, $following, $followers, $languages, $settings){ 
-	$pic = getPicture($user['profilePic']);
+	$pic = getPicture($user['id']);
 	?>
 	<div class="full-card center flex-row-container">
 			<div class="user-info flex-col-container">
@@ -28,7 +28,7 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 					<div class="user-following-wrapper grid4x2">
 						<?php foreach (array_slice($following, 0, 8) as $f) { ?>
 						<a href="profile.php?id=<?=$f['id']?>">
-							<img class="mini-user-pic" src="<?=getPicture($f['profilePic'])?>" /> 
+							<img class="mini-user-pic" src="<?=getPicture($f['id'])?>" /> 
 						</a>
 						<?php } ?>
 					</div>
@@ -41,7 +41,7 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 					<div class="user-followers-wrapper grid4x2">
 						<?php foreach (array_slice($followers, 0, 8) as $f) { ?>
 							<a href="profile.php?id=<?=$f['id']?>">
-							<img class="mini-user-pic" src="<?=getPicture($f['profilePic'])?>" /> 
+							<img class="mini-user-pic" src="<?=getPicture($f['id'])?>" /> 
 						</a>
 						<?php } ?>
 					</div>
@@ -93,7 +93,7 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 <?php
 function draw_settings_profile() {
 	$user = getUser($_SESSION['user']);
-	$pic = getPicture($user['profilePic']);
+	$pic = getPicture($user['id']);
 	?>
 	<div class="main-content center flex-row-container">
 		<div class="user-info flex-col-container">

@@ -5,7 +5,7 @@ include_once('utils.php');
 function draw_full_snippet($snippet, $comments) { 
 	$lang = 'language-' . $snippet['language'];
 	$name = isset($snippet['name'])? $snippet['name']: $snippet['username'];
-	$pic = getPicture($snippet['profilePic']);
+	$pic = getPicture($snippet['id']);
 	?>
 	<div class="full-card center flex-col-container">
 		<header class="snippet-header flex-row-container flex-space-between flex-vert-center">
@@ -28,7 +28,6 @@ function draw_full_snippet($snippet, $comments) {
 					<div id="new-comment" class="comment-wrapper">
 						<form action="#" method="post">
 							<input type="hidden" name="snippet" value="<?=$snippet['id']?>"/>
-							<input type="hidden" name="user" value="<?=isset($_SESSION['name'])? $_SESSION['name']: $_SESSION['username'] ?>"/>
 							<textarea name="text" rows="3" required="required" placeholder="Write something about this snippet"></textarea>
 							<input type="submit" value="Send">
 						</form>
