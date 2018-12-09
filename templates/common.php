@@ -94,9 +94,11 @@
 						<i class="fas fa-caret-down"></i>
 					</div>
 					<h1 class="card-title"><?=$snippet['title']?></h1>
-					<div class="language-wrapper">
-						<?=$snippet['languageName']?>
-					</div>
+					<a href="../pages/channels.php?code=<?=$snippet['language']?>">
+						<div class="language-wrapper">
+							<?=$snippet['languageName']?>
+						</div>
+					</a>
 				</header>
 				 <a href="/pages/snippet.php?id=<?=$snippet['id']?>" target="_blank">
 					<pre class="line-numbers"><code class="<?=$lang?>"><?=htmlspecialchars($snippet['code'])?></code></pre>

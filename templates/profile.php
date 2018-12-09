@@ -54,9 +54,11 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 				</div>
 				<div class="languages flex-row-container">
 					<?php foreach ($languages as $language) { ?>
-						<div class="language-wrapper">
-							<?=$language['name']?>
-						</div>
+						<a href="../pages/channels.php?code=<?=$language['code']?>">
+							<div class="language-wrapper">
+								<?=$language['name']?>
+							</div>
+						</a>
 					<?php } ?>
 				</div>
 			</div>
@@ -68,13 +70,12 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 				<div class="user-snippets-preview">
 					<?php foreach ($snippets as $snippet) { ?>
 						<div class="snippet-preview flex-row-container flex-space-between flex-vert-center">
-							<div class="snippet-rat-date flex-row-container flex-space-between">
-								<span class="snippet-rating"><?=$snippet['points']?></span>
-							</div>
 							<a class="card-title" href="/pages/snippet.php?id=<?=$snippet['id']?>"><?=$snippet['title']?></a>
-							<div class="language-wrapper">
-								<?=$snippet['languageName']?>
-							</div>
+							<a href="../pages/channels.php?code=<?=$snippet['language']?>">
+								<div class="language-wrapper">
+									<?=$snippet['languageName']?>
+								</div>
+							</a>
 						</div>
 					<?php } ?>
 				</div>

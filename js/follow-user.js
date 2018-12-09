@@ -2,13 +2,11 @@ import { request } from "./request.js";
 
 const API_ENDPOINT = '/api/follow-user.php';
 const button_wrapper = document.querySelector('.profile-button-follow-wrapper');
-console.log(button_wrapper);
 if (button_wrapper != null) {
     let follow = {};
     follow.value = 0;
     follow.userId = button_wrapper.querySelector('#userId').textContent;
     follow.button = button_wrapper.querySelector('span:first-of-type');
-    console.log(follow.button);
     follow.button.addEventListener('click', followHandler.bind(follow));
     checkFollow.call(follow);
 }

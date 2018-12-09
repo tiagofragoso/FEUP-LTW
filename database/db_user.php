@@ -45,6 +45,18 @@
 		return $stmt->fetchAll();
 	}
 
+	function getLanguageSnippets($language) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name,
+		Language.name As languageName
+		FROM Snippet, User, Language
+		WHERE Snippet.author = User.id AND Language.code = Snippet.language
+		AND Language.code = ?
+		ORDER BY Snippet.date DESC');
+		$stmt->execute(array($language));
+		return $stmt->fetchAll();
+	}
+
 	function getSnippetCommentCount($id) {
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('SELECT Count(*) as count
@@ -212,7 +224,7 @@
 
 	function getUserLanguages($id) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT Language.name
+		$stmt = $db->prepare('SELECT Language.name, Language.code
 		FROM Language, FollowLanguage
 		WHERE FollowLanguage.user = ? and FollowLanguage.language = Language.code');
 		$stmt->execute(array($id));
@@ -242,6 +254,15 @@
 		$stmt = $db->prepare('DELETE FROM FollowLanguage
 		WHERE user = ? AND language = ?');
 		$stmt->execute(array($user, $language));
+	}
+
+	function getLanguage($code) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT * 
+		FROM Language 
+		WHERE Language.code = ?');
+		$stmt->execute(array($code));
+		return $stmt->fetch();
 	}
 
 
