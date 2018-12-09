@@ -68,7 +68,7 @@
 
 	function getSnippet($id) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name, User.profilePic, User.id,
+		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name, User.profilePic,
 		Language.name AS languageName
 		FROM Snippet, User, Language
 		WHERE Snippet.id = ? AND Snippet.author = User.id AND Language.code = Snippet.language');
