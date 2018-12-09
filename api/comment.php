@@ -62,11 +62,12 @@
 		} else {
 			try {
 				$currDate = (new DateTime())->format('Y-m-d H:i');
+				$user = getUser($_SESSION['user']);
 				postComment($_SESSION['user'], $data['snippet'], $data['text'], $currDate);
 				http_response_code(200);
 					echo json_encode(array(
 						'success' => true,
-						'data' => array('username' => $_SESSION['username'], 'date' => $currDate)
+						'data' => array('username' => $user['username'], 'date' => $currDate, 'name' => $user['name'])
 					));
 					exit;
 			} catch (PDOException $err) {
