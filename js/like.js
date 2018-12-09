@@ -4,7 +4,7 @@ const API_ENDPOINT = '/api/like.php';
 const ratings = document.querySelectorAll('.rating-wrapper');
 ratings.forEach(snippet => {
 	let context = {};
-	context.snippetId = snippet.querySelector('#snippetId').textContent;
+	context.snippetId = document.querySelector('.snippet-wrapper, .snippet-wrapper-feed').dataset.id;
 	context.upvoteBtn = snippet.querySelector('i:first-of-type');
 	context.downvoteBtn = snippet.querySelector('i:last-of-type');
 	context.points = snippet.querySelector('.snippet-rating');
@@ -16,20 +16,20 @@ ratings.forEach(snippet => {
 
 function updateVisual() {
 	if (this.like === 1) {
-		this.downvoteBtn.className = this.downvoteBtn.className.replace(' downvote', '');
-		this.points.className = this.points.className.replace(' downvote', '');
-		this.upvoteBtn.className += ' upvote';
-		this.points.className += ' upvote';
+		this.downvoteBtn.classList.remove('downvote');
+		this.points.classList.remove('downvote');
+		this.upvoteBtn.classList.add('upvote');
+		this.points.classList.add('upvote');
 	} else if (this.like === -1) {
-		this.upvoteBtn.className = this.upvoteBtn.className.replace(' upvote', '');
-		this.points.className = this.points.className.replace(' upvote', '');
-		this.downvoteBtn.className += ' downvote';
-		this.points.className += ' downvote';
+		this.upvoteBtn.classList.remove('upvote');
+		this.points.classList.remove('upvote');
+		this.downvoteBtn.classList.add('downvote');
+		this.points.classList.add('downvote');
 	} else if (this.like === 0) {
-		this.upvoteBtn.className = this.upvoteBtn.className.replace(' upvote', '');
-		this.points.className = this.points.className.replace(' upvote', '');
-		this.downvoteBtn.className = this.downvoteBtn.className.replace(' downvote', '');
-		this.points.className = this.points.className.replace(' downvote', '');
+		this.upvoteBtn.classList.remove('upvote');
+		this.points.classList.remove('upvote');
+		this.downvoteBtn.classList.remove('downvote');
+		this.points.classList.remove('downvote');
 	}
 }
 
