@@ -5,7 +5,6 @@ const ratings = document.querySelectorAll('.rating-wrapper');
 ratings.forEach(snippet => {
 	let context = {};
 	context.snippetId = document.querySelector('.snippet-wrapper, .snippet-wrapper-feed').dataset.id;
-	console.log(context.snippetId);
 	context.upvoteBtn = snippet.querySelector('i:first-of-type');
 	context.downvoteBtn = snippet.querySelector('i:last-of-type');
 	context.points = snippet.querySelector('.snippet-rating');

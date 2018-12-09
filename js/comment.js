@@ -4,13 +4,12 @@ const API_ENDPOINT = '/api/comment.php'
 const comments = document.querySelector('.comments-wrapper');
 const newCommentRef = comments.querySelector('#new-comment');
 newCommentRef.querySelector('form').addEventListener('submit', postComment);
-const snippetId = document.querySelector('snippet-wrapper').textContent;
+const snippetId = document.querySelector('.snippet-wrapper').dataset.id;
 
 getSnippetComments();
 
 async function getSnippetComments() {
 	let data = await request(API_ENDPOINT, 'GET', {snippet: snippetId});
-	console.log(data);
 	data.forEach(comment => {
 		comments.insertBefore(createComment(comment), newCommentRef);
 	});
@@ -41,6 +40,7 @@ async function postComment(event) {
 	try {
 		const data = await request(API_ENDPOINT, 'POST', {snippet: snippetId, text: text});
 		comments.insertBefore(createComment({...data, text: text}), newCommentRef);
+		newCommentRef.querySelector('textarea').value = "" ;
 	} catch (e) {
 
 	}
