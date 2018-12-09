@@ -451,13 +451,26 @@ a {
 	font-size: 25px;
 	margin-bottom: 0;
 }
-
-.user-info > h2 {
+.user-info h2 {
 	font-size: 20px;
 	font-weight: normal;
-	margin-top: 0;
 	color: var(--darkgrey);
+
 }
+
+.username-points {
+	margin-top: 0em;
+}
+
+.username-points span {
+	font-size: 15px;
+	color: var(--darkgrey);
+	border-left: 1px solid var(--darkgrey);
+	padding-left: 5px;
+	margin-left: 0.5em;
+	
+}
+
 
 .profile-button-follow {
 	background: var(--blue);

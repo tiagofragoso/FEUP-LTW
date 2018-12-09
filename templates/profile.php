@@ -7,7 +7,10 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 			<div class="user-info flex-col-container">
 				<img class="profile-pic" src="<?=$pic?>" />
 				<h1><?=$user['name']?></h1>
-				<h2><?=$user['username']?></h3>
+				<div class="username-points flex-row-container flex-vert-center">
+					<h2><?=$user['username']?></h2>
+					<span><?=$user['points']?></span>
+				</div>
 				<?php if ($settings) { ?>
 					<a class="profile-button-settings" href="settings.php"> Settings </a>
 				<?php } else { ?>
