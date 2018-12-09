@@ -83,10 +83,9 @@
 			$name = isset($snippet['name'])? $snippet['name']: $snippet['username'];
 			$countComments = getSnippetCommentCount($snippet['id']);
 			$lang = 'language-' . $snippet['language']; ?>
-			 <div class="snippet-wrapper-feed">
+			 <div class="snippet-wrapper-feed" data-id="<?=$snippet['id']?>">
 			 	<header class="snippet-header flex-row-container flex-space-between flex-vert-center">
 					<div class="rating-wrapper">
-						<span id="snippetId"><?=$snippet['id']?></span>
 						<i class="fas fa-caret-up"></i>
 						<span class="snippet-rating"><?=$snippet['points']?></span>
 						<i class="fas fa-caret-down"></i>

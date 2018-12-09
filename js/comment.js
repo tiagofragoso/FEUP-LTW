@@ -4,7 +4,7 @@ const API_ENDPOINT = '/api/comment.php'
 const comments = document.querySelector('.comments-wrapper');
 const newCommentRef = comments.querySelector('#new-comment');
 newCommentRef.querySelector('form').addEventListener('submit', postComment);
-const snippetId = document.querySelector('#snippetId').textContent;
+const snippetId = document.querySelector('snippet-wrapper').textContent;
 
 getSnippetComments();
 
