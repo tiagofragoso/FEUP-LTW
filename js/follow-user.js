@@ -14,10 +14,10 @@ if (button_wrapper != null) {
 function updateVisual() {
     if (button_wrapper != null) {
         if (this.value === 0) {
-            this.button.className = this.button.className.replace('unfollow', 'follow');
+            this.button.classList.replace('unfollow', 'follow');
             this.button.textContent = 'Follow';
         } else if (this.value === 1) {
-            this.button.className = this.button.className.replace('follow', 'unfollow');
+            this.button.classList.replace('follow', 'unfollow');
             this.button.textContent = 'Unfollow';
         } 
     }
