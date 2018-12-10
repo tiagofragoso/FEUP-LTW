@@ -168,6 +168,21 @@
 		}
 	}
 
+	function hasLikeComment($user, $comment) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT isLike FROM CommentRating
+		WHERE user = ? AND comment = ?');
+		$stmt->execute(array($user, $comment));
+		$res = $stmt->fetch();
+		if (empty($res)) {
+			return 0;
+		} else if ($res['isLike']) {
+			return 1;
+		} else {
+			return -1;
+		}
+	}
+
 	function hasFollow($user1, $user2) {
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('SELECT * FROM FollowUser
@@ -189,6 +204,15 @@
 		VALUES (?, ?, ?)');
 		return $stmt->execute(array($user, $snippet, $isLike));
 	}
+
+	function postLikeComment($user, $comment, $isLike) {
+		$db = Database::instance()->getConnection();
+		$pragma = $db->prepare('PRAGMA recursive_triggers = 1');
+		$pragma->execute();
+		$stmt = $db->prepare('REPLACE INTO CommentRating(user, comment, isLike) 
+		VALUES (?, ?, ?)');
+		return $stmt->execute(array($user, $comment, $isLike));
+	}
 	
 	function updateUser($user, $username, $name, $email) {
 		$db = Database::instance()->getConnection();
@@ -208,6 +232,12 @@
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('DELETE FROM SnippetRating WHERE user = ? AND snippet = ?');
 		return $stmt->execute(array($user, $snippet));
+	}
+
+	function deleteLikeComment($user, $comment) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('DELETE FROM CommentRating WHERE user = ? AND comment = ?');
+		return $stmt->execute(array($user, $comment));
 	}
 
 	function unfollowUser($user1, $user2) {

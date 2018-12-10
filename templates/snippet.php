@@ -25,7 +25,7 @@ function draw_full_snippet($snippet, $comments) {
 				<div class="snippet-left-wrapper">
 					<pre class="line-numbers"><code class="<?=$lang?>"><?=htmlspecialchars($snippet['code'])?></code></pre>
 					<div class="comments-wrapper">
-						<?=draw_subtitle('Comments')?>
+						<h1>Comments</h1>
 						<div id="new-comment" class="comment-wrapper">
 							<form action="#" method="post">
 								<input type="hidden" name="snippet" value="<?=$snippet['id']?>"/>
@@ -42,7 +42,7 @@ function draw_full_snippet($snippet, $comments) {
 					</div>
 					<span class="date-posted"><?=getTimeElapsed($snippet['date'])?></span>
 					<div class="description-wrapper">
-						<?=draw_subtitle("Description")?>
+						<h1>Description</h1>
 						<p class="description"><?=$snippet['description']?></p>
 					</div>
 				</div>

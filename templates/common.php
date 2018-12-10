@@ -167,11 +167,3 @@
 <?php
 	}
 ?>
-
-<?php
-	function draw_subtitle($title) { ?>
-		<div class="subtitle-wrapper">
-			<span class="subtitle"><?=$title?></span>
-			<div class="separator"></div>
-		</div>
-	<?php } ?>
