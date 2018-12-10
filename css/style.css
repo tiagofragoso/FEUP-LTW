@@ -897,7 +897,7 @@ h1 {
 	color: var(--darkgrey);
 }
 
-.auth-form-wrapper span:first-of-type {
+.auth-form-wrapper header span:first-of-type {
 	color: var(--blue);
 }
 
@@ -914,6 +914,14 @@ h1 {
 	align-items: center;
 	margin: 1em 0;
 	width: 100%;
+}
+
+.auth-form-wrapper > form > .input-field-wrapper:first-of-type {
+	display: none;
+}
+
+.auth-form-wrapper > form > .input-field-wrapper:last-of-type {
+	display: none;
 }
 
 .auth-form-wrapper input {
@@ -933,7 +941,7 @@ h1 {
 	outline: none;
 	padding: 16px 18px;
 	background-color: #EBEBEB;
-	width: 80%;
+	width: 100%;
 }
 
 .auth-form-wrapper input[type="submit"] {
@@ -945,6 +953,28 @@ h1 {
 	cursor: pointer;
 	border-radius: 5px;
 	font-weight: bold;
+}
+
+.auth-form-wrapper .input-field-wrapper {
+	width: 80%;
+}
+
+.input-info {
+	margin-top: 0.2em;
+	margin-bottom: 0;
+	font-weight: bold;
+	font-size: 13px;
+	color: #d86e6e;
+	text-align: center;
+}
+
+.invalid {
+	border: 1px solid #d86e6e !important;
+}
+
+.input-field-wrapper {
+	display: flex;
+	flex-direction: column;
 }
 
 .auth-form-wrapper header {
@@ -1000,8 +1030,6 @@ h1 {
 	margin-bottom: 15px;
 }
 
-
-
 .user-info > input {
 	display: none;
 }
@@ -1033,3 +1061,4 @@ h1 {
 	font-weight: bold;
 	color: var(--blue);
 }
+
