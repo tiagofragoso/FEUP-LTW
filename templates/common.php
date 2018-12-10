@@ -74,9 +74,7 @@
 ?>
 
 <?php
-	include_once('../database/db_user.php');
-	function draw_feed() {
-		$snippets = getSnippets();
+	function draw_feed($snippets) {
 		?>
 	<div class="main-content center">
 		<?php foreach ($snippets as $snippet) { 

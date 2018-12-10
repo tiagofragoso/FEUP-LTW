@@ -34,7 +34,20 @@
 		return $stmt->execute(array(sha1($newpassword), $user));
 	}
 
-	function getSnippets() {
+	function getFeed($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name,
+		Language.name AS languageName
+		FROM Snippet, User, Language
+		WHERE Snippet.author = User.id AND Language.code = Snippet.language
+		AND (Snippet.language IN (SELECT language FROM FollowLanguage WHERE FollowLanguage.user = ?)
+		OR Snippet.author IN (SELECT user2 FROM FollowUser WHERE user1 = ?))
+		ORDER BY Snippet.date DESC');
+		$stmt->execute(array($id, $id));
+		return $stmt->fetchAll();
+	}
+
+	function getAllSnippets() {
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name,
 		Language.name AS languageName
