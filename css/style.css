@@ -427,23 +427,24 @@ a {
 	font-size: 22px;
 }
 
-.snippet-preview {
+.snippet-preview-content {
 	background-color: #EBEBEB;
-	margin-top: 1em;
 	padding: 1em;
+	height: 100%;
+	width: 100%;
 	border-radius: 5px;
 }
 
-.snippet-preview > .card-title {
+.snippet-preview-content .card-title {
 	font-size: 15px;
 	font-weight: bold;
 }
 
-.snippet-preview .snippet-rating {
+.snippet-preview-content .snippet-rating {
 	color: var(--blue);
 }
 
-.snippet-preview > .language-wrapper {
+.snippet-preview-content .language-wrapper {
 	font-size: 12px;
 }
 
@@ -642,6 +643,33 @@ h1 {
 .hoverable-card:hover .hover-content {
 	width: 15%;
 	font-size: 16px;
+}
+
+.hover-content-points {
+	background-color: var(--blue);
+	width: 0%;
+	height: 100%;
+	border-radius: 0px 5px 5px 0px;
+	font-size: 1px;
+	overflow: hidden;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: white;
+	transition: width ease-out 0.5s, font-size 0.5s;
+}
+
+.snippet-preview:hover .hover-content-points {
+	width: 10%;
+	font-size: 16px;
+}
+
+.snippet-preview {
+	height: 60px;
+	border-radius: 5px;
+	margin-top: 1em;
+	background-color: #EBEBEB;
 }
 
 .profile-button-follow-wrapper > #userId {
