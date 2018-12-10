@@ -73,8 +73,8 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 				<div class="user-snippets-preview">
 					<?php foreach ($snippets as $snippet) { ?>
 						<div class="snippet-preview flex-row-container flex-space-between flex-vert-center">
-							<div class="snippet-preview-content flex-row-container flex-space-between flex-vert-center">
-								<a class="card-title" href="/pages/snippet.php?id=<?=$snippet['id']?>"><?=$snippet['title']?></a>
+							<div class="snippet-preview-content flex-row-container flex-space-between flex-vert-center" href="/pages/snippet.php?id=<?=$snippet['id']?>">
+								<div class="card-title"><?=$snippet['title']?></div>
 								<a href="../pages/channels.php?code=<?=$snippet['language']?>">
 									<div class="language-wrapper">
 										<?=$snippet['languageName']?>

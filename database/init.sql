@@ -10,7 +10,9 @@ CREATE TABLE Comment (
                     NOT NULL,
     snippet INTEGER REFERENCES Snippet
                     NOT NULL,
-    text    TEXT    NOT NULL
+    text    TEXT    NOT NULL,
+    rating      INTEGER DEFAULT (0) 
+                        NOT NULL,
 );
 
 
@@ -85,6 +87,21 @@ CREATE TABLE SnippetRating (
     PRIMARY KEY (
         user,
         snippet
+    )
+);
+
+-- Table: CommentRating
+DROP TABLE IF EXISTS CommentRating;
+
+CREATE TABLE CommentRating (
+    user    INTEGER REFERENCES User (id) 
+                    NOT NULL,
+    comment INTEGER REFERENCES Comment
+                    NOT NULL,
+    isLike  BOOLEAN NOT NULL,
+    PRIMARY KEY (
+        user,
+        comment
     )
 );
 

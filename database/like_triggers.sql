@@ -23,3 +23,25 @@ BEGIN
 	SET points = points + CASE Old.isLike WHEN 1 THEN -1 ELSE 1 END
 	WHERE User.id = (SELECT author FROM Snippet WHERE Snippet.id = Old.Snippet);
 END;
+
+DROP TRIGGER IF EXISTS insertLikeComment;
+CREATE TRIGGER insertLikeComment
+AFTER INSERT ON CommentRating
+For Each Row
+BEGIN
+	UPDATE Comment
+	SET points = points + CASE New.isLike WHEN 1 THEN 1 ELSE -1 END
+	WHERE Comment.id = New.comment;
+END;
+
+DROP TRIGGER IF EXISTS removeLikeComment;
+CREATE TRIGGER removeLikeComment
+AFTER DELETE ON CommentRating
+For Each Row
+BEGIN
+	UPDATE Comment
+	SET points = points + CASE Old.isLike WHEN 1 THEN -1 ELSE 1 END
+	WHERE Comment.id = Old.Comment;
+END;
+
+
