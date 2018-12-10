@@ -11,7 +11,6 @@
 			<title><?=$title?></title>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" type="text/css" media="screen" href="/css/style.css" />
-			<link rel="stylesheet" type="text/css" media="screen" href="/css/nav.css" />
 			<link rel="stylesheet" type="text/css" media="screen" href="/css/prism.css" />
 			<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
@@ -30,7 +29,6 @@
 	function draw_nav() {
 ?>
 		<nav>
-			<div class="nav-wrapper">
 				<a href="/pages/feed.php"><?php include("../includes/logo.php") ?></a>
 				<div class="navbar">
 					<div class="search">
@@ -67,7 +65,6 @@
 					</div>
 					
 				</div>
-			</div>
 		</nav>
 <?php
 	}

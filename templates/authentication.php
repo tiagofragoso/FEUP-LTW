@@ -12,8 +12,8 @@
 					<span>SIGNUP</span>
 				</header>
 				<form id="auth" action="#" method="POST" autocomplete="on">
-					<input type="text" name="username" placeholder="username" maxlength="25" required="required">
-					<input type="password" name="password" placeholder="password" required="required">
+					<input type="text" name="username" placeholder="username" maxlength="25">
+					<input type="password" name="password" placeholder="password">
 				</form>
 				<footer>
 					<input form="auth" type="submit" name="submit" value="LOGIN">
