@@ -17,9 +17,11 @@ function draw_full_snippet($snippet, $comments) {
 					<i class="fas fa-caret-down"></i>
 				</div>
 				<h1 class="card-title"><?=$snippet['title']?></h1>
-				<div class="language-wrapper">
-					<?=$snippet['languageName']?>
-				</div>
+				<a href="../pages/channels.php?code=<?=$snippet['language']?>">
+					<div class="language-wrapper">
+						<?=$snippet['languageName']?>
+					</div>
+				</a>
 			</header>
 			<div class="card-content flex-row-container">
 				<div class="snippet-left-wrapper">
@@ -37,8 +39,12 @@ function draw_full_snippet($snippet, $comments) {
 				</div>
 				<div class="info-wrapper flex-col-container">
 					<div class="author-wrapper">
+					<a href="../pages/profile.php?id=<?=$snippet['author']?>">
 						<span class="author-name"><?=$name?></span>
+					</a>
+					<a href="../pages/profile.php?id=<?=$snippet['author']?>">
 						<img class="round-img" src="<?=$pic?>" alt="profile picture" />
+					</a>
 					</div>
 					<span class="date-posted"><?=getTimeElapsed($snippet['date'])?></span>
 					<div class="description-wrapper">
