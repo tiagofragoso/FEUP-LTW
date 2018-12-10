@@ -7,7 +7,10 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 			<div class="user-info flex-col-container">
 				<img class="profile-pic" src="<?=$pic?>" />
 				<h1><?=$user['name']?></h1>
-				<h2><?=$user['username']?></h3>
+				<div class="username-points flex-row-container flex-vert-center">
+					<h2><?=$user['username']?></h2>
+					<span><?=$user['points']?></span>
+				</div>
 				<?php if ($settings) { ?>
 					<a class="profile-button-settings" href="settings.php"> Settings </a>
 				<?php } else { ?>
@@ -70,12 +73,17 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 				<div class="user-snippets-preview">
 					<?php foreach ($snippets as $snippet) { ?>
 						<div class="snippet-preview flex-row-container flex-space-between flex-vert-center">
-							<a class="card-title" href="/pages/snippet.php?id=<?=$snippet['id']?>"><?=$snippet['title']?></a>
-							<a href="../pages/channels.php?code=<?=$snippet['language']?>">
-								<div class="language-wrapper">
-									<?=$snippet['languageName']?>
-								</div>
-							</a>
+							<div class="snippet-preview-content flex-row-container flex-space-between flex-vert-center">
+								<a class="card-title" href="/pages/snippet.php?id=<?=$snippet['id']?>"><?=$snippet['title']?></a>
+								<a href="../pages/channels.php?code=<?=$snippet['language']?>">
+									<div class="language-wrapper">
+										<?=$snippet['languageName']?>
+									</div>
+								</a>
+							</div>
+							<div class="hover-content-points">
+								<span><?=$snippet['points']?></span>
+							</div>
 						</div>
 					<?php } ?>
 				</div>
