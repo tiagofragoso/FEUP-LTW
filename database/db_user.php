@@ -3,35 +3,34 @@
 
 	function validLogin($user, $password) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT * FROM User WHERE username=? AND password=?');
-		$stmt->execute(array($user, sha1($password)));
-		return $stmt->fetch();
+		$stmt = $db->prepare('SELECT * FROM User WHERE username=?');
+		$stmt->execute(array($user));
+		$row = $stmt->fetch();
+		return (!empty($row) && password_verify($password, $row['password']))? $row: false;
 	}
 
 	function validUserId($id, $password) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT * FROM User WHERE id=? AND password=?');
-		$stmt->execute(array($id, sha1($password)));
-		$result = $stmt->fetch();
-		if (isset($result)){
-			return $result;
-		} else {
-			return null;
-		}
+		$stmt = $db->prepare('SELECT username FROM User WHERE id=?');
+		$stmt->execute(array($id));
+		$row = $stmt->fetch();
+		return validLogin($row['username'], $password);
 	}
 
 	function registerUser($email, $username, $password) {
+		$options = ['cost' => 12];
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('INSERT INTO User (email, username, password) VALUES(?, ?, ?)');
-		$stmt->execute(array($email, $username, sha1($password)));
+		$stmt->execute(array($email, $username, password_hash($password, PASSWORD_DEFAULT, $options)));
 		return $db->lastInsertId(); 
 	}
 
-	function changePassword($user, $newpassword) {
+	function changePassword($id, $newpassword) {
+		$options = ['cost' => 12];
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('UPDATE User
 		SET password = ? WHERE id = ?');
-		return $stmt->execute(array(sha1($newpassword), $user));
+		return $stmt->execute(array(password_hash($newpassword, PASSWORD_DEFAULT, $options), $id));
 	}
 
 	function getFeed($id) {
