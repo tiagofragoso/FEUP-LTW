@@ -875,7 +875,7 @@ h1 {
 }
 
 .screen-wrapper > #logo {
-	width: 30%;
+	width: 400px;
 }
 
 .screen-wrapper > footer {
@@ -886,8 +886,8 @@ h1 {
 .auth-form-wrapper {
 	border-radius: 5px;
 	background-color: white;
-	width: 25%;
-	height: 50%;
+	min-width: 500px;
+	min-height: 500px;
 	padding: 30px;
 	display: flex;
 	flex-direction: column;
