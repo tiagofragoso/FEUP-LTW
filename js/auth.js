@@ -14,6 +14,7 @@ const emailEl = inputs[0];
 const usernameEl = inputs[1];
 const passwordEl = inputs[2];
 const repPassEl = inputs[3];
+const submitEl = submitBtn.parentElement;
 
 const RFC5322EmailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -27,6 +28,7 @@ toggle.addEventListener('click', changeState);
 
 function changeState() {
 	inputs.forEach(removeError);
+	removeError(submitEl);
 	inputs.forEach(e => e.querySelector('input').value = '');
 	if (state === 0) {
 		toggle.classList.add('active');
@@ -63,14 +65,14 @@ async function submitAuth(event) {
 			await request(API_ENDPOINT, 'PUT', {username, password});
 			window.location.href = '/pages/feed.php';
 		} catch (e) {
-			console.log(e);
+			setFormError(e);
 		}
 	} else {
 		try {
 			await request(API_ENDPOINT, 'POST', {email, username, password});
 			window.location.href = '/pages/feed.php';
 		} catch (e) {
-			console.log(e);
+			setFormError(e);
 		}
 	}
 }
@@ -103,7 +105,9 @@ function removeError (el) {
 }
 
 function validateForm() {
+	return true;
 	inputs.forEach(removeError);
+	removeError(submitEl);
 	let valid = true;
 
 	let email = emailEl.querySelector('input').value;		
@@ -149,4 +153,8 @@ function validateForm() {
 	}
 	
 	return valid;
+}
+
+function setFormError(message) {
+	submitEl.querySelector('p').textContent = message;
 }

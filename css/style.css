@@ -968,6 +968,20 @@ h1 {
 	text-align: center;
 }
 
+.auth-form-wrapper footer {
+	width: 100%;
+}
+
+.auth-form-wrapper footer .input-field-wrapper {
+	width: 100%;
+}
+
+footer .input-info {
+	margin-top: 0;
+	margin-bottom: 1em;
+	font-size: 14px;
+}
+
 .invalid {
 	border: 1px solid #d86e6e !important;
 }
@@ -975,6 +989,8 @@ h1 {
 .input-field-wrapper {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	margin: 0;
 }
 
 .auth-form-wrapper header {

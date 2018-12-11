@@ -30,7 +30,10 @@
 					</div>
 				</form>
 				<footer>
-					<input form="auth" type="submit" name="submit" value="LOGIN">
+					<div class="input-field-wrapper">
+						<p class="input-info"> </p>
+						<input form="auth" type="submit" name="submit" value="LOGIN">
+					</div>
 				</footer>
 			</div>
 			<footer>
