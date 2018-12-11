@@ -114,35 +114,23 @@ function validateForm() {
 	let pass = passwordEl.querySelector('input').value;
 	let repPass = repPassEl.querySelector('input').value;
 	
-	if ((user = user.trim()) == ''){
-		setError('username', 'Username can\'t be empty');
-		valid = false;
-	} else if (!user.match(/^[-\w]{5,25}$/)) {
+	if (!user.match(/^[-\w]{5,25}$/)) {
 		setError('username', 'Username must be between 5-25 characters.');
 		valid = false;
 	}
 	
-	if ((pass = pass.trim()) == '') {
-		setError('password', 'Password can\'t be empty');
-		valid = false;
-	} else if (!pass.match(/^.{5,25}$/)) {
+	if (!pass.match(/^.{5,25}$/)) {
 		setError('password', 'Password must be between 5-30 characters.');
 		valid = false;
 	}
 
 	if (state === 1) {
-		if ((email = email.trim()) == '') {
-			setError('email', 'Email can\'t be empty');
-			valid = false;
-		} else if (!email.match(RFC5322EmailRegex)) {
+		if (!email.match(RFC5322EmailRegex)) {
 			setError('email', 'Invalid email address');
 			valid = false;
 		}
-
-		if ((repPass = repPass.trim()) == '') {
-			setError('repPass', 'Password can\'t be empty');
-			valid = false;
-		} else if (!repPass.match(/^.{5,30}$/)) {
+		
+		if (!repPass.match(/^.{5,30}$/)) {
 			setError('repPass', 'Password must be between 5-30 characters.');
 			valid = false;
 		} else if (repPass !== pass) {
