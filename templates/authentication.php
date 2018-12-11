@@ -11,9 +11,9 @@
 					</div>
 					<span>SIGNUP</span>
 				</header>
-				<form id="auth" action="#" method="POST" autocomplete="on">
+				<form id="auth" method="POST" autocomplete="on">
 					<div class="input-field-wrapper">
-						<input type="text" name="email" placeholder="email">
+						<input type="email" name="email" placeholder="email">
 						<p class="input-info"> </p>
 					</div>
 					<div class="input-field-wrapper">

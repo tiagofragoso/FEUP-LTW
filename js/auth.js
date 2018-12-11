@@ -15,6 +15,8 @@ const usernameEl = inputs[1];
 const passwordEl = inputs[2];
 const repPassEl = inputs[3];
 
+const RFC5322EmailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 // Set submit action
 submitBtn.addEventListener('click', submitAuth);
 
@@ -25,6 +27,7 @@ toggle.addEventListener('click', changeState);
 
 function changeState() {
 	inputs.forEach(removeError);
+	inputs.forEach(e => e.querySelector('input').value = '');
 	if (state === 0) {
 		toggle.classList.add('active');
 		toggleBtn.classList.add('active');
@@ -49,17 +52,22 @@ function changeState() {
 async function submitAuth(event) {
 	event.preventDefault();
 	if (!validateForm())
-			return;
+		return;
+
+	const username = usernameEl.querySelector('input').value;
+	const password = passwordEl.querySelector('input').value;
+	const email = emailEl.querySelector('input').value;
+
 	if (state === 0) {
 		try {
-			await request(API_ENDPOINT, 'PUT', {user, pass});
+			await request(API_ENDPOINT, 'PUT', {username, password});
 			window.location.href = '/pages/feed.php';
 		} catch (e) {
 			console.log(e);
 		}
 	} else {
 		try {
-			await request(API_ENDPOINT, 'POST', {email, user, pass});
+			await request(API_ENDPOINT, 'POST', {email, username, password});
 			window.location.href = '/pages/feed.php';
 		} catch (e) {
 			console.log(e);
@@ -106,10 +114,16 @@ function validateForm() {
 	if ((user = user.trim()) == ''){
 		setError('username', 'Username can\'t be empty');
 		valid = false;
+	} else if (!user.match(/^[-\w]{5,25}$/)) {
+		setError('username', 'Username must be between 5-25 characters.');
+		valid = false;
 	}
 	
 	if ((pass = pass.trim()) == '') {
 		setError('password', 'Password can\'t be empty');
+		valid = false;
+	} else if (!pass.match(/^.{5,25}$/)) {
+		setError('password', 'Password must be between 5-30 characters.');
 		valid = false;
 	}
 
@@ -117,14 +131,18 @@ function validateForm() {
 		if ((email = email.trim()) == '') {
 			setError('email', 'Email can\'t be empty');
 			valid = false;
+		} else if (!email.match(RFC5322EmailRegex)) {
+			setError('email', 'Invalid email address');
+			valid = false;
 		}
 
 		if ((repPass = repPass.trim()) == '') {
 			setError('repPass', 'Password can\'t be empty');
 			valid = false;
-		}
-		
-		if (repPass !== pass) {
+		} else if (!repPass.match(/^.{5,30}$/)) {
+			setError('repPass', 'Password must be between 5-30 characters.');
+			valid = false;
+		} else if (repPass !== pass) {
 			setError('repPass', 'Passwords don\'t match');
 			valid = false;
 		}
