@@ -56,5 +56,52 @@ function draw_full_snippet($snippet, $comments) {
 		</div>
 	</div>
 
-
 <?php } ?>
+
+<?php
+	function draw_new_snippet($languages) {
+?>
+	<div class="full-card center new-snippet-wrapper">
+		<h1>Add new snippet</h1>
+		<form action="#" enctype="multipart/form-data" method="post">
+			<div class="row">
+				<label class="required" for="title"><span>Title</span><span class="input-info"></span></label>
+				<input type="text" name="title" id="title" placeholder="Give your awesome snippet a catchy title" maxlength="70">
+			</div>
+			<div class="row">
+				<label for="description"><span>Description</span></label>
+				<textarea name="description" id="description"
+				placeholder="Write something about your snippet" maxlength="1000"></textarea>
+			</div>
+			<div class="row">
+				<label class="required" for="language"><span>Language</span><span class="input-info"></span></label>
+				<select name="language" id="language">
+					<?php foreach($languages as $lang) { ?>
+						<option value="<?=$lang['code']?>" <?=($lang['code']==='none')? 'selected="selected"': null?>><?=$lang['name']?></option>
+					<?php } ?>
+				</select>
+			</div>
+			<div class="row">
+				<label class="required" for="file-input"><span>File</span><span class="input-info"></span></label>
+				<div class="file-input-wrapper">
+					<header>
+						<div class="tabs">
+							<button id="write-mode" class="active">Write</button>
+							<button id="preview-mode">Preview</button>
+						</div>
+						<label for="file-upload"><i class="fas fa-upload"></i>  Upload a file instead</label>
+					</header>
+					<textarea id="code-area" placeholder="Write or paste here!" rows="10" ></textarea>
+					<pre id="preview-area" class="line-numbers"><code></code></pre>
+				</div>
+				<input type="file" name="file" id="file-upload">
+			</div>
+			<div class="row">
+				<p class="input-info"></p>
+				<input type="submit">
+			</div>
+		</form>
+	</div>
+<?php
+	}
+?>

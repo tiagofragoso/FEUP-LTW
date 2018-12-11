@@ -5,6 +5,7 @@
 	--grey :  #707070;
 	--blue : #74B2B7;
 	--orange : #ffac68;
+	--red: #d86e6e;
 }
 
 body {
@@ -964,7 +965,7 @@ h1 {
 	margin-bottom: 0;
 	font-weight: bold;
 	font-size: 13px;
-	color: #d86e6e;
+	color: var(--red);
 	text-align: center;
 }
 
@@ -983,7 +984,7 @@ footer .input-info {
 }
 
 .invalid {
-	border: 1px solid #d86e6e !important;
+	border: 1px solid var(--red) !important;
 }
 
 .input-field-wrapper {
@@ -1067,3 +1068,15 @@ footer .input-info {
 	color: var(--blue);
 }
 
+.required > span:first-child::after {
+	content: '*';
+	color: var(--blue);
+}
+
+label > .input-info {
+	margin-left: 1em;
+}
+
+.row > p.input-info {
+	margin-bottom: 0.5em;
+}

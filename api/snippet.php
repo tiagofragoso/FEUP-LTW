@@ -45,7 +45,7 @@
 	function post_new_snippet() {
 		header('Content-Type: application/json');
 		if (empty($_SESSION['user'])){
-			http_response_code(400);
+			http_response_code(403);
 			echo json_encode(array(
 				'success' => false,
 				'reason' => 'Requires login'
@@ -53,24 +53,31 @@
 			exit;
 		}
 		$data = json_decode(file_get_contents('php://input'), true);
-		if (empty($data['title'])) {
+		if (!preg_match('/^[a-zA-Z]+[ :\-#.\w]{0,69}$/', $data['title'])) {
 			http_response_code(400);
 			echo json_encode(array(
 				'success' => false,
-				'reason' => 'Missing title'
+				'reason' => 'Title invalid'
 			));
 			exit;
 		} else if (empty($data['code'])) {
 			http_response_code(400);
 			echo json_encode(array(
 				'success' => false,
-				'reason' => 'Missing file'
+				'reason' => 'File missing'
+			));
+			exit;
+		} else if (empty($data['language'])) {
+			http_response_code(400);
+			echo json_encode(array(
+				'success' => false,
+				'reason' => 'Language missing'
 			));
 			exit;
 		} else {
 			if (postSnippet($data['title'], $data['description'], $data['code'], $data['language'], 
 				(new DateTime())->format('Y-m-d H:i'), $_SESSION['user'])){
-					http_response_code(200);
+					http_response_code(201);
 					echo json_encode(array(
 						'success' => true
 					));

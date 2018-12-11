@@ -110,53 +110,6 @@
 ?>
 
 <?php
-	include_once('../database/db_user.php');
-	function draw_new_snippet() {
-		$languages = getLanguages();
-?>
-	<div class="full-card center new-snippet-wrapper">
-		<h1>Add new snippet</h1>
-		<form action="#" enctype="multipart/form-data" method="post">
-			<div class="row">
-				<label for="title">Title</label>
-				<input type="text" name="title" id="title">
-			</div>
-			<div class="row">
-				<label for="description">Description</label>
-				<textarea name="description" id="description"
-				placeholder="Write something about your snippet"></textarea>
-			</div>
-			<div class="row">
-				<label for="language">Language</label>
-				<select name="language" id="language">
-					<?php foreach($languages as $lang) {
-						echo '<option value="' . $lang['code'] . '">' . $lang['name'] . '</option>';
-					} ?>
-				</select>
-			</div>
-			<div class="row">
-				<label for="file-input">File</label>
-				<div class="file-input-wrapper">
-					<header>
-						<div class="tabs">
-							<button id="write-mode" class="active">Write</button>
-							<button id="preview-mode">Preview</button>
-						</div>
-						<label for="file-upload"><i class="fas fa-upload"></i>  Upload a file instead</label>
-					</header>
-					<textarea id="code-area" placeholder="Write or paste here!" rows="10" ></textarea>
-					<pre id="preview-area" class="line-numbers"><code></code></pre>
-				</div>
-				<input type="file" name="file" id="file-upload">
-			</div>
-			<input type="submit">
-		</form>
-	</div>
-<?php
-	}
-?>
-
-<?php
 	function draw_footer() {
 ?>
 		</body>
