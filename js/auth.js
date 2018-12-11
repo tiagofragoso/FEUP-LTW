@@ -105,7 +105,6 @@ function removeError (el) {
 }
 
 function validateForm() {
-	return true;
 	inputs.forEach(removeError);
 	removeError(submitEl);
 	let valid = true;
