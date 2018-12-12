@@ -23,6 +23,7 @@ body {
 a {
 	text-decoration: none;
 	color: inherit;
+	cursor: pointer;
 }
 
 input[type="submit"], button {
@@ -311,7 +312,6 @@ nav #logo {
 	justify-self: center;
 	font-size: 17px;
 	margin: 0;
-
 }
 
 .card-title {
@@ -334,6 +334,33 @@ nav #logo {
 .snippet-wrapper-feed  pre {
 	max-height: 555px;
 	overflow: hidden!important;
+}
+
+@media(max-width: 768px) {
+	.snippet-wrapper-feed  pre {
+		max-height: 0px!important;
+		padding: 0px!important;
+	}
+
+	.snippet-wrapper-feed .rating-wrapper{
+		display: none;
+	}
+
+	.snippet-wrapper-feed .card-title {
+		font-size: 14px;
+	}
+
+	.snippet-wrapper-feed footer .author-name {
+		font-size: 14px;
+	}
+
+	.snippet-wrapper-feed footer .date-posted {
+		font-size: 12px;
+	}
+
+	.snippet-wrapper-feed footer .comments {
+		font-size: 12px;
+	}
 }
 
 .card-content {

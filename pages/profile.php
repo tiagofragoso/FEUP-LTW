@@ -4,10 +4,8 @@ include_once('../templates/common.php');
 include_once('../database/db_user.php');
 include_once('../templates/profile.php');
 
-if (!isset($_GET['id'])) {
-	if (!isset($_SESSION['user'])){
-		die(header('Location: /pages/login.php'));
-	}
+if (empty($_GET['id'] && empty($_SESSION['user']))) {
+	die(header('Location: /pages/login.php'));
 }
 
 $user = getUser($_GET['id']);

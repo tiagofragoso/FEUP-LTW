@@ -1,5 +1,6 @@
 <?php
 	include_once('../includes/session.php');
+	include_once('../templates/utils.php');
 	function draw_header($title, $modules = array()) {
 ?>
 	<!DOCTYPE html>
@@ -22,9 +23,7 @@
 		<body>
 <?php
 	}
-?>
-
-<?php
+	
 	function draw_nav() {
 ?>
 		<nav>
@@ -64,8 +63,7 @@
 			</div>
 		</nav>
 <?php
-	}
-?>
+	}?>
 
 <?php
 	function draw_feed($snippets) {
@@ -82,19 +80,19 @@
 						<span class="snippet-rating"><?=$snippet['points']?></span>
 						<i class="fas fa-caret-down"></i>
 					</div>
-					<h1 class="card-title"><?=$snippet['title']?></h1>
+					<a href="/pages/snippet.php?id=<?=$snippet['id']?>"><h1 class="card-title"><?=$snippet['title']?></h1></a>
 					<a href="../pages/channels.php?code=<?=$snippet['language']?>">
 						<div class="language-wrapper">
 							<?=$snippet['languageName']?>
 						</div>
 					</a>
 				</header>
-				 <a href="/pages/snippet.php?id=<?=$snippet['id']?>" target="_blank">
+				 <a href="/pages/snippet.php?id=<?=$snippet['id']?>">
 					<pre class="line-numbers"><code class="<?=$lang?>"><?=htmlspecialchars($snippet['code'])?></code></pre>
 				</a>
 				<footer class="snippet-footer flex-row-container flex-space-between flex-vert-center">
 					<div class="snippet-author-date flex-row-container flex-vert-center">
-						<span class="author-name"><?=$name?></span>
+						<a href="/pages/profile.php?id=<?=$snippet['author']?>" class="author-name"><?=$name?></a>
 						<span class="date-posted"><?=getTimeElapsed($snippet['date'])?></span>
 					</div>
 						<span class="comments"><?=$countComments['count']?></span>
@@ -103,8 +101,7 @@
 		<?php } ?>
 	</div>
 <?php
-	}
-?>
+	}?>
 
 <?php
 	function draw_footer() {
@@ -112,8 +109,7 @@
 		</body>
 	</html>
 <?php
-	}
-?>
+	}?>
 
 <?php
 	function draw_subtitle($title) { ?>
@@ -121,4 +117,4 @@
 			<span class="subtitle"><?=$title?></span>
 			<div class="separator"></div>
 		</div>
-	<?php } ?>
+	<?php }?>

@@ -14,11 +14,9 @@
 			<div class="card">
 			</div>
 		</div>
-<?php	
-	}
-?>
+<?php }?>
 
-<?php 
+<?php
     function draw_channel($language, $snippets) {
     ?>
         <div class="main-content center">
@@ -66,7 +64,5 @@
                     </footer>
                 </div>
             </div>
-            <?php }} ?>
-<?php
-    }
-?>
+            <?php }}?>
+<?php }?>
