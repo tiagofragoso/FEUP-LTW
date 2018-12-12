@@ -25,14 +25,18 @@ async function setupChannels(){
 	}
 
 	const span = document.createElement('span');
+	const span1 = document.createElement('span');
 	span.className = 'channels-info';
+	span1.className = 'channels-info';
+	span.textContent = 'You don\'t follow any languages yet';
+	userLanguages.appendChild(span);
+	span1.textContent = 'There\'s nothing left for you to explore';
+	exploreLanguages.appendChild(span1);
 
-	if (userLanguages.children.length === 0){
-		span.textContent = 'You don\'t follow any languages yet';
-		userLanguages.appendChild(span);
-	} else if (exploreLanguages.children.length === 0) {
-		span.textContent = 'There\'s nothing left for you to explore';
-		exploreLanguages.appendChild(span);
+	if (userLanguages.children.length > 1){
+		span.style.display = "none";
+	} else if (exploreLanguages.children.length > 1) {
+		span1.style.display = "none";
 	}
 		
 }
@@ -69,4 +73,24 @@ function createCard(channel) {
 function moveCard(card, to){
 	card.remove();
 	cards[+ to].appendChild(card);
+	updateDisplay();
+}
+
+function updateDisplay() {
+	const user_languages = userLanguages.querySelector('.channels-info:first-of-type');
+	const explore_languages = exploreLanguages.querySelector('.channels-info:last-of-type');
+
+	if (userLanguages.children.length > 1) {
+		user_languages.style.display = "none";
+	} else {
+		console.log(userLanguages.children.length);
+		user_languages.style.display = "initial";
+	}
+
+	if (exploreLanguages.children.length > 1) {
+		explore_languages.style.display = "none";
+	} else {
+		explore_languages.style.display = "initial";
+		console.log(exploreLanguages.children.length);
+	}
 }
