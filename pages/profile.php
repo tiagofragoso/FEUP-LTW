@@ -4,7 +4,7 @@ include_once('../templates/common.php');
 include_once('../database/db_user.php');
 include_once('../templates/profile.php');
 
-if (empty($_GET['id'] && empty($_SESSION['user']))) {
+if (empty($_GET['id']) && empty($_SESSION['user'])) {
 	die(header('Location: /pages/login.php'));
 }
 

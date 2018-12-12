@@ -421,30 +421,75 @@ nav #logo {
 
 .comment-wrapper {
 	width: 100%;
-	padding: 1em 0;
-	border-bottom: 1px solid var(--transparentgrey);
+	padding-top: 1em;
+	border-bottom: #EBEBEB solid 1px;
+	margin: 0.25em 0em;
 }
 
 .comment-wrapper:last-of-type {
 	border-bottom: none;
 	padding-bottom: 0;
+	background-color: white;
 }
 
 .comment-user {
 	font-weight: bold;
 	color: var(--blue);
-	margin-right: 0.5em;
+	margin-right: 1em;
+}
+
+.comment-footer {
+	color: var(--grey);
+	font-size: 13px;
+	padding-bottom: 0.5em;
+	text-align: right;
+}
+
+.comment-rating-wrapper {
+	flex-shrink: 0;
+	font-size: 15px;
+	color: var(--grey);
+}
+
+.comment-rating-wrapper i:first-of-type:hover {
+	color: var(--blue);
+	cursor: pointer;
+}
+
+.comment-rating-wrapper i:last-of-type:hover {
+	color: var(--orange);
+	cursor: pointer;
+}
+
+.comment-date {
+	font-size: 10px;
+}
+
+.comment-info-wrapper {
+	padding-bottom: 0.5em;
+}
+
+.comments-wrapper > h1 {
+	font-size: 20px;
+}
+
+.info-wrapper h1 {
+	font-size: 20px;
 }
 
 .comment-text {
 	color: var(--grey);
 }
 
+.comment-user-wrapper {
+	text-align: justify;
+}
+
 .comment-wrapper textarea {
 	padding: 12px 20px;
 	background-color: #EBEBEB;
 	font-size: 14px;
-	border-color: var(--grey);
+	border: none;
 	border-radius: 5px;
 	resize: none;
 	width: 100%;
@@ -458,6 +503,7 @@ nav #logo {
 	color: white;
 	width: 100%;
 	font-size: 14px;
+	font-weight: bold;
 	outline: none;
 	padding: 0.5em 0;
 	border: none;
@@ -469,6 +515,7 @@ nav #logo {
 	flex-direction: row;
 	align-items: center;
 	width: 100%;
+	margin-bottom: 1em;
 }
 
 .subtitle {
@@ -736,6 +783,10 @@ nav #logo {
 	padding-left: 5px;
 	margin-left: 0.5em;
 	
+}
+
+.comment-info-wrapper .fa-caret-up {
+	margin-left: 1.5em;
 }
 
 .profile-button {
