@@ -9,7 +9,7 @@
 			<meta charset="utf-8" />
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
 			<title><?=$title?></title>
-			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<link rel="stylesheet" type="text/css" media="screen" href="/css/style.css" />
 			<link rel="stylesheet" type="text/css" media="screen" href="/css/prism.css" />
 			<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
@@ -29,42 +29,40 @@
 	function draw_nav() {
 ?>
 		<nav>
-				<a href="/pages/feed.php"><?php include("../includes/logo.php") ?></a>
-				<div class="navbar">
-					<div class="search">
-						<form action="#">
-							<input type="text" name="search" placeholder="Looking for something?" size="22">
-							<button type="submit"><i class="fas fa-search"></i></button>
-						</form>
-					</div>
-					<div class="menu">
-						<ul class="nav-items">
-								<li><a href="/pages/feed.php">Feed</a></li>
-								<li><a href="/pages/channels.php">Channels</a></li>
-						</ul>
-						<ul class="menu-right">
-							<?php if (isset($_SESSION['user'])) { 
-								$pic = getPicture($_SESSION['user']);
-								?>
-								<li><a href="../pages/new.php"><i class="fas fa-plus"></i> SNIP</a></li>
-								<li class="dropdown">
-									<a class="dropdown-button" href="/pages/profile.php?id=<?=$_SESSION['user']?>">
-										<img src="<?=$pic?>"/>
-									</a>
-									<div class="dropdown-content">
-										<a>username</a>
-										<a>log out</a>
-									</div>
-								</li>
-								<li><a href="../actions/action_logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
-							<?php } else { ?>
-								<li><a href="../pages/login.php"><i class="fas fa-sign-in-alt"></i></a></li>
-							<?php } ?>
-						</ul>	
-						
-					</div>
-					
-				</div>
+			<a href="/pages/feed.php"><?php include("../includes/logo.php") ?></a>
+			<div class="search">
+				<button>Search</button>
+				<form action="#">
+					<input type="text" name="search" placeholder="Looking for something?" size="22">
+					<button type="submit"><i class="fas fa-search"></i></button>
+				</form>
+			</div>
+			<div class="menu">
+				<button>Menu</button>
+				<ul class="nav-items">
+						<li><a href="/pages/feed.php">Feed</a></li>
+						<li><a href="/pages/channels.php">Channels</a></li>
+				</ul>
+				<ul class="menu-right">
+					<?php if (isset($_SESSION['user'])) { 
+						$pic = getPicture($_SESSION['user']);
+						?>
+						<li><a href="../pages/new.php"><i class="fas fa-plus"></i> SNIP</a></li>
+						<li class="dropdown">
+							<a class="dropdown-button" href="/pages/profile.php?id=<?=$_SESSION['user']?>">
+								<img src="<?=$pic?>"/>
+							</a>
+							<div class="dropdown-content">
+								<a>username</a>
+								<a>log out</a>
+							</div>
+						</li>
+						<li><a href="../actions/action_logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
+					<?php } else { ?>
+						<li><a href="../pages/login.php"><i class="fas fa-sign-in-alt"></i></a></li>
+					<?php } ?>
+				</ul>	
+			</div>
 		</nav>
 <?php
 	}

@@ -3,31 +3,24 @@ include_once('utils.php');
 function draw_profile($user, $snippets, $following, $followers, $languages, $settings){ 
 	$pic = getPicture($user['id']);
 	?>
-	<div class="full-card center flex-row-container">
-			<div class="user-info flex-col-container">
-				<img class="profile-pic" src="<?=$pic?>" />
+	<div data-id="<?=$user['id']?>" class="full-card center flex-row-container profile-wrapper">
+		<div class="user-info flex-col-container">
+			<img id="profile-pic" src="<?=$pic?>" />
+			<div class="user-details flex-col-container">
 				<h1><?=$user['name']?></h1>
-				<div class="username-points flex-row-container flex-vert-center">
-					<h2><?=$user['username']?></h2>
-					<span><?=$user['points']?></span>
-				</div>
-				<?php if ($settings) { ?>
-					<a class="profile-button-settings" href="settings.php"> Settings </a>
-				<?php } else { ?>
-					<div class="profile-button-follow-wrapper flex-row-container">
-						<span class="profile-button-follow"> Follow </span>
-						<span id="userId"><?=$user['id']?></span>
-					</div>
-				<?php } ?>
+				<h2><?=$user['username']?><span><?=$user['points']?></span></h2>
 			</div>
-		
-		<div class="user-profile-wrapper flex-col-container">
-			<div class="profile-top flex-row-container ">
+				<?=$settings? 
+				'<a class="profile-button settings" href="settings.php">Settings</a>' : 
+				'<span class="profile-button follow">Follow</span>'?>
+		</div>
+		<div class="profile-content-wrapper flex-col-container">
+			<section class="profile-top flex-row-container">
 				<div class="user-following flex-col-container">
-					<div class="profile-section-title flex-row-container flex-vert-center">
+					<header class=" flex-row-container flex-vert-center">
 						<h1>Following</h1>
 						<h2><?=count($following)?></h2> 
-					</div>
+					</header>
 					<div class="user-following-wrapper grid4x2">
 						<?php foreach (array_slice($following, 0, 8) as $f) { ?>
 						<a href="profile.php?id=<?=$f['id']?>">
@@ -37,10 +30,10 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 					</div>
 				</div>
 				<div class="user-followers flex-col-container">
-					<div class="profile-section-title flex-row-container  flex-vert-center">
+					<header class="flex-row-container flex-vert-center">
 						<h1>Followers</h1>
 						<h2><?=count($followers)?></h2>
-					</div>
+						</header>
 					<div class="user-followers-wrapper grid4x2">
 						<?php foreach (array_slice($followers, 0, 8) as $f) { ?>
 							<a href="profile.php?id=<?=$f['id']?>">
@@ -49,12 +42,12 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 						<?php } ?>
 					</div>
 				</div>
-			</div>
-			<div class="user-languages">
-				<div class="profile-section-title flex-row-container  flex-vert-center">
+			</section>
+			<section class="user-languages">
+				<header class="flex-row-container flex-vert-center">
 					<h1>Languages</h1>
 					<h2><?=count($languages)?></h2>
-				</div>
+				</header>
 				<div class="languages flex-row-container">
 					<?php foreach ($languages as $language) { ?>
 						<a href="../pages/channels.php?code=<?=$language['code']?>">
@@ -64,17 +57,17 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 						</a>
 					<?php } ?>
 				</div>
-			</div>
-			<div class="user-snippets">
-				<div class="profile-section-title flex-row-container  flex-vert-center">
+			</section>
+			<section class="user-snippets">
+				<header class="flex-row-container flex-vert-center">
 					<h1>Snippets</h1>
 					<h2><?=count($snippets)?></h2>
-				</div>
+				</header>
 				<div class="user-snippets-preview">
 					<?php foreach ($snippets as $snippet) { ?>
 						<div class="snippet-preview flex-row-container flex-space-between flex-vert-center">
 							<div class="snippet-preview-content flex-row-container flex-space-between flex-vert-center" href="/pages/snippet.php?id=<?=$snippet['id']?>">
-								<div class="card-title"><?=$snippet['title']?></div>
+								<span class="card-title"><?=$snippet['title']?></span>
 								<a href="../pages/channels.php?code=<?=$snippet['language']?>">
 									<div class="language-wrapper">
 										<?=$snippet['languageName']?>
@@ -87,13 +80,12 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 						</div>
 					<?php } ?>
 				</div>
-			</div>
-			<div class="user-activity">
-				<div class="profile-section-title flex-row-container  flex-vert-center">
+			</section>
+			<section class="user-activity">
+				<header class=" flex-row-container  flex-vert-center">
 					<h1>Activity</h1>
-				</div>
-				
-			</div>
+					</header>
+			</section>
 		</div>
 	</div>
 
@@ -104,12 +96,14 @@ function draw_settings_profile() {
 	$user = getUser($_SESSION['user']);
 	$pic = getPicture($user['id']);
 	?>
-	<div class="main-content center flex-row-container">
+	<div class="full-card center flex-row-container profile-wrapper">
 		<div class="user-info flex-col-container">
-			<img class="profile-pic" src="<?=$pic?>" />
-			<h1><?=$user['name']?></h1>
-			<h2><?=$user['username']?></h3>
-			<label for="file-input">Change photo</label>
+			<img id="profile-pic" src="<?=$pic?>" />
+			<div class="user-details flex-col-container">
+				<h1><?=$user['name']?></h1>
+				<h2><?=$user['username']?></h2>
+			</div>
+			<label class="profile-button" for="file-input">Change photo</label>
 			<input type="file" id="file-input" accept="image/png, image/jpeg" />
 		</div>
 		<div class="user-settings flex-col-container">

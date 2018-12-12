@@ -3,6 +3,8 @@
 	include_once('../templates/common.php');
 	include_once('../templates/channel.php');
 	include_once('../templates/language.php');
+	include_once('../templates/utils.php');
+	include_once('../database/db_user.php');
 
 	$language = htmlentities($_GET['code']);
 

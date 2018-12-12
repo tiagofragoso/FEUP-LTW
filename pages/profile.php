@@ -10,7 +10,6 @@ if (!isset($_GET['id'])) {
 	}
 }
 
-
 $user = getUser($_GET['id']);
 
 if (!isset($user))

@@ -89,7 +89,7 @@ function draw_full_snippet($snippet, $comments) {
 							<button id="write-mode" class="active">Write</button>
 							<button id="preview-mode">Preview</button>
 						</div>
-						<label for="file-upload"><i class="fas fa-upload"></i>  Upload a file instead</label>
+						<label for="file-upload"><i class="fas fa-upload"></i>  <span>Upload a file instead</span></label>
 					</header>
 					<textarea id="code-area" placeholder="Write or paste here!" rows="10" ></textarea>
 					<pre id="preview-area" class="line-numbers"><code></code></pre>

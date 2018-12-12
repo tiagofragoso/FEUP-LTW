@@ -1,5 +1,4 @@
 <?php 
-    include_once('utils.php');
     function draw_language($language) {
         //$get = http_get("../api/language.php", array("code" => $language), $snippets);
         $snippets = getLanguageSnippets($language);
