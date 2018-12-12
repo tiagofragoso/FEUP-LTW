@@ -498,6 +498,45 @@ nav #logo {
 	color: var(--blue)
 }
 
+@media(max-width: 768px) {
+	.snippet-wrapper .snippet-header {
+		padding: 0.5em 1em;
+		flex: 1 1 auto;
+		border-radius: 0px;
+	}
+	.snippet-wrapper .rating-wrapper {
+		flex-direction: column;
+		font-size: 14px;
+	}
+	.snippet-wrapper .rating-wrapper > i {
+		font-size: 16px;
+	}
+	.snippet-wrapper .rating-wrapper > i:last-of-type {
+		margin: 0;
+	}
+	.snippet-wrapper .card-title {
+		font-size: 14px;
+		text-align: center;
+	}
+	.snippet-wrapper .card-content {
+		flex-direction: column;
+		margin: 0;
+		border-top: 0.5px solid var(--transparentgrey);
+	}
+	.snippet-wrapper .info-wrapper {
+		order: -1;
+		margin: 0;
+		padding: 0.5em 1em;
+		border-radius: 0px;
+	}
+	.snippet-wrapper .info-wrapper .description-wrapper{
+		display: none;
+	}
+	.snippet-wrapper .snippet-left-wrapper{
+		width: 100%;
+	}
+}
+
 /* New snippet page  */
 
 .new-snippet-wrapper {
