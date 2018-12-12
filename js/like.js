@@ -41,10 +41,10 @@ async function checkLike() {
 		} else if (res.hasLike === -1) {
 			this.like = -1;
 		}
+		updateVisual.call(this);
 	} catch (e) {
 		console.log(e);
 	}
-	updateVisual.call(this);
 }
 
 async function likeHandler(event) {
@@ -66,7 +66,7 @@ async function likeHandler(event) {
 				this.like = 1;
 				updateVisual.call(this);
 			} catch (e) {
-				console.log(e)
+				console.log(e);
 			}	
 		}
 	} else if (event.currentTarget === this.downvoteBtn){
