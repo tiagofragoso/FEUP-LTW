@@ -1,6 +1,5 @@
 <?php
 	include_once('../includes/session.php');
-	include_once('utils.php');
 	function draw_header($title, $modules = array()) {
 ?>
 	<!DOCTYPE html>
