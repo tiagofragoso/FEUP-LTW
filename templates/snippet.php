@@ -38,15 +38,19 @@ function draw_full_snippet($snippet, $comments) {
 					</div>
 				</div>
 				<div class="info-wrapper flex-col-container">
+					<h2 class="expand-title"><span>+</span> Author</h2>
 					<div class="author-wrapper">
-					<a href="../pages/profile.php?id=<?=$snippet['author']?>">
-						<span class="author-name"><?=$name?></span>
-					</a>
-					<a href="../pages/profile.php?id=<?=$snippet['author']?>">
-						<img class="round-img" src="<?=$pic?>" alt="profile picture" />
-					</a>
+						<div class="author-row">
+							<a href="../pages/profile.php?id=<?=$snippet['author']?>">
+								<span class="author-name"><?=$name?></span>
+							</a>
+							<a href="../pages/profile.php?id=<?=$snippet['author']?>">
+								<img class="round-img" src="<?=$pic?>" alt="profile picture" />
+							</a>
+						</div>
+						<span class="date-posted"><?=getTimeElapsed($snippet['date'])?></span>
 					</div>
-					<span class="date-posted"><?=getTimeElapsed($snippet['date'])?></span>
+					<h2 class="expand-title"><span>+</span> Description</h2>
 					<div class="description-wrapper">
 						<h1>Description</h1>
 						<p class="description"><?=$snippet['description']?></p>

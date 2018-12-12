@@ -291,6 +291,18 @@ nav #logo {
 	color: var(--orange);
 }
 
+@media(max-width: 768px) {
+	.rating-wrapper > i:first-of-type:hover  {
+		cursor: initial;
+		color: initial;
+	}
+	
+	.rating-wrapper > i:last-of-type:hover  {
+		cursor: initial;
+		color: initial;
+	}
+}
+
 .upvote {
 	color: var(--blue);
 }
@@ -379,6 +391,7 @@ nav #logo {
 
 .description-wrapper {
 	margin-top: 2em;
+	overflow: hidden;
 }
 
 .description {
@@ -389,7 +402,12 @@ nav #logo {
 
 .author-wrapper {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.author-row {
+	display: flex;
 	flex: 1 1 auto;
 	justify-content: space-between;
 	align-items: center;
@@ -415,7 +433,7 @@ nav #logo {
 .comments-wrapper {
 	margin-top: 1em;
 	background-color: white;
-	padding: 2em 2em;
+	padding: 1em 2em;
 	border-radius: 0 0 5px 5px;
 }
 
@@ -510,6 +528,7 @@ nav #logo {
 	cursor: pointer;
 }
 
+
 .subtitle-wrapper {
 	display: flex;
 	flex-direction: row;
@@ -545,6 +564,15 @@ nav #logo {
 	color: var(--blue)
 }
 
+.snippet-wrapper .expand-title {
+	display: none;
+	font-size: 14px;
+}
+
+.snippet-wrapper .expand-title > span {
+	color: var(--transparentgrey);
+}
+
 @media(max-width: 768px) {
 	.snippet-wrapper .snippet-header {
 		padding: 0.5em 1em;
@@ -576,11 +604,32 @@ nav #logo {
 		padding: 0.5em 1em;
 		border-radius: 0px;
 	}
-	.snippet-wrapper .info-wrapper .description-wrapper{
+
+	.snippet-wrapper .description-wrapper h1{
 		display: none;
+		margin: 0;
 	}
 	.snippet-wrapper .snippet-left-wrapper{
 		width: 100%;
+	}
+	.snippet-wrapper .comments-wrapper{
+		margin-top: 0;
+		border-radius: 0px;
+		padding: 0.5em 1em;
+	}
+	.snippet-wrapper .expand-title {
+		display: block;
+		font-size: 14px;
+	}
+	.snippet-wrapper .info-wrapper > div {
+		max-height: 0;
+		margin: 0;
+		-webkit-transition: max-height 0.5s ease-in;
+		-moz-transition: max-height 0.5s ease-in;
+		transition: max-height 0.5s ease-in;
+	}
+	.snippet-wrapper .info-wrapper > div.open {
+		max-height: 1000px;
 	}
 }
 
@@ -1024,6 +1073,8 @@ h1 {
 	font-weight: bold;
 	padding: 10px;
 }
+
+
 
 @media(max-width: 768px) {
 	.profile-wrapper {
