@@ -51,13 +51,13 @@
 								<img src="<?=$pic?>"/>
 							</a>
 							<div class="dropdown-content">
-								<a>username</a>
-								<a>log out</a>
+								<a href="/pages/profile.php?id=<?=$_SESSION['user']?>">username</a>
+								<a href="/actions/action_logout.php">Logout</a>
 							</div>
 						</li>
-						<li><a href="../actions/action_logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
+						<li><i class="fas fa-caret-down"></i></li>
 					<?php } else { ?>
-						<li><a href="../pages/login.php"><i class="fas fa-sign-in-alt"></i></a></li>
+						<li><a href="../pages/login.php">Login</a></li>
 					<?php } ?>
 				</ul>	
 			</div>

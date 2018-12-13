@@ -62,7 +62,6 @@ nav {
 	align-items: center;
 	background-color: #74B2B7;
 	color: white;
-	overflow: hidden;
 	position: sticky;
 	position: -webkit-sticky;
 	top: 0;
@@ -77,7 +76,6 @@ nav #logo {
 }
 
 .menu {
-	position: relative;
 	flex-grow: 99;
 	display: flex;
 	flex-direction: row;
@@ -85,7 +83,6 @@ nav #logo {
 	justify-content: space-between;
 	flex: 1 1 auto;
 	margin-left: 20px;
-	align-items: center;
 	font-weight: 700;
 }
 
@@ -139,12 +136,11 @@ nav #logo {
 }
 
 .menu-right {
-	padding: 0;
-	margin: 0;
-	display: flex;	
+	display: flex;
 	flex-direction: row;
 	align-items: center;
-	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
 .menu > button {
@@ -152,7 +148,6 @@ nav #logo {
 }
 
 .menu-right li {
-	position: relative;
 	display: inline-block;
 	padding: 0px 12px;
 }
@@ -163,25 +158,39 @@ nav #logo {
 	z-index: 3;
 }
 
+.menu-right > li:last-child {
+	padding: 0;
+}
+
 .dropdown {
-	position: relative;
+	position: static;
 	overflow: hidden;
+}
+.dropdown-button > i {
+	margin-left: 0.5em;
 }
 
 .dropdown-content {
-	position: fixed;
+	border-radius: 5px;
+	background-color: white;
+	color: var(--darkgrey);
+	position: absolute;
+	right: 22px;
 	display: none;
-	top: 20px;
 	z-index: 2;
-	padding: 12px 10px;
+	overflow: hidden;
 }
 
 .dropdown-content > a {
-	background-color: green;
 	display: block;
+	padding: 12px 16px;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-content > a:hover {
+	background-color: #EBEBEB;
+}
+
+.dropdown:hover .dropdown-content{
 	display: block;
 }
 
