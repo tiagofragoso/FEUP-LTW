@@ -1,6 +1,6 @@
 <?php
 include_once('utils.php');
-function draw_profile($user, $snippets, $following, $followers, $languages, $settings){ 
+function draw_profile($user, $snippets, $following, $followers, $languages, $settings, $comments){ 
 	$pic = getPicture($user['id']);
 	?>
 	<div data-id="<?=$user['id']?>" class="full-card center flex-row-container profile-wrapper">
@@ -84,7 +84,12 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 			<section class="user-activity">
 				<header class=" flex-row-container  flex-vert-center">
 					<h1>Activity</h1>
-					</header>
+				</header>
+				<div class="user-comments">
+						<?php foreach ($comments as $comment) { ?>
+							
+						<?php } ?>
+				</div>
 			</section>
 		</div>
 	</div>

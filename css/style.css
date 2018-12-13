@@ -502,6 +502,9 @@ nav #logo {
 	font-weight: bold;
 	color: var(--blue);
 	margin-right: 1em;
+	min-width: 0;
+	max-width: 250px;
+	
 }
 
 .comment-footer {
@@ -545,10 +548,13 @@ nav #logo {
 
 .comment-text {
 	color: var(--grey);
+	text-align: justify;
+
 }
 
 .comment-user-wrapper {
-	text-align: justify;
+	word-wrap: break-word;
+	overflow: hidden;
 }
 
 .comment-wrapper textarea {
