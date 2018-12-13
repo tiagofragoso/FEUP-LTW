@@ -246,7 +246,6 @@ nav #logo {
 	width: 0;
 	position: fixed;
 	z-index: 1;
-	left: 0;
 	top: 60px;
 	overflow-x: hidden;
 	transition: 0.5s;

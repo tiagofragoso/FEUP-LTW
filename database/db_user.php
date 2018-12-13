@@ -307,5 +307,32 @@
 		return $stmt->fetch();
 	}
 
+	function searchSnippets($query) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT id, title AS match 
+		FROM Snippet 
+		WHERE Snippet.title LIKE ?');
+		$stmt->execute(array("%{$query}%"));
+		return $stmt->fetchAll();
+	}
+
+	function searchUsers($query) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT id, name AS match, username 
+		FROM User 
+		WHERE User.name LIKE ?');
+		$stmt->execute(array("%{$query}%"));
+		return $stmt->fetchAll();
+	}
+
+	function searchChannels($query) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT code, name AS match
+		FROM Language 
+		WHERE Language.name LIKE ?');
+		$stmt->execute(array("%{$query}%"));
+		return $stmt->fetchAll();
+	}
+
 
 ?>

@@ -1,11 +1,14 @@
 import { createModal } from "./modal.js";
+import { request } from "./request.js";
 const navBar = document.querySelector('nav');
 const ham = navBar.querySelector('.menu > i');
 const search = navBar.querySelector('.search > i');
 search.addEventListener('click', expandSearch);
 ham.addEventListener('click', expandMenu);
-const hamModal = createModal(getNavBarData());
+const hamModal = createModal(getNavBarData(), 'left');
+const searchModal = createModal(createSearchEl(), 'right');
 navBar.parentNode.appendChild(hamModal); 
+navBar.parentNode.appendChild(searchModal); 
 
 function getNavBarData() {
 	const menu = navBar.querySelector('.menu');
@@ -28,32 +31,58 @@ function getNavBarData() {
 		ul.appendChild(li2);
 	}	
 	return ul;
-}	
-
-function expandMenu(event) {
-	hamModal.style.width = '100%';
-	event.currentTarget.classList.replace('fa-bars', 'fa-times');
-	event.currentTarget.removeEventListener('click', expandMenu);
-	event.currentTarget.addEventListener('click', contractMenu);
 }
 
-function contractMenu(event) {
+function createSearchEl() {
+	const input = document.createElement('input');
+	input.setAttribute('type', 'text');
+	input.setAttribute('placeholder', 'Type something');
+	return input;
+
+}
+
+function expandMenu() {
+	contractSearch();
+	hamModal.style.width = '100%';
+	ham.classList.replace('fa-bars', 'fa-times');
+	ham.removeEventListener('click', expandMenu);
+	ham.addEventListener('click', contractMenu);
+}
+
+function contractMenu() {
 	hamModal.style.width = '0%';
-	event.currentTarget.classList.replace('fa-times', 'fa-bars');
-	event.currentTarget.removeEventListener('click', contractMenu);
-	event.currentTarget.addEventListener('click', expandMenu);
+	ham.classList.replace('fa-times', 'fa-bars');
+	ham.removeEventListener('click', contractMenu);
+	ham.addEventListener('click', expandMenu);
 }
 
-function expandSearch(event) {
-	hamModal.style.width = '100%';
-	event.currentTarget.classList.replace('fa-search', 'fa-times');
-	event.currentTarget.removeEventListener('click', expandSearch);
-	event.currentTarget.addEventListener('click', contractSearch);
+function expandSearch() {
+	contractMenu();
+	searchModal.style.width = '100%';
+	search.classList.replace('fa-search', 'fa-times');
+	search.removeEventListener('click', expandSearch);
+	search.addEventListener('click', contractSearch);
 }
 
 function contractSearch(event) {
-	hamModal.style.width = '0%';
-	event.currentTarget.classList.replace('fa-times', 'fa-search');
-	event.currentTarget.removeEventListener('click', contractSearch);
-	event.currentTarget.addEventListener('click', expandSearch);
+	searchModal.style.width = '0%';
+	search.classList.replace('fa-times', 'fa-search');
+	search.removeEventListener('click', contractSearch);
+	search.addEventListener('click', expandSearch);
+}
+
+const API_ENDPOINT = '/api/search.php';
+
+const searchForm = document.querySelector('nav form');
+searchForm.addEventListener('submit', performSearch);
+
+async function performSearch(event) {
+	event.preventDefault();
+	const query = searchForm.querySelector('input').value;
+	try {
+		const res = await request(API_ENDPOINT, 'GET', {query});
+		console.log(res);
+	} catch (e) {
+		console.log(e);
+	}
 }
