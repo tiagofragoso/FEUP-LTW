@@ -1,12 +1,13 @@
 import { request } from "./request.js";
 
 const API_ENDPOINT = '/api/follow-user.php';
-const button_wrapper = document.querySelector('.profile-button-follow-wrapper');
+const button_wrapper = document.querySelector('.follow');
 if (button_wrapper != null) {
     let follow = {};
     follow.value = 0;
-    follow.userId = button_wrapper.querySelector('#userId').textContent;
-    follow.button = button_wrapper.querySelector('span:first-of-type');
+    follow.userId = document.querySelector('.full-card').getAttribute('data-id');
+    console.log(follow.userId);
+    follow.button = button_wrapper;
     follow.button.addEventListener('click', followHandler.bind(follow));
     checkFollow.call(follow);
 }
