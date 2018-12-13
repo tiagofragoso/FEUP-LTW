@@ -62,7 +62,6 @@ nav {
 	align-items: center;
 	background-color: #74B2B7;
 	color: white;
-	overflow: hidden;
 	position: sticky;
 	position: -webkit-sticky;
 	top: 0;
@@ -77,7 +76,6 @@ nav #logo {
 }
 
 .menu {
-	position: relative;
 	flex-grow: 99;
 	display: flex;
 	flex-direction: row;
@@ -85,7 +83,6 @@ nav #logo {
 	justify-content: space-between;
 	flex: 1 1 auto;
 	margin-left: 20px;
-	align-items: center;
 	font-weight: 700;
 }
 
@@ -139,20 +136,18 @@ nav #logo {
 }
 
 .menu-right {
-	padding: 0;
-	margin: 0;
-	display: flex;	
+	display: flex;
 	flex-direction: row;
 	align-items: center;
-	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
-.menu > button {
+.menu > i, .search > i {
 	display: none;
 }
 
 .menu-right li {
-	position: relative;
 	display: inline-block;
 	padding: 0px 12px;
 }
@@ -163,25 +158,39 @@ nav #logo {
 	z-index: 3;
 }
 
+.menu-right > li:last-child {
+	padding: 0;
+}
+
 .dropdown {
-	position: relative;
+	position: static;
 	overflow: hidden;
+}
+.dropdown-button > i {
+	margin-left: 0.5em;
 }
 
 .dropdown-content {
-	position: fixed;
+	border-radius: 5px;
+	background-color: white;
+	color: var(--darkgrey);
+	position: absolute;
+	right: 22px;
 	display: none;
-	top: 20px;
 	z-index: 2;
-	padding: 12px 10px;
+	overflow: hidden;
 }
 
 .dropdown-content > a {
-	background-color: green;
 	display: block;
+	padding: 12px 16px;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-content > a:hover {
+	background-color: #EBEBEB;
+}
+
+.dropdown:hover .dropdown-content{
 	display: block;
 }
 
@@ -206,7 +215,8 @@ nav #logo {
 		flex-grow: 0;
 	}
 
-	nav .menu > button {
+	nav .menu > i, nav .search > i {
+		font-size: 22px;
 		display: block;
 	}
 
@@ -229,6 +239,44 @@ nav #logo {
 	nav .search > form{
 		display: none;
 	}
+}
+
+.overlay {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 60px;
+	overflow-x: hidden;
+	transition: 0.5s;
+	background-color: rgba(235, 235, 235, 0.97);
+}
+
+.overlay-content {
+	position: relative;
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.overlay-content {
+	position: relative;
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+	font-weight: bold;
+	font-size: 24px;
+	list-style-type: none;
+	padding: 0;
+}
+
+.overlay-content > li {
+	margin: 0;
+	padding: 30px;
+	overflow: hidden;
 }
 
 .main-content {

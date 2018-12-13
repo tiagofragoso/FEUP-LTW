@@ -16,6 +16,7 @@
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
 			<script id="prism" src="/js/prism.js"></script>
+			<script type="module" src="/js/nav.js"></script>
 			<?php foreach($modules as $module) { ?>
 				<script type="module" src="/js/<?=$module?>.js"></script>
 			<?php } ?>
@@ -29,14 +30,14 @@
 		<nav>
 			<a href="/pages/feed.php"><?php include("../includes/logo.php") ?></a>
 			<div class="search">
-				<button>Search</button>
+				<i class="fas fa-search"></i>
 				<form action="#">
 					<input type="text" name="search" placeholder="Looking for something?" size="22">
 					<button type="submit"><i class="fas fa-search"></i></button>
 				</form>
 			</div>
 			<div class="menu">
-				<button>Menu</button>
+				<i class="fas fa-bars"></i>
 				<ul class="nav-items">
 						<li><a href="/pages/feed.php">Feed</a></li>
 						<li><a href="/pages/channels.php">Channels</a></li>
@@ -51,13 +52,13 @@
 								<img src="<?=$pic?>"/>
 							</a>
 							<div class="dropdown-content">
-								<a>username</a>
-								<a>log out</a>
+								<a href="/pages/profile.php?id=<?=$_SESSION['user']?>">username</a>
+								<a href="/actions/action_logout.php">Logout</a>
 							</div>
 						</li>
-						<li><a href="../actions/action_logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
+						<li><i class="fas fa-caret-down"></i></li>
 					<?php } else { ?>
-						<li><a href="../pages/login.php"><i class="fas fa-sign-in-alt"></i></a></li>
+						<li><a href="../pages/login.php">Login</a></li>
 					<?php } ?>
 				</ul>	
 			</div>
