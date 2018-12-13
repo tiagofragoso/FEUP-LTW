@@ -215,7 +215,8 @@ nav #logo {
 		flex-grow: 0;
 	}
 
-	nav .menu > button {
+	nav .menu > i, nav .search > i {
+		font-size: 22px;
 		display: block;
 	}
 
@@ -238,6 +239,44 @@ nav #logo {
 	nav .search > form{
 		display: none;
 	}
+}
+
+.overlay {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 60px;
+	overflow-x: hidden;
+	transition: 0.5s;
+	background-color: rgba(235, 235, 235, 0.97);
+}
+
+.overlay-content {
+	position: relative;
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.overlay-content {
+	position: relative;
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+	font-weight: bold;
+	font-size: 24px;
+	list-style-type: none;
+	padding: 0;
+}
+
+.overlay-content > li {
+	margin: 0;
+	padding: 30px;
+	overflow: hidden;
 }
 
 .main-content {
