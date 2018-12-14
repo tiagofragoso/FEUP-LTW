@@ -18,7 +18,15 @@ CREATE TABLE Comment (
     text    TEXT    NOT NULL,
     date    DATE    NOT NULL,
     points  INTEGER NOT NULL
-                    DEFAULT (0) 
+                    DEFAULT (0),
+    FOREIGN KEY (
+        user
+    )
+    REFERENCES User (id) ON DELETE CASCADE,
+    FOREIGN KEY (
+        snippet
+    )
+    REFERENCES Snippet (id) ON DELETE CASCADE
 );
 
 
@@ -34,7 +42,15 @@ CREATE TABLE CommentRating (
     PRIMARY KEY (
         user,
         comment
+    ),
+    FOREIGN KEY (
+        comment
     )
+    REFERENCES Comment (id) ON DELETE CASCADE,
+    FOREIGN KEY (
+        user
+    )
+    REFERENCES User (id) ON DELETE CASCADE
 );
 
 
@@ -49,7 +65,11 @@ CREATE TABLE FollowLanguage (
     PRIMARY KEY (
         user,
         language
+    ),
+    FOREIGN KEY (
+        user
     )
+    REFERENCES User (id) ON DELETE CASCADE
 );
 
 
@@ -65,7 +85,15 @@ CREATE TABLE FollowUser (
         user1,
         user2
     ),
-    CHECK (user1 <> user2) 
+    CHECK (user1 <> user2),
+    FOREIGN KEY (
+        user1
+    )
+    REFERENCES User (id) ON DELETE CASCADE,
+    FOREIGN KEY (
+        user2
+    )
+    REFERENCES User (id) ON DELETE CASCADE
 );
 
 
@@ -94,7 +122,11 @@ CREATE TABLE Snippet (
                         NOT NULL,
     language    INTEGER REFERENCES Language
                         NOT NULL,
-    code        TEXT    NOT NULL
+    code        TEXT    NOT NULL,
+    FOREIGN KEY (
+        author
+    )
+    REFERENCES User (id) ON DELETE CASCADE
 );
 
 
@@ -111,7 +143,15 @@ CREATE TABLE SnippetRating (
         user,
         snippet
     )
-    ON CONFLICT REPLACE
+    ON CONFLICT REPLACE,
+    FOREIGN KEY (
+        snippet
+    )
+    REFERENCES Snippet (id) ON DELETE CASCADE,
+    FOREIGN KEY (
+        user
+    )
+    REFERENCES User (id) ON DELETE CASCADE
 );
 
 
