@@ -307,5 +307,14 @@
 		return $stmt->fetch();
 	}
 
+	function getUserComments($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT Comment.*, Snippet.id, Snippet.title
+		FROM Comment, Snippet
+		WHERE Comment.user = ? AND Comment.snippet = Snippet.id');
+		$stmt->execute(array($id));
+		return $stmt->fetchAll();
+	}
+
 
 ?>

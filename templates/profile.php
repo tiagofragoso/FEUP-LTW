@@ -86,9 +86,23 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 					<h1>Activity</h1>
 				</header>
 				<div class="user-comments">
-						<?php foreach ($comments as $comment) { ?>
-							
-						<?php } ?>
+						<?php 
+						if (count($comments) == 0) { ?>
+							<span class="no-activity"> No activity </span>
+						<?php } else {
+							foreach($comments as $comment) { ?>
+								<div class="user-comment flex-col-container">
+									<span class="user">
+										<span class="comment-username"><?=$user['username']?></span>
+										commented on
+										<a href="../pages/snippet.php?id=<?=$comment['snippet']?>"><?=$comment['title']?></a>:
+									</span>
+									<span class="user-comment-text">
+										<?=$comment['text']?>
+									</span>
+								</div>
+						<?php }
+						} ?>
 				</div>
 			</section>
 		</div>
