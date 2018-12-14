@@ -10,6 +10,9 @@
         case 'GET':
             get_settings();
             break;
+        case 'DELETE':
+            delete_user();
+            break;
     }
 
     function post_settings() {
@@ -92,6 +95,34 @@
                     'email' => $res['email']
                 )));
             exit;
+        }
+    }
+
+    function delete_user() {
+        header('Content-Type: application/json');
+        if (empty($_SESSION['user'])) {
+            http_response_code(403);
+            echo json_encode(array(
+                'success' => false,
+                'reason' => 'Requires login'
+            ));
+            exit;
+        } else {
+            try {
+                deleteUser($_SESSION['user']);
+                http_response_code(200);
+                echo json_encode(array(
+                    'success' => true
+                ));
+                exit;
+            } catch (PDOException $err) {
+                http_response_code(400);
+                echo json_encode(array(
+                    'success' => false,
+                    'reason' => $err
+                ));
+                exit;
+            }
         }
     }
 ?>

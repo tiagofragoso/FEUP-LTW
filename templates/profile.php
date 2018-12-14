@@ -157,7 +157,7 @@ function draw_settings_profile() {
 				<div class="row">
 					<span> Delete profile </span>
 				</div>
-				<a href="../actions/action_delete_user.php" class="delete-button"> Delete profile </a>
+				<span class="delete-button"> Delete profile </span>
 			</div>
 		</div>
 	</div>
