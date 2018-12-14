@@ -11,7 +11,7 @@
 		draw_channels();
 	} else {
 		$snippets = getLanguageSnippets($language['code']);
-		draw_header('SNIPZ - ' . $language, array('language'));
+		draw_header($language['name'], array('language'));
 		draw_nav();
 		draw_channel($language, $snippets);
 	}

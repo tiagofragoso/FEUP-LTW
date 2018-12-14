@@ -10,6 +10,9 @@
 		case 'POST':
 			post_new_snippet();
 			break;
+		case 'DELETE':
+			delete_snippet();
+			break;
 	}
 	
 	function get_snippets() {
@@ -87,6 +90,34 @@
 				echo json_encode(array(
 					'success' => false,
 					'reason' => 'Could not submit file'
+				));
+				exit;
+			}
+		}
+	}
+
+	function delete_snippet() {
+		header('Content-Type: application/json');
+		if (!isset($_GET['snippet'])) {
+			http_response_code(400);
+			echo json_encode(array(
+				'success' => false,
+				'reason' => 'Missing snippet id'
+			));
+			exit;
+		} else {
+			try {
+				deleteSnippet($_GET['snippet']);
+				http_response_code(200);
+				echo json_encode(array(
+					'success' => true
+				));
+				exit;
+			} catch (PDOException $err) {
+				http_response_code(400);
+				echo json_encode(array(
+					'success' => false,
+					'reason' => $err
 				));
 				exit;
 			}

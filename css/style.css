@@ -1134,7 +1134,7 @@ h1 {
 	padding: 10px;
 }
 
-.user-settings .delete-button {
+.delete-button {
 	background-color: var(--red);
 	color: white;
 	cursor: pointer;
@@ -1142,6 +1142,7 @@ h1 {
 	font-weight: bold;
 	padding: 10px;
 	border-radius: 5px;
+	text-align: center;
 }
 
 .delete-profile {
