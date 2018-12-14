@@ -1109,6 +1109,12 @@ h1 {
 	color: var(--darkgrey);
 }
 
+.user-settings .row > span {
+	font-size: 18px;
+	margin-bottom: 0.5em;
+	color: var(--darkgrey);
+}
+
 .user-settings input {
 	font-size: 16px;
 	border-radius: 5px;
@@ -1125,6 +1131,20 @@ h1 {
 	cursor: pointer;
 	font-size: 16px;
 	font-weight: bold;
+	padding: 10px;
+}
+
+.user-settings .delete-button {
+	background-color: var(--red);
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.delete-profile {
 	padding: 10px;
 }
 

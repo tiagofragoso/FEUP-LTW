@@ -317,5 +317,19 @@
 		return $stmt->fetchAll();
 	}
 
+	function deleteUser($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('DELETE FROM User
+		WHERE id = ?');
+		$stmt->execute(array($id));
+	}
+
+	function deleteSnippet($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('DELETE FROM Snippet
+		WHERE id = ?');
+		$stmt->execute(array($id));
+	}
+
 
 ?>

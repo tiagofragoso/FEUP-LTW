@@ -153,6 +153,12 @@ function draw_settings_profile() {
 				</div>
 				<input type="submit" name="submit-password" value="Update password" />
 			</form>
+			<div class="delete-profile">
+				<div class="row">
+					<span> Delete profile </span>
+				</div>
+				<a href="../actions/action_delete_user.php" class="delete-button"> Delete profile </a>
+			</div>
 		</div>
 	</div>
 <?php } ?>
