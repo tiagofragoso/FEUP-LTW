@@ -390,6 +390,7 @@ nav #logo {
 	padding: 0.5em 1em;
 	border-radius: 34px;
 	justify-self: end;
+	margin-left: 0.5em;
 }
 
 .snippet-wrapper-feed h1 {
