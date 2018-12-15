@@ -1,25 +1,30 @@
 <?php
 include_once('../includes/session.php');
-include_once('../templates/common.php');
-include_once('../database/db_user.php');
-include_once('../templates/profile.php');
-
 if (empty($_GET['id']) && empty($_SESSION['user'])) {
 	die(header('Location: /pages/login.php'));
-}
+} else if (empty($_GET['id'])) {	
+	$id = $_SESSION['user'];
+} else {
+	$id = $_GET['id'];
+} 
 
-$user = getUser($_GET['id']);
+include_once('../database/db_user.php');
 
-if (!isset($user))
-die("Invalid user id");
+$user = getUser($id);
+if (empty($user))
+	die(header('Location: /pages/404.php'));
 
-$snippets = getUserSnippets($_GET['id']);
-$following = getFollowing($_GET['id']);
-$followers = getFollowers($_GET['id']);
-$languages = getUserLanguages($_GET['id']);
-$comments = getSnippetComments($_GET['id']);
-$comments = getUserComments($_GET['id']);
-$settings = $_GET['id'] === $_SESSION['user'];
+
+include_once('../templates/common.php');
+include_once('../templates/profile.php');
+
+$snippets = getUserSnippets($id);
+$following = getFollowing($id);
+$followers = getFollowers($id);
+$languages = getUserLanguages($id);
+$comments = getSnippetComments($id);
+$comments = getUserComments($id);
+$settings = $id === $_SESSION['user'];
 
 draw_header('SNIPZ - ' . $user['username'], array('follow-user'));
 draw_nav();

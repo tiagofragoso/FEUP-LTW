@@ -11,7 +11,7 @@ const langEl = inputs[2];
 const fileEl = inputs[3];
 const uploadBtn = document.querySelector('.new-snippet-wrapper label[for="file-upload"]');
 
-codeTextArea.addEventListener('keydown', catchTab);
+codeTextArea.addEventListener('input', catchTab);
 document.querySelector('.new-snippet-wrapper').querySelectorAll('button').forEach(
 	btn => btn.addEventListener('click', tabSwitcher)
 );
