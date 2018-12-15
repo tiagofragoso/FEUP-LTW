@@ -72,7 +72,7 @@
 	function draw_feed($snippets, $mode, $sort) { ?>
 	<div class="main-content center">
 		<header class="feed-header">
-			<h1>Feed / All snippets</h1>
+			<h1><?=$mode === 'feed'? 'Feed': 'All snippets'?></h1>
 			<form method="GET" action="/pages/feed.php">
 				<input type="radio" id="feed" name="mode" value="feed" <?=$mode === 'feed'? 'checked' : null?>>
 				<label for="feed">Feed</label>
@@ -111,9 +111,10 @@
 						</div>
 					</a>
 				</header>
-				 <a href="/pages/snippet.php?id=<?=$snippet['id']?>">
-					<pre class="line-numbers"><code class="<?=$lang?>"><?=htmlspecialchars($snippet['code'])?></code></pre>
-				</a>
+				 <div onclick="window.location.href ='/pages/snippet.php?id=<?=$snippet['id']?>'">
+				 	<pre class="line-numbers"><code class="<?=$lang?>"><?=htmlspecialchars($snippet['code'])?></code></pre>
+				 	<div class="snippet-overlay">Click to view the full snippet</div>
+				</div>
 				<footer class="snippet-footer flex-row-container flex-space-between flex-vert-center">
 					<div class="snippet-author-date flex-row-container flex-vert-center">
 						<a href="/pages/profile.php?id=<?=$snippet['author']?>" class="author-name"><?=$name?></a>

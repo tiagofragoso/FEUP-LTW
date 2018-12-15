@@ -424,9 +424,15 @@ nav #logo {
 }
 
 .feed-header select {
+	-webkit-appearance: button;
+    -moz-appearance: button;
+    -webkit-user-select: none;
+    -moz-user-select: none;
 	margin-right: 1em;
+	padding: 0 1em;
+	background: url(../assets/down-arrow.svg) no-repeat 5px;
+	background-position: right center;
 	border: none;
-	background-color: transparent;
 	font-size: inherit;
 }
 
@@ -435,6 +441,7 @@ nav #logo {
 	border-radius: 5px;
 	color: var(--blue);
 	font-weight: bold;
+	border: none;
 }
 
 .feed-header input[type="radio"] {
@@ -443,6 +450,21 @@ nav #logo {
 
 .feed-header input[type="radio"]:checked+label {
 	font-weight: bold;
+}
+
+@media(max-width: 768px) {
+	.feed-header {
+		flex-direction: column;
+	}
+
+	.feed-header > h1{
+		margin: 0;
+	}
+
+	.feed-header > form {
+		margin: 1em 0;
+	}
+
 }
 
 .card-title {
@@ -460,6 +482,34 @@ nav #logo {
 
 .snippet-wrapper-feed {
 	margin-bottom: 2em;
+}
+
+.snippet-wrapper-feed > div {
+	position: relative;
+}
+
+.snippet-overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	background-color: rgba(235, 235, 235, 0.5);
+	transition: 1s ease;
+	transition-delay: 0.2s;
+	z-index: 5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2em;
+	font-weight: bold;
+	color: white;
+	cursor: pointer;
+}
+
+.snippet-wrapper-feed > div:hover .snippet-overlay {
+	opacity: 1;
 }
 
 .snippet-wrapper-feed  pre {
@@ -491,6 +541,9 @@ nav #logo {
 
 	.snippet-wrapper-feed footer .comments {
 		font-size: 12px;
+	}
+	.snippet-wrapper-feed .snippet-overlay {
+		display: none;
 	}
 }
 

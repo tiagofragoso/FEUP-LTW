@@ -10,6 +10,7 @@
 	}
 
 	function cmpString($a, $b) {
+		global $query;
 		$strA = $a['match'];
 		$strB = $b['match'];
 		return levenshtein($query, $strA) < levenshtein($query, $strB);
