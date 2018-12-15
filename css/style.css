@@ -398,6 +398,53 @@ nav #logo {
 	margin: 0;
 }
 
+.feed-header {
+	width: 100%;
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.feed-header form {
+	display: flex;
+	align-items: center;
+}
+
+.feed-header label {
+	cursor: pointer;
+	color: var(--darkgrey);
+	padding: 0em 5px;
+}
+
+.feed-header label:nth-of-type(2) {
+	border-left: 1px solid var(--transparentgrey);
+	margin-right: 0.5em;
+}
+
+.feed-header select {
+	margin-right: 1em;
+	border: none;
+	background-color: transparent;
+	font-size: inherit;
+}
+
+.feed-header input[type="submit"] {
+	background-color: white;
+	border-radius: 5px;
+	color: var(--blue);
+	font-weight: bold;
+}
+
+.feed-header input[type="radio"] {
+	display: none;
+}
+
+.feed-header input[type="radio"]:checked+label {
+	font-weight: bold;
+}
+
 .card-title {
 	color: var(--darkgrey);
 	justify-self: center;
@@ -1536,8 +1583,6 @@ label > .input-info {
 .user {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	
-
 }
 
 .user > a {

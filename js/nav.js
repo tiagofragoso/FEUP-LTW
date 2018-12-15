@@ -21,11 +21,6 @@ function getNavBarData() {
 		li2.appendChild(menuRightItems[1].querySelectorAll('.dropdown-content > a')[1].cloneNode(true));
 		const li1 = document.createElement('li');
 		li1.setAttribute('href', menuRightItems[1].querySelector('a').getAttribute('href'));
-		const img = menuRightItems[1].querySelector('img').cloneNode(true);
-		img.style.height = '30px';
-		img.style.borderRadius = '5px';
-		img.style.marginRight = '1em';
-		li1.appendChild(img);
 		li1.appendChild(menuRightItems[1].querySelectorAll('.dropdown-content > a')[0].cloneNode(true));
 		ul.appendChild(li1);
 		ul.appendChild(li2);
@@ -37,8 +32,8 @@ function createSearchEl() {
 	const input = document.createElement('input');
 	input.setAttribute('type', 'text');
 	input.setAttribute('placeholder', 'Type something');
+	
 	return input;
-
 }
 
 function expandMenu() {
@@ -83,17 +78,17 @@ const searchInput = searchForm.querySelector('input');
 const searchResults = document.querySelector('nav .search-results');
 searchInput.addEventListener('input', performSearch);
 async function performSearch(event) {
-	event.preventDefault();
 	while (searchResults.firstChild) {
 		searchResults.removeChild(searchResults.firstChild);
 	}
-	if (searchInput.value.length === 0){
+	const query = searchInput.value;
+	if (query.length === 0){
 		searchResults.style.maxHeight = '0';
 		searchInput.style.borderBottomLeftRadius = '5px';
 		searchForm.querySelector('button').style.borderBottomRightRadius = '5px';
 		return;
 	}
-	const query = searchInput.value;
+
 	try {
 		const res = await request(API_ENDPOINT, 'GET', {query});
 		let empty = true;
@@ -131,6 +126,7 @@ async function performSearch(event) {
 		searchInput.style.borderBottomLeftRadius = '0';
 		searchForm.querySelector('button').style.borderBottomRightRadius = '0';
 		searchResults.style.maxHeight = '1000px';
+		return searchResults;
 	} catch (e) {
 		console.log(e);
 	}

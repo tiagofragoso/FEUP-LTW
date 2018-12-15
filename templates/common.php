@@ -67,14 +67,33 @@
 				</ul>	
 			</div>
 		</nav>
-<?php
-	}?>
+<?php }
 
-<?php
-	function draw_feed($snippets) {
-		?>
+	function draw_feed($snippets, $mode, $sort) { ?>
 	<div class="main-content center">
-		<?php foreach ($snippets as $snippet) { 
+		<header class="feed-header">
+			<h1>Feed / All snippets</h1>
+			<form method="GET" action="/pages/feed.php">
+				<input type="radio" id="feed" name="mode" value="feed" <?=$mode === 'feed'? 'checked' : null?>>
+				<label for="feed">Feed</label>
+				<input type="radio" id="all" name="mode" value="all" <?=$mode === 'all'? 'checked' : null?>>
+				<label for="all">All</label>
+				<select name="sort">
+					<option value="latest" <?=$sort === 'latest'? 'selected' : null?>>Latest</option>
+					<option value="oldest" <?=$sort === 'oldest'? 'selected' : null?>>Oldest</option>
+					<option value="best" <?=$sort === 'best'? 'selected' : null?>>Best</option>
+				</select>
+				<input type="submit" value="GO">
+			</form>
+		</header>
+		<?php 
+		if (empty($snippets)){
+			echo '<span class="channels-info">
+				Your feed is empty. Try following some <a href="/pages/channels.php">channels</a>.
+				<br>
+				Or check our lastest <a href="/pages/feed.php?mode=all">snippets</a>.
+				</span>';
+		} else foreach ($snippets as $snippet) { 
 			$name = isset($snippet['name'])? $snippet['name']: $snippet['username'];
 			$countComments = getSnippetCommentCount($snippet['id']);
 			$lang = 'language-' . $snippet['language']; ?>
@@ -103,15 +122,13 @@
 						<span class="comments"><?=$countComments['count']?></span>
 				</footer>
 			</div>
-		<?php } ?>
+		<?php }?>
 	</div>
 <?php
-	}?>
-
-<?php
+	}
 	function draw_footer() {
 ?>
 		</body>
 	</html>
 <?php
-	}?>
+	}

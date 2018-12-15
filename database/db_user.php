@@ -33,26 +33,28 @@
 		return $stmt->execute(array(password_hash($newpassword, PASSWORD_DEFAULT, $options), $id));
 	}
 
-	function getFeed($id) {
+	function getFeed($id, $col, $order) {
+		$param = "$col $order";
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name,
+		$stmt = $db->prepare("SELECT Snippet.*, User.username, User.name,
 		Language.name AS languageName
 		FROM Snippet, User, Language
 		WHERE Snippet.author = User.id AND Language.code = Snippet.language
 		AND (Snippet.language IN (SELECT language FROM FollowLanguage WHERE FollowLanguage.user = ?)
 		OR Snippet.author IN (SELECT user2 FROM FollowUser WHERE user1 = ?))
-		ORDER BY Snippet.date DESC');
+		ORDER BY $param");
 		$stmt->execute(array($id, $id));
 		return $stmt->fetchAll();
 	}
 
-	function getAllSnippets() {
+	function getAllSnippets($col, $order) {
+		$param = "$col $order";
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT Snippet.*, User.username, User.name,
+		$stmt = $db->prepare("SELECT Snippet.*, User.username, User.name,
 		Language.name AS languageName
 		FROM Snippet, User, Language
 		WHERE Snippet.author = User.id AND Language.code = Snippet.language
-		ORDER BY Snippet.date DESC');
+		ORDER BY $param");
 		$stmt->execute();
 		return $stmt->fetchAll();
 	}
