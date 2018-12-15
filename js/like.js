@@ -12,7 +12,7 @@ ratings.forEach(snippet => {
 	context.upvoteBtn.addEventListener('click', likeHandler.bind(context));
 	context.downvoteBtn.addEventListener('click', likeHandler.bind(context));
 	checkLike.call(context);
-})
+});
 
 function updateVisual() {
 	if (this.like === 1) {

@@ -33,7 +33,7 @@
 		return $stmt->execute(array(password_hash($newpassword, PASSWORD_DEFAULT, $options), $id));
 	}
 
-	function getFeed($id, $col, $order) {
+	function getFeed($id, $col, $order, $count, $offset) {
 		$param = "$col $order";
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare("SELECT Snippet.*, User.username, User.name,
@@ -42,19 +42,21 @@
 		WHERE Snippet.author = User.id AND Language.code = Snippet.language
 		AND (Snippet.language IN (SELECT language FROM FollowLanguage WHERE FollowLanguage.user = ?)
 		OR Snippet.author IN (SELECT user2 FROM FollowUser WHERE user1 = ?))
-		ORDER BY $param");
+		ORDER BY $param
+		LIMIT $count OFFSET $offset");
 		$stmt->execute(array($id, $id));
 		return $stmt->fetchAll();
 	}
 
-	function getAllSnippets($col, $order) {
+	function getAllSnippets($col, $order, $count, $offset) {
 		$param = "$col $order";
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare("SELECT Snippet.*, User.username, User.name,
 		Language.name AS languageName
 		FROM Snippet, User, Language
 		WHERE Snippet.author = User.id AND Language.code = Snippet.language
-		ORDER BY $param");
+		ORDER BY $param
+		LIMIT $count OFFSET $offset");
 		$stmt->execute();
 		return $stmt->fetchAll();
 	}
@@ -128,7 +130,8 @@
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('SELECT Comment.*, User.username AS username, User.name AS name 
 		FROM Comment, User
-		WHERE snippet = ? AND Comment.user = User.id');
+		WHERE snippet = ? AND Comment.user = User.id
+		ORDER BY date(Comment.date) ASC');
 		$stmt->execute(array($id));
 		return $stmt->fetchAll();
 	}
@@ -147,11 +150,14 @@
 		return $stmt->execute(array($title, $description, $snippet, $language, $currDate, $author));
 	}
 
-	function postComment($user, $snippet, $text, $date) {
+	function postComment($user, $snippet, $text, $date, $parent) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('INSERT INTO Comment(user, snippet, text, date) 
-		VALUES (?, ?, ?, ?)');
-		return $stmt->execute(array($user, $snippet, $text, $date));
+		$stmt = $db->prepare('INSERT INTO Comment(user, snippet, text, date, parent) 
+		VALUES (?, ?, ?, ?, ?)');
+		if ($stmt->execute(array($user, $snippet, $text, $date, $parent)))
+			return $db->lastInsertId();
+		else 
+			return false;
 	}
 
 	function hasLike($user, $snippet) {

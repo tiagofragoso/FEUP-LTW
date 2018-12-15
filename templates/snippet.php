@@ -11,7 +11,6 @@ function draw_full_snippet($snippet, $comments) {
 		<div class="snippet-wrapper flex-col-container" data-id="<?=$snippet['id']?>">
 			<header class="snippet-header flex-row-container flex-space-between flex-vert-center">
 				<div class="rating-wrapper">
-					<span id="snippetId"><?=$snippet['id']?></span>
 					<i class="fas fa-caret-up"></i>
 					<span class="snippet-rating"><?=$snippet['points']?></span>
 					<i class="fas fa-caret-down"></i>
@@ -26,16 +25,15 @@ function draw_full_snippet($snippet, $comments) {
 			<div class="card-content flex-row-container">
 				<div class="snippet-left-wrapper">
 					<pre class="line-numbers"><code class="<?=$lang?>"><?=htmlspecialchars($snippet['code'])?></code></pre>
-					<div class="comments-wrapper">
+					<ul class="comments-wrapper">
 						<h1>Comments</h1>
-						<div id="new-comment" class="comment-wrapper">
-							<form action="#" method="post">
-								<input type="hidden" name="snippet" value="<?=$snippet['id']?>"/>
+						<li id="new-comment" class="comment-wrapper">
+							<form>
 								<textarea name="text" rows="3" required="required" placeholder="Write something about this snippet"></textarea>
 								<input type="submit" value="Send">
 							</form>
-						</div>
-					</div>
+						</li>
+					</ul>
 				</div>
 				<div class="info-wrapper flex-col-container">
 					<h2 class="expand-title"><span>+</span> Author</h2>

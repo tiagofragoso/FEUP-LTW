@@ -34,8 +34,8 @@
 	}
 
 	function post_comment() {
+		header('Content-Type: application/json');
 		if (!isset($_SESSION['user'])) {
-			header('Content-Type: application/json');
 			http_response_code(400);
 			echo json_encode(array (
 				'success' => false,
@@ -43,7 +43,6 @@
 			));
 			exit;
 		}
-		header('Content-Type: application/json');
 		$data = json_decode(file_get_contents('php://input'), true);
 		if (!isset($data['snippet'])) {
 			http_response_code(400);
@@ -63,11 +62,11 @@
 			try {
 				$currDate = (new DateTime())->format('Y-m-d H:i');
 				$user = getUser($_SESSION['user']);
-				postComment($_SESSION['user'], $data['snippet'], $data['text'], $currDate);
+				$id = postComment($_SESSION['user'], $data['snippet'], $data['text'], $currDate, $data['parent']);
 				http_response_code(200);
 					echo json_encode(array(
 						'success' => true,
-						'data' => array('username' => $user['username'], 'date' => $currDate, 'name' => $user['name'])
+						'data' => array('id' => $id, 'username' => $user['username'], 'date' => $currDate, 'name' => $user['name'])
 					));
 					exit;
 			} catch (PDOException $err) {
