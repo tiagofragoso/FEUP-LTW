@@ -1519,3 +1519,7 @@ label > .input-info {
 .user > a {
 	font-weight: bold;
 }
+
+.error-title {
+	margin-bottom: 1em;
+}
