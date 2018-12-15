@@ -64,7 +64,7 @@ function expandSearch() {
 	search.addEventListener('click', contractSearch);
 }
 
-function contractSearch(event) {
+function contractSearch() {
 	searchModal.style.width = '0%';
 	search.classList.replace('fa-times', 'fa-search');
 	search.removeEventListener('click', contractSearch);
@@ -72,16 +72,65 @@ function contractSearch(event) {
 }
 
 const API_ENDPOINT = '/api/search.php';
+const LINKS = {
+	users: '/pages/profile.php?id=',
+	snippets: '/pages/snippet.php?id=',
+	channels: '/pages/channels.php?code='
+};
 
 const searchForm = document.querySelector('nav form');
-searchForm.addEventListener('submit', performSearch);
-
+const searchInput = searchForm.querySelector('input');
+const searchResults = document.querySelector('nav .search-results');
+searchInput.addEventListener('input', performSearch);
 async function performSearch(event) {
 	event.preventDefault();
-	const query = searchForm.querySelector('input').value;
+	while (searchResults.firstChild) {
+		searchResults.removeChild(searchResults.firstChild);
+	}
+	if (searchInput.value.length === 0){
+		searchResults.style.maxHeight = '0';
+		searchInput.style.borderBottomLeftRadius = '5px';
+		searchForm.querySelector('button').style.borderBottomRightRadius = '5px';
+		return;
+	}
+	const query = searchInput.value;
 	try {
 		const res = await request(API_ENDPOINT, 'GET', {query});
-		console.log(res);
+		let empty = true;
+		for (let key in res) {
+			const object = res[key];
+			if (Object.keys(object).length > 0) {
+				const li = document.createElement('li');
+				li.style.textTransform = 'capitalize';
+				li.className = 'faded';
+				li.textContent = key;
+				searchResults.appendChild(li);
+				var currentKey = LINKS[key];
+			}
+			let count = 0;
+			for (let key2 in object) {
+				if (count >= 3 ) break;
+				empty = false;
+				const result = object[key2];
+				const li = document.createElement('li');
+				li.className = 'result';
+				const link = document.createElement('a');
+				link.setAttribute('href', currentKey+(result.id || result.code));
+				link.textContent = result.match;
+				li.appendChild(link);
+				searchResults.appendChild(li);
+				count++;
+			}
+		}
+		if (empty){
+			const li = document.createElement('li');
+			li.className = 'faded';
+			li.textContent = `No results found`;
+			searchResults.appendChild(li);
+		}
+		searchInput.style.borderBottomLeftRadius = '0';
+		searchForm.querySelector('button').style.borderBottomRightRadius = '0';
+		searchResults.style.maxHeight = '1000px';
 	} catch (e) {
 		console.log(e);
 	}

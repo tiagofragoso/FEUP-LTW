@@ -10,6 +10,10 @@ formSettings.newPassword = settings.querySelector('#new_password');
 formSettings.photo = document.querySelector('.user-info img');
 getSettings.call(formSettings);
 
+let userInfo = {};
+userInfo.username = document.querySelector('.user-details h2');
+userInfo.name = document.querySelector('.user-details h1');
+
 document.querySelector('.user-settings form:first-of-type').addEventListener('submit', submitSettings);
 document.querySelector('.user-settings form:last-of-type').addEventListener('submit', changePassword);
 document.querySelector('.user-info input').addEventListener('change', changePhoto);
@@ -38,7 +42,13 @@ async function submitSettings(event) {
     } catch (e) {
         alert(e);
     }
+    
+    updateVisual();
+}
 
+function updateVisual() {
+    userInfo.username.firstChild.textContent = formSettings.usernameInput.value;
+    userInfo.name.textContent = formSettings.nameInput.value;
 }
 
 async function changePassword(event) {

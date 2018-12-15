@@ -36,6 +36,8 @@
 					<input type="text" name="search" placeholder="Looking for something?" size="22">
 					<button type="submit"><i class="fas fa-search"></i></button>
 				</form>
+				<ul class="search-results">
+				</ul>
 			</div>
 			<div class="menu">
 				<i class="fas fa-bars"></i>
