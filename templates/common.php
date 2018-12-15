@@ -55,7 +55,8 @@
 								<img src="<?=$pic?>"/>
 							</a>
 							<div class="dropdown-content">
-								<a href="/pages/profile.php?id=<?=$_SESSION['user']?>">username</a>
+								<a href="/pages/profile.php?id=<?=$_SESSION['user']?>">Your profile</a>
+								<a href="/pages/settings.php">Settings</a>
 								<a href="/actions/action_logout.php">Logout</a>
 							</div>
 						</li>

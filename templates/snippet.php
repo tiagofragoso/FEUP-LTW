@@ -55,6 +55,9 @@ function draw_full_snippet($snippet, $comments) {
 						<h1>Description</h1>
 						<p class="description"><?=$snippet['description']?></p>
 					</div>
+					<?php if ($_SESSION['user'] == $snippet['author']) { ?>
+						<span class="delete-button"> Delete snippet </span>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

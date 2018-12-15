@@ -526,6 +526,9 @@ nav #logo {
 	font-weight: bold;
 	color: var(--blue);
 	margin-right: 1em;
+	min-width: 0;
+	max-width: 250px;
+	
 }
 
 .comment-footer {
@@ -569,10 +572,13 @@ nav #logo {
 
 .comment-text {
 	color: var(--grey);
+	text-align: justify;
+
 }
 
 .comment-user-wrapper {
-	text-align: justify;
+	word-wrap: break-word;
+	overflow: hidden;
 }
 
 .comment-wrapper textarea {
@@ -1127,6 +1133,12 @@ h1 {
 	color: var(--darkgrey);
 }
 
+.user-settings .row > span {
+	font-size: 18px;
+	margin-bottom: 0.5em;
+	color: var(--darkgrey);
+}
+
 .user-settings input {
 	font-size: 16px;
 	border-radius: 5px;
@@ -1143,6 +1155,21 @@ h1 {
 	cursor: pointer;
 	font-size: 16px;
 	font-weight: bold;
+	padding: 10px;
+}
+
+.delete-button {
+	background-color: var(--red);
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.delete-profile {
 	padding: 10px;
 }
 
@@ -1476,4 +1503,43 @@ label > .input-info {
 
 .row > p.input-info {
 	margin-bottom: 0.5em;
+}
+
+.user-comment {
+	border-radius: 5px;
+	margin-top: 1em;
+	padding: 1em;
+	background-color: #EBEBEB;
+	color: var(--darkgrey);
+	width: 100%;
+	
+}
+
+.user-comment-text {
+	margin-left: 1em;
+	text-align: justify;
+	margin-top: 0.5em;
+	font-size: 15px;
+	color: var(--grey);
+	word-wrap: break-word;
+	word-break: break-all;
+	overflow: hidden;
+	display: inline-block;
+	
+}
+
+.comment-username {
+	color: var(--blue);
+	font-weight: bold;
+}
+
+.user {
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	
+
+}
+
+.user > a {
+	font-weight: bold;
 }

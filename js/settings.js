@@ -17,6 +17,7 @@ userInfo.name = document.querySelector('.user-details h1');
 document.querySelector('.user-settings form:first-of-type').addEventListener('submit', submitSettings);
 document.querySelector('.user-settings form:last-of-type').addEventListener('submit', changePassword);
 document.querySelector('.user-info input').addEventListener('change', changePhoto);
+document.querySelector('.delete-button').addEventListener('click', deleteUser);
 
 async function getSettings() {
     try {
@@ -63,6 +64,15 @@ async function changePassword(event) {
         alert('Changed password!');
     } catch(e) {
         alert(e);
+    }
+}
+
+async function deleteUser() {
+    try {
+        await request('/api/settings.php', 'DELETE', {});
+        window.location.href = '/actions/action_logout.php';
+    } catch(e) {
+        console.log(e);
     }
 }
 

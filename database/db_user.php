@@ -307,6 +307,15 @@
 		return $stmt->fetch();
 	}
 
+	function getUserComments($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('SELECT Comment.*, Snippet.id, Snippet.title
+		FROM Comment, Snippet
+		WHERE Comment.user = ? AND Comment.snippet = Snippet.id
+		ORDER BY date DESC');
+		$stmt->execute(array($id));
+		return $stmt->fetchAll();
+	}
 	function searchSnippets($query) {
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('SELECT id, title AS match 
@@ -315,6 +324,21 @@
 		$stmt->execute(array("%{$query}%"));
 		return $stmt->fetchAll();
 	}
+
+	function deleteUser($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('DELETE FROM User
+		WHERE id = ?');
+		$stmt->execute(array($id));
+	}
+
+	function deleteSnippet($id) {
+		$db = Database::instance()->getConnection();
+		$stmt = $db->prepare('DELETE FROM Snippet
+		WHERE id = ?');
+		$stmt->execute(array($id));
+	}
+
 
 	function searchUsers($query) {
 		$db = Database::instance()->getConnection();

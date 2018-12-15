@@ -1,6 +1,6 @@
 <?php
 include_once('utils.php');
-function draw_profile($user, $snippets, $following, $followers, $languages, $settings){ 
+function draw_profile($user, $snippets, $following, $followers, $languages, $settings, $comments){ 
 	$pic = getPicture($user['id']);
 	?>
 	<div data-id="<?=$user['id']?>" class="full-card center flex-row-container profile-wrapper">
@@ -84,7 +84,26 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 			<section class="user-activity">
 				<header class=" flex-row-container  flex-vert-center">
 					<h1>Activity</h1>
-					</header>
+				</header>
+				<div class="user-comments">
+						<?php 
+						if (count($comments) == 0) { ?>
+							<span class="no-activity"> No activity </span>
+						<?php } else {
+							foreach($comments as $comment) { ?>
+								<div class="user-comment flex-col-container">
+									<span class="user">
+										<span class="comment-username"><?=$user['username']?></span>
+										commented on
+										<a href="../pages/snippet.php?id=<?=$comment['snippet']?>"><?=$comment['title']?></a>:
+									</span>
+									<span class="user-comment-text">
+										<?=$comment['text']?>
+									</span>
+								</div>
+						<?php }
+						} ?>
+				</div>
 			</section>
 		</div>
 	</div>
@@ -134,6 +153,12 @@ function draw_settings_profile() {
 				</div>
 				<input type="submit" name="submit-password" value="Update password" />
 			</form>
+			<div class="delete-profile">
+				<div class="row">
+					<span> Delete profile </span>
+				</div>
+				<span class="delete-button"> Delete profile </span>
+			</div>
 		</div>
 	</div>
 <?php } ?>

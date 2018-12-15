@@ -47,7 +47,7 @@
                             <span class="snippet-rating"><?=$snippet['points']?></span>
                             <i class="fas fa-caret-down"></i>
                         </div>
-                        <h1 class="card-title"><?=$snippet['title']?></h1>
+                        <a href="/pages/snippet.php?id=<?=$snippet['id']?>"><h1 class="card-title"><?=$snippet['title']?></h1></a>
                         <div class="language-wrapper">
                             <?=$snippet['languageName']?>
                         </div>

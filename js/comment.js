@@ -6,6 +6,11 @@ const newCommentRef = comments.querySelector('#new-comment');
 newCommentRef.querySelector('form').addEventListener('submit', postComment);
 const snippetId = document.querySelector('.snippet-wrapper').dataset.id;
 
+const delete_button = document.querySelector('.delete-button');
+if (delete_button !== null) {
+	delete_button.addEventListener('click', deleteSnippet);
+}
+
 getSnippetComments();
 
 async function getSnippetComments() {
@@ -141,6 +146,17 @@ async function likeHandler(event) {
 				console.log(e);	
 			}
 		}
+	}
+}
+
+async function deleteSnippet() {
+	const snippet = snippetId;
+	const snippets = {snippet};
+	try {
+		await request('/api/snippet.php', 'DELETE', snippets);
+		window.location.href = '/pages/feed.php'; 
+	} catch(e) {
+		console.log(e);
 	}
 }
 
