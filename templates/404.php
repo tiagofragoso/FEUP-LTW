@@ -15,7 +15,12 @@
 			</header>
 			<div class="card-content flex-row-container">
 				<div class="snippet-left-wrapper">
-					<pre class="line-numbers"><code class="language-none"><?=htmlspecialchars('Setting up a 404 ErrorDocument')?></code></pre>
+					<pre class="line-numbers"><code class="language-none">
+1. Navigate to the document root of your website
+                        
+2. Open/Create the .htacess file
+                        
+3. Add the following line ErrorDocument 404 /your/404/page/path</code></pre>
 					<div class="comments-wrapper">
 					</div>
 				</div>
@@ -30,7 +35,7 @@
 					<h2 class="expand-title"><span>+</span> Description</h2>
 					<div class="description-wrapper">
 						<h1>Description</h1>
-						<p class="description">Setting up a 404 ErrorDocument</p>
+						<p class="description"> How to set up a 404 ErrorDocument</p>
                     </div>
 				</div>
 			</div>
