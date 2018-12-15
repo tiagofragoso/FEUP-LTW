@@ -16,6 +16,20 @@
 		return levenshtein($query, $strA) < levenshtein($query, $strB);
 	}
 
+	function search($query) {
+		$snippets = searchSnippets($query);
+		uasort($snippets, cmpString);
+		$users = searchUsers($query);
+		uasort($users, cmpString);
+		$channels = searchChannels($query);
+		uasort($channels, cmpString);
+		return array(
+			'snippets' => $snippets,
+			'users' => $users,
+			'channels' => $channels,
+		);
+	}
+
 	function perform_search(){
 		header('Content-Type: application/json');
 		if (empty($_GET['query'])) {
@@ -27,20 +41,11 @@
 		}
 		try {
 			$query = $_GET['query'];
-			$snippets = searchSnippets($query);
-			uasort($snippets, cmpString);
-			$users = searchUsers($query);
-			uasort($users, cmpString);
-			$channels = searchChannels($query);
-			uasort($channels, cmpString);
+			$res = search($query);
 			http_response_code(200);
 			echo json_encode(array(
 				'success' => true,
-				'data' => array(
-					'snippets' => $snippets,
-					'users' => $users,
-					'channels' => $channels,
-				)
+				'data' => $res
 			));
 		} catch (PDOException $err) {
 			http_response_code(400);

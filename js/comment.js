@@ -5,42 +5,59 @@ const comments = document.querySelector('.comments-wrapper');
 const newCommentRef = comments.querySelector('#new-comment');
 newCommentRef.querySelector('form').addEventListener('submit', postComment);
 const snippetId = document.querySelector('.snippet-wrapper').dataset.id;
+let replyId;
 
-const delete_button = document.querySelector('.delete-button');
-if (delete_button !== null) {
-	delete_button.addEventListener('click', deleteSnippet);
-}
 
 getSnippetComments();
 
 async function getSnippetComments() {
 	let data = await request(API_ENDPOINT, 'GET', {snippet: snippetId});
-	data.forEach(comment => {
-		comments.insertBefore(createComment(comment), newCommentRef);
-	});
+	data.forEach(comment => insertComment(createComment(comment), comment.parent));
+}
 
+function insertComment (element, parent) {
+	if (parent) {
+		const parentComment = comments.querySelector(`.comment-wrapper[data-id="${parent}"]`);
+		const children = parentComment.querySelector('ul');
+		if (children != null) {
+			children.appendChild(element);
+		} else {
+			const newChildren = document.createElement('ul');
+			newChildren.append(element);
+			parentComment.appendChild(newChildren);
+		}
+	} else
+		comments.insertBefore(element, newCommentRef);
 }
 
 function createComment(comment) {
-	const commentWrapper = document.createElement('div');
+	const commentWrapper = document.createElement('li');
 	commentWrapper.className = 'comment-wrapper';
 	commentWrapper.innerHTML = 
-	`<div class="comment-info-wrapper flex-row-container flex-space-between">
+	`<div class="comment-content-wrapper flex-row-container flex-space-between">
 		<div class="comment-user-wrapper ">
 			<a href="/pages/profile.php?id=${comment.user}" class="comment-user">
 				${comment.name? comment.name : comment.username}
 			</a>
-			<span class="comment-text"> ${comment.text} </span>
+			<span class="comment-text"></span>
 		</div>
+	</div>
+	<div class="comment-footer flex-row-container flex-vert-center">
 		<div class="comment-rating-wrapper">
 			<i class="fas fa-caret-up"></i>
 			<span class="comment-rating">${comment.points}</span>
 			<i class="fas fa-caret-down"></i>
 		</div>
-	</div>
-	<div class="comment-footer">
 		<span class="comment-date">${comment.date}</span>
 	</div>`;
+	commentWrapper.setAttribute('data-id', comment.id);
+	commentWrapper.querySelector('.comment-text').textContent = comment.text;
+	if (comment.parent == null) {
+		const reply = document.createElement('span');
+		reply.addEventListener('click', commentReply);
+		reply.textContent = 'Reply';
+		commentWrapper.querySelector('.comment-footer').insertBefore(reply, commentWrapper.querySelector('.comment-footer .comment-date'));
+	}
 	let context = {};
 	context.commentId = comment.id;
 	context.upvoteBtn = commentWrapper.querySelector('i:first-of-type');
@@ -62,16 +79,14 @@ async function postComment(event) {
 	} 
 	try {
 		const data = await request(API_ENDPOINT, 'POST', {snippet: snippetId, text: text});
-		comments.insertBefore(createComment({...data, text: text, points: 0}), newCommentRef);
-		newCommentRef.querySelector('textarea').value = "" ;
+		insertComment(createComment({...data, text: text, points: 0}));
+		newCommentRef.querySelector('textarea').value = "";
 	} catch (e) {
 
 	}
 }
 
 function updateVisual() {
-	console.log(this.downvoteBtn);
-	console.log(this.upvoteBtn);
 	if (this.like === 1) {
 		this.downvoteBtn.classList.remove('downvote');
 		this.points.classList.remove('downvote');
@@ -149,14 +164,38 @@ async function likeHandler(event) {
 	}
 }
 
-async function deleteSnippet() {
-	const snippet = snippetId;
-	const snippets = {snippet};
+
+function commentReply(event) {
+	removeReplyForm();
+	const parentComment = event.currentTarget.parentNode.parentNode;
+	replyId = parentComment.dataset.id;
+	const user = parentComment.querySelector('.comment-user').textContent;
+	const replyForm = document.createElement('form');
+	replyForm.setAttribute('id', 'reply-form');
+	replyForm.innerHTML = `
+	<textarea rows="1" required="required" placeholder="Replying to ${user.trim()}"></textarea>
+	<input type="submit" value="Send">`;
+	replyForm.addEventListener('submit', postChildComment);
+	insertComment(replyForm, replyId);
+}
+
+async function postChildComment(event) {
+	event.preventDefault();
+	const text = comments.querySelector('#reply-form > textarea').value;
+	if (text.trim() == '') {
+		alert('Comment text cant be empty');
+		return;
+	} 
 	try {
-		await request('/api/snippet.php', 'DELETE', snippets);
-		window.location.href = '/pages/feed.php'; 
-	} catch(e) {
+		const data = await request(API_ENDPOINT, 'POST', {snippet: snippetId, text: text, parent: replyId});
+		removeReplyForm();
+		insertComment(createComment({...data, text: text, points: 0, parent: replyId}), replyId);
+	} catch (e) {
 		console.log(e);
 	}
 }
 
+function removeReplyForm() {
+	const oldForm = document.querySelector('#reply-form');
+	if (oldForm) oldForm.remove();
+}
