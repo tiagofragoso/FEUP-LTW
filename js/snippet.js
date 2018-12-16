@@ -1,4 +1,6 @@
+import { request } from "./request.js";
 const links = document.querySelectorAll('.snippet-wrapper .info-wrapper .expand-title');
+const snippetId = document.querySelector('.snippet-wrapper').dataset.id;
 links.forEach(l => l.addEventListener('click', expand));
 
 const deleteButton = document.querySelector('.delete-button');
