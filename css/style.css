@@ -1802,4 +1802,6 @@ label > .input-info {
 
 .center-card {
 	background-color: white;
+	padding: 2em;
+	border-radius: 5px;
 }

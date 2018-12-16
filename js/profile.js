@@ -6,6 +6,7 @@ const following = titles[0].querySelector('h1');
 const followers = titles[1].querySelector('h1');
 const id = document.querySelector('.profile-wrapper').dataset.id;
 following.addEventListener('click', showFollowingModal);
+followers.addEventListener('click', showFollowersModal);
 
 
 async function showFollowingModal() {
@@ -19,14 +20,32 @@ async function showFollowingModal() {
 	}
 }
 
+async function showFollowersModal() {
+	try {
+		const res = await request(API_ENDPOINT, 'GET', {id: id, query: 'followers'});
+		const card = createCard('Followers', [...res.data]);
+		const modal = createModal(card);
+		document.querySelector('.full-card').appendChild(modal);
+	} catch (e) {
+		console.log(e);
+	}
+}
+
 function createCard(title, elems) {
 	const div = document.createElement('div');
 	div.innerHTML = `<header><h1>${title}</h1></header>
 	<ul></ul>`;
 	const ul = div.querySelector('ul');
 	elems.forEach(e => {
+		let name = e.name;
+		if (name === null) {
+			name = "";
+		}
 		const li = document.createElement('li');
-		li.innerHTML = `<a href="/pages/profile.php?id=${e.id}">${e.username}</a>`;
+		li.innerHTML = `<a href="/pages/profile.php?id=${e.id}">
+							<span class="user-name"> ${name} </span>
+							<span class="user-username"> ${e.username} </span>
+						</a>`;
 		ul.appendChild(li);
 	})
 	return div;
