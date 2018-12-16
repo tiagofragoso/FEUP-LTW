@@ -51,8 +51,8 @@ async function submitSettings(event) {
 }
 
 function updateVisual() {
-    userInfo.username.firstChild.textContent = formSettings.usernameInput.value;
-    userInfo.name.textContent = formSettings.nameInput.value;
+    userInfo.username.firstChild.textContent = usernameEl.querySelector('input').value;
+    userInfo.name.textContent = nameEl.querySelector('input').value;
 }
 
 async function changePassword(event) {
