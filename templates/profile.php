@@ -95,10 +95,10 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 									<span class="user">
 										<span class="comment-username"><?=$user['username']?></span>
 										commented on
-										<a href="../pages/snippet.php?id=<?=$comment['snippet']?>"><?=$comment['title']?></a>:
+										<a href="../pages/snippet.php?id=<?=$comment['snippet']?>"><?=htmlspecialchars($comment['title'])?></a>:
 									</span>
 									<span class="user-comment-text">
-										<?=$comment['text']?>
+										<?=htmlspecialchars($comment['text'])?>
 									</span>
 								</div>
 						<?php }
