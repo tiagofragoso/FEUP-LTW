@@ -1,5 +1,6 @@
 <?php
 	include_once('../database/db_user.php');
+	include_once('../templates/utils.php');
 	include_once('../includes/session.php');
 	
 	$request = $_SERVER['REQUEST_METHOD'];
@@ -17,6 +18,9 @@
 		header('Content-Type: application/json');
 		if (isset($_GET['snippet'])){
 			$res = getSnippetComments($_GET['snippet']);
+			foreach ($res as &$r) {
+				$r['date'] = getTimeElapsed($r['date']);
+			}
 			http_response_code(200);
 			echo json_encode(array(
 				'success' => true,
@@ -66,7 +70,7 @@
 				http_response_code(200);
 					echo json_encode(array(
 						'success' => true,
-						'data' => array('id' => $id, 'username' => $user['username'], 'date' => $currDate, 'name' => $user['name'])
+						'data' => array('id' => $id, 'username' => $user['username'], 'date' => getTimeElapsed($currDate), 'name' => $user['name'])
 					));
 					exit;
 			} catch (PDOException $err) {

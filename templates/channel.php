@@ -31,7 +31,7 @@
                 if (count($snippets) == 0) { ?> 
                     <div class="no-snippets flex-row-container">
                         <span>This language doesn't have snippets.</span>
-                        <a href="../pages/new.php">Add one!</a>
+                        <a href="../pages/new.php?code=<?=$language['code']?>">Add one!</a>
                     </div>
 
                 <?php } else {

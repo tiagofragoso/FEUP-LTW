@@ -13,7 +13,7 @@
 	
 	draw_header('SNIPZ - NEW', array('new-snippet'));
 	draw_nav();
-	draw_new_snippet($languages);
+	draw_new_snippet($languages, htmlentities($_GET['code']));
 	draw_footer();
 
 

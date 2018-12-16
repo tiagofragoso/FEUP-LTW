@@ -17,6 +17,7 @@
 	}
 
 	function search($query) {
+		global $query;
 		$snippets = searchSnippets($query);
 		uasort($snippets, cmpString);
 		$users = searchUsers($query);

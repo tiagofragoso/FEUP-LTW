@@ -64,7 +64,7 @@ function draw_full_snippet($snippet, $comments) {
 <?php } ?>
 
 <?php
-	function draw_new_snippet($languages) {
+	function draw_new_snippet($languages, $code) {
 ?>
 	<div class="full-card center new-snippet-wrapper">
 		<h1>Add new snippet</h1>
@@ -81,8 +81,10 @@ function draw_full_snippet($snippet, $comments) {
 			<div class="row">
 				<label class="required" for="language"><span>Language</span><span class="input-info"></span></label>
 				<select name="language" id="language">
-					<?php foreach($languages as $lang) { ?>
-						<option value="<?=$lang['code']?>" <?=($lang['code']==='none')? 'selected="selected"': null?>><?=$lang['name']?></option>
+					<?php
+					$def = empty($code)? 'none': $code;
+					foreach($languages as $lang) { ?>
+						<option value="<?=$lang['code']?>" <?=($lang['code']===$def)? 'selected="selected"': null?>><?=$lang['name']?></option>
 					<?php } ?>
 				</select>
 			</div>
