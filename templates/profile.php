@@ -1,5 +1,5 @@
 <?php
-include_once('./utils.php');
+include_once('utils.php');
 function draw_profile($user, $snippets, $following, $followers, $languages, $settings, $comments){ 
 	$pic = getPicture($user['id']);
 	?>
