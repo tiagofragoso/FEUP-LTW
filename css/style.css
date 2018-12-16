@@ -13,6 +13,7 @@ body {
 	margin: 0;
 	padding: 0;
 	background-color: var(--lightgrey);
+	color: var(--darkgrey);
 }
 
 * {
@@ -435,6 +436,7 @@ nav #logo {
 	background-position: right center;
 	border: none;
 	font-size: inherit;
+	color: var(--darkgrey);
 }
 
 .feed-header input[type="submit"] {
@@ -890,6 +892,7 @@ nav #logo {
 	font-size: 16px;
 	outline:none;
 	padding: 16px;
+	color: var(--darkgrey);
 }
 
 .new-snippet-wrapper .file-input-wrapper {
