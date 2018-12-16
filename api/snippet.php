@@ -98,14 +98,30 @@
 
 	function delete_snippet() {
 		header('Content-Type: application/json');
-		if (!isset($_GET['snippet'])) {
+		if (empty($_GET['snippet'])) {
 			http_response_code(400);
 			echo json_encode(array(
 				'success' => false,
 				'reason' => 'Missing snippet id'
 			));
 			exit;
-		} else {
+		} else if (empty($_SESSION['user'])){
+			http_response_code(403);
+			echo json_encode(array(
+				'success' => false,
+				'reason' => 'No permissions'
+			));
+			exit;
+		}else {
+			$res = getSnippet($_GET['snippet']);
+			if ($res['author'] !== $_SESSION['user']) {
+				http_response_code(403);
+				echo json_encode(array(
+					'success' => false,
+					'reason' => 'No permissions'
+				));
+				exit;
+			}
 			try {
 				deleteSnippet($_GET['snippet']);
 				http_response_code(200);
