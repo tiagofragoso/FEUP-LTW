@@ -27,11 +27,18 @@ function getNavBarData() {
 }
 
 function createSearchEl() {
-	const input = document.createElement('input');
-	input.setAttribute('type', 'text');
-	input.setAttribute('placeholder', 'Type something');
-	
-	return input;
+	const div = document.createElement('div');
+	const form = document.createElement('form');
+	form.innerHTML = `<input type="text" name="query" placeholder="Looking for something?">
+	<input type="submit" value="Search">`;
+	form.setAttribute('method', 'GET');
+	form.setAttribute('action', '/pages/search.php');
+	form.querySelector('input').addEventListener('input', performSearch);
+	const ul = document.createElement('ul');
+	ul.className = 'search-results';
+	div.appendChild(form);
+	div.appendChild(ul)
+	return div;
 }
 
 function expandMenu() {
@@ -73,11 +80,13 @@ const LINKS = {
 
 const searchForm = document.querySelector('nav form');
 const searchInput = searchForm.querySelector('input');
-const searchResults = document.querySelector('nav .search-results');
 searchInput.addEventListener('focus', performSearch);
 searchInput.addEventListener('blur', hideSearch);
 searchInput.addEventListener('input', performSearch);
 async function performSearch(event) {
+	event.stopPropagation();
+	const searchInput = event.currentTarget.parentNode.querySelector('input');
+	const searchResults = event.currentTarget.parentNode.parentNode.querySelector('.search-results');
 	while (searchResults.firstChild) {
 		searchResults.removeChild(searchResults.firstChild);
 	}
@@ -131,6 +140,7 @@ async function performSearch(event) {
 
 function hideSearch() {
 	event.stopPropagation();
+	const searchResults = event.currentTarget.parentNode.parentNode.querySelector('.search-results');
 	searchResults.style.maxHeight = '0';
 	searchInput.style.borderBottomLeftRadius = '5px';
 	searchForm.querySelector('button').style.borderBottomRightRadius = '5px';
