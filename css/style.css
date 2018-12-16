@@ -1734,3 +1734,10 @@ label > .input-info {
 	flex-direction: row;
 }
 
+@media(max-width: 768px) {
+	.search-page  > header {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
