@@ -1,5 +1,4 @@
 import { request } from './request.js';
-import { getTimeElapsed } from './utils.js';
 
 const API_ENDPOINT = '/api/comment.php'
 const comments = document.querySelector('.comments-wrapper');

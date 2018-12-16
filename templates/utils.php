@@ -49,27 +49,4 @@
 			return $default;
 		}
 	}
-
-	function cmpString($a, $b) {
-		global $query;
-		$strA = $a['match'];
-		$strB = $b['match'];
-		return levenshtein($query, $strA) < levenshtein($query, $strB);
-	}
-
-	function search($query) {
-		global $query;
-		$snippets = searchSnippets($query);
-		uasort($snippets, cmpString);
-		$users = searchUsers($query);
-		uasort($users, cmpString);
-		$channels = searchChannels($query);
-		uasort($channels, cmpString);
-		return array(
-			'snippets' => $snippets,
-			'users' => $users,
-			'channels' => $channels,
-		);
-	}
-
 ?>

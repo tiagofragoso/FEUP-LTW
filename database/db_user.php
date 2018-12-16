@@ -350,9 +350,9 @@
 
 	function searchUsers($query) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT id, name AS match, username 
+		$stmt = $db->prepare('SELECT id, username AS match, name 
 		FROM User 
-		WHERE User.name LIKE ?');
+		WHERE User.username LIKE ?');
 		$stmt->execute(array("%{$query}%"));
 		return $stmt->fetchAll();
 	}

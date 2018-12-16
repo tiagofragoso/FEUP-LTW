@@ -33,7 +33,7 @@
 			<div class="search">
 				<i class="fas fa-search"></i>
 				<form action="/pages/search.php">
-					<input type="text" name="search" placeholder="Looking for something?" size="22">
+					<input type="text" name="query" placeholder="Looking for something?" size="22">
 					<button type="submit"><i class="fas fa-search"></i></button>
 				</form>
 				<ul class="search-results">

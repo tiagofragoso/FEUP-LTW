@@ -21,8 +21,8 @@
                         <a class="hoverable-card-content" href="/pages/profile.php?id=<?=$user['id']?>">
                             <div class="user-info-search flex-row-container flex-vert-center">
                                 <img src=<?=getPicture($user['id'])?> />
-                                <span class="name"> <?=$user['match']?> </span>
-                                <span class="username"> <?=$user['username']?></span>
+                                <span class="name"> <?=$user['name']?> </span>
+                                <span class="username"> <?=$user['match']?></span>
                             </div>
                         </a>
                     </div>
