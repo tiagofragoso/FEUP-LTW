@@ -124,6 +124,9 @@ async function performSearch(event) {
 			}
 		}
 		if (empty){
+			while (searchResults.firstChild) {
+				searchResults.removeChild(searchResults.firstChild);
+			}
 			const li = document.createElement('li');
 			li.className = 'faded';
 			li.textContent = `No results found`;
