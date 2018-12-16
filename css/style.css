@@ -144,6 +144,10 @@ nav #logo {
 	align-items: stretch;
 }
 
+.search > form > button {
+	cursor: pointer;
+}
+
 .search > form > * {
 	outline: none;
 	font-size: 12px;
