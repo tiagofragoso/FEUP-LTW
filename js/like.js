@@ -1,10 +1,10 @@
 import { request } from "./request.js";
 
 const API_ENDPOINT = '/api/like.php';
-const ratings = document.querySelectorAll('.rating-wrapper');
-ratings.forEach(snippet => {
+const snippets = document.querySelectorAll('.snippet-wrapper-feed, .snippet-wrapper');
+snippets.forEach(snippet => {
 	let context = {};
-	context.snippetId = document.querySelector('.snippet-wrapper, .snippet-wrapper-feed').dataset.id;
+	context.snippetId = snippet.dataset.id;
 	context.upvoteBtn = snippet.querySelector('i:first-of-type');
 	context.downvoteBtn = snippet.querySelector('i:last-of-type');
 	context.points = snippet.querySelector('.snippet-rating');
