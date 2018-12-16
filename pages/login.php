@@ -1,7 +1,7 @@
 <?php
 	include_once('../includes/session.php');
 
-	if (empty($_SESSION['user'])){
+	if (!empty($_SESSION['user'])){
 		die(header('Location: ../pages/feed.php'));
 	}
 
