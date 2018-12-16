@@ -24,7 +24,7 @@ document.querySelector('.delete-button').addEventListener('click', deleteUser);
 
 async function getSettings() {
     try {
-        const res = await request('/api/settings.php', 'GET', {});
+        const res = await request('../api/settings.php', 'GET', {});
         usernameEl.querySelector('input').value = res.username;
         nameEl.querySelector('input').value = res.name;
         emailEl.querySelector('input').value = res.email;
@@ -42,7 +42,7 @@ async function submitSettings(event) {
     const email = emailEl.querySelector('input').value;
     const settings = {name, username, email};
     try {
-        await request('/api/settings.php', 'POST', settings);
+        await request('../api/settings.php', 'POST', settings);
         alert("Updated profile!");
     } catch (e) {
        setInfoFormError(e);
@@ -63,7 +63,7 @@ async function changePassword(event) {
     const newPassword = newPasswordEl.querySelector('input').value;
     const passwords = {oldPassword, newPassword};
     try {
-        await request('/api/change-password.php', 'POST', passwords);
+        await request('../api/change-password.php', 'POST', passwords);
         oldPasswordEl.querySelector('input').value = '';
         newPasswordEl.querySelector('input').value = '';
         alert('Changed password!');
@@ -74,7 +74,7 @@ async function changePassword(event) {
 
 async function deleteUser() {
     try {
-        await request('/api/settings.php', 'DELETE', {});
+        await request('../api/settings.php', 'DELETE', {});
         window.location.href = '/actions/action_logout.php';
     } catch(e) {
         alert('An error occurred');
@@ -105,7 +105,7 @@ async function savePhoto() {
     const photo = photoEl.src.replace(/^data:image\/[a-z]+;base64,/, '');
     const photos = { photo };
     try {
-        await request('/api/change-photo.php', 'POST', photos);
+        await request('../api/change-photo.php', 'POST', photos);
     } catch (e) {
         setError('image', 'Could not save photo');
     }

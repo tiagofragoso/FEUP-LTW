@@ -26,8 +26,8 @@ async function deleteSnippet() {
 	const snippet = snippetId;
 	const snippets = {snippet};
 	try {
-		await request('/api/snippet.php', 'DELETE', snippets);
-		window.location.href = '/pages/feed.php'; 
+		await request('../api/snippet.php', 'DELETE', snippets);
+		window.location.href = '../pages/feed.php'; 
 	} catch(e) {
 		console.log(e);
 	}

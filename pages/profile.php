@@ -2,7 +2,7 @@
 include_once('../includes/session.php');
 global $id;
 if (empty($_GET['id']) && empty($_SESSION['user'])) {
-	die(header('Location: /pages/login.php'));
+	die(header('Location: ../pages/login.php'));
 } else if (empty($_GET['id'])) {	
 	$id = $_SESSION['user'];
 } else {
@@ -13,7 +13,7 @@ include_once('../database/db_user.php');
 
 $user = getUser($id);
 if (empty($user)) {
-	die(header('Location: /pages/404.php'));
+	die(header('Location: ../pages/404.php'));
 }
 
 

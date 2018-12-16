@@ -1,5 +1,5 @@
 <?php
-include_once('utils.php');
+include_once('./utils.php');
 function draw_profile($user, $snippets, $following, $followers, $languages, $settings, $comments){ 
 	$pic = getPicture($user['id']);
 	?>
@@ -67,7 +67,7 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 					<?php foreach ($snippets as $snippet) { ?>
 						<div class="snippet-preview flex-row-container flex-space-between flex-vert-center">
 							<div class="snippet-preview-content flex-row-container flex-space-between flex-vert-center">
-								<a class="card-title" href="/pages/snippet.php?id=<?=$snippet['id']?>"><?=$snippet['title']?></a>
+								<a class="card-title" href="../pages/snippet.php?id=<?=$snippet['id']?>"><?=$snippet['title']?></a>
 								<a href="../pages/channels.php?code=<?=$snippet['language']?>">
 									<div class="language-wrapper">
 										<?=$snippet['languageName']?>

@@ -1,6 +1,6 @@
 import { request } from "./request.js";
 
-const API_ENDPOINT = '/api/like.php';
+const API_ENDPOINT = '../api/like.php';
 const snippets = document.querySelectorAll('.snippet-wrapper-feed, .snippet-wrapper');
 snippets.forEach(snippet => {
 	let context = {};

@@ -18,7 +18,7 @@
                 </header>
                 <?php foreach ($users as $user) { ?>
                     <div class="hoverable-card">
-                        <a class="hoverable-card-content" href="/pages/profile.php?id=<?=$user['id']?>">
+                        <a class="hoverable-card-content" href="../pages/profile.php?id=<?=$user['id']?>">
                             <div class="user-info-search flex-row-container flex-vert-center">
                                 <img src=<?=getPicture($user['id'])?> />
                                 <span class="name"> <?=$user['name']?> </span>
@@ -35,7 +35,7 @@
                 </header>
                 <?php foreach ($channels as $channel) { ?>
                     <div class="hoverable-card">
-                        <a class="hoverable-card-content" href="/pages/channels.php?code=<?=$channel['code']?>">
+                        <a class="hoverable-card-content" href="../pages/channels.php?code=<?=$channel['code']?>">
                             <div class="channel-info">
                                 <span class="name"> <?=$channel['match']?> </span>
                             </div>
@@ -50,7 +50,7 @@
                 </header>
                 <?php foreach ($snippets as $snippet) { ?>
                     <div class="hoverable-card">
-                        <a class="hoverable-card-content" href="/pages/snippet.php?id=<?=$snippet['id']?>">
+                        <a class="hoverable-card-content" href="../pages/snippet.php?id=<?=$snippet['id']?>">
                             <div class="snippet-info">
                                 <span class="title"> <?=$snippet['match']?> </span>
                             </div>

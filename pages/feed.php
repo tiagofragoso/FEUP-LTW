@@ -4,10 +4,10 @@
 		$mode = empty($_SESSION['user'])? 'all' : 'feed';
 	} else {
 		if ($_GET['mode'] !== 'all' && $_GET['mode'] !== 'feed') {
-			die(header('Location: /pages/404.php'));
+			die(header('Location: ../pages/404.php'));
 		} else {
 			if ($_GET['mode'] === 'feed' && empty($_SESSION['user'])){
-				die (header('Location: /pages/login.php'));
+				die (header('Location: ../pages/login.php'));
 			}
 		}
 		$mode = $_GET['mode'];
@@ -17,7 +17,7 @@
 		$sort = 'latest';
 	} else {
 		if ($_GET['sort'] !== 'latest' && $_GET['sort'] !== 'oldest' && $_GET['sort'] !== 'best') {
-			die(header('Location: /pages/404.php'));
+			die(header('Location: ../pages/404.php'));
 		} 
 		$sort = $_GET['sort'];
 	}

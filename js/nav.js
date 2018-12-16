@@ -32,7 +32,7 @@ function createSearchEl() {
 	form.innerHTML = `<input type="text" name="query" placeholder="Looking for something?">
 	<input type="submit" value="Search">`;
 	form.setAttribute('method', 'GET');
-	form.setAttribute('action', '/pages/search.php');
+	form.setAttribute('action', '../pages/search.php');
 	form.querySelector('input').addEventListener('input', performSearch);
 	const ul = document.createElement('ul');
 	ul.className = 'search-results';
@@ -71,11 +71,11 @@ function contractSearch() {
 	search.addEventListener('click', expandSearch);
 }
 
-const API_ENDPOINT = '/api/search.php';
+const API_ENDPOINT = '../api/search.php';
 const LINKS = {
-	users: '/pages/profile.php?id=',
-	snippets: '/pages/snippet.php?id=',
-	channels: '/pages/channels.php?code='
+	users: '../pages/profile.php?id=',
+	snippets: '../pages/snippet.php?id=',
+	channels: '../pages/channels.php?code='
 };
 
 const searchForm = document.querySelector('nav form');

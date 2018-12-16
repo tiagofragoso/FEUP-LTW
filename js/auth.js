@@ -1,6 +1,6 @@
 import { request } from "./request.js";
 
-const API_ENDPOINT = '/api/auth.php';
+const API_ENDPOINT = '../api/auth.php';
 
 const toggle = document.querySelector('.toggle');
 const toggleBtn = toggle.querySelector('button');
@@ -63,14 +63,14 @@ async function submitAuth(event) {
 	if (state === 0) {
 		try {
 			await request(API_ENDPOINT, 'PUT', {username, password});
-			window.location.href = '/pages/feed.php';
+			window.location.href = '../pages/feed.php';
 		} catch (e) {
 			setFormError(e);
 		}
 	} else {
 		try {
 			await request(API_ENDPOINT, 'POST', {email, username, password});
-			window.location.href = '/pages/feed.php';
+			window.location.href = '../pages/feed.php';
 		} catch (e) {
 			setFormError(e);
 		}

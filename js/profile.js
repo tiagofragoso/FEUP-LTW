@@ -1,6 +1,6 @@
 import { request } from "./request.js";
 import { createModal } from "./overlays.js";
-const API_ENDPOINT = '/api/user-follows.php';
+const API_ENDPOINT = '../api/user-follows.php';
 const titles = document.querySelector('.profile-top').children;
 const following = titles[0].querySelector('h1');
 const followers = titles[1].querySelector('h1');
@@ -26,7 +26,7 @@ function createCard(title, elems) {
 	const ul = div.querySelector('ul');
 	elems.forEach(e => {
 		const li = document.createElement('li');
-		li.innerHTML = `<a href="/pages/profile.php?id=${e.id}">${e.username}</a>`;
+		li.innerHTML = `<a href="../pages/profile.php?id=${e.id}">${e.username}</a>`;
 		ul.appendChild(li);
 	})
 	return div;

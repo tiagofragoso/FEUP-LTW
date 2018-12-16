@@ -1,6 +1,6 @@
 import { request } from "./request.js";
 
-const API_ENDPOINT = '/api/follow-user.php';
+const API_ENDPOINT = '../api/follow-user.php';
 const button_wrapper = document.querySelector('.follow');
 if (button_wrapper != null) {
     let follow = {};
