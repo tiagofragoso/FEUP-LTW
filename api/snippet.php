@@ -78,11 +78,12 @@
 			));
 			exit;
 		} else {
-			if (postSnippet($data['title'], $data['description'], $data['code'], $data['language'], 
+			if ($res = postSnippet($data['title'], $data['description'], $data['code'], $data['language'], 
 				(new DateTime())->format('Y-m-d H:i'), $_SESSION['user'])){
 					http_response_code(201);
 					echo json_encode(array(
-						'success' => true
+						'success' => true,
+						'data' => $res
 					));
 					exit;
 			} else {

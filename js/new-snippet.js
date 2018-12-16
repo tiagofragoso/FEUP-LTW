@@ -22,7 +22,7 @@ document.querySelector('.new-snippet-wrapper #file-upload').addEventListener('ch
 function reloadPrism() {
 	const prism = document.createElement('script');
 	prism.id = 'prism';
-	prism.src = '/js/prism.js';
+	prism.src = '../js/prism.js';
 	document.querySelector('#prism').remove();
 	document.querySelector('head').appendChild(prism);
 }
@@ -112,8 +112,8 @@ async function submitSnippet(event) {
 	const newSnippet = {title, description, language, code};
 
 	try {
-		await request('../api/snippet.php', 'POST', newSnippet);
-		window.location.assign('../pages/feed.php');
+		const res = await request('../api/snippet.php', 'POST', newSnippet);
+		window.location.assign(`../pages/snippet.php?id=${res}`);
 	} catch (err) {
 		setFormError(err);
 	}

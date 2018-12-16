@@ -145,7 +145,10 @@
 		$db = Database::instance()->getConnection();
 		$stmt = $db->prepare('INSERT INTO Snippet(title, description, code, 
 		language, date, author) VALUES (?, ?, ?, ?, ?, ?)');
-		return $stmt->execute(array($title, $description, $snippet, $language, $currDate, $author));
+		if ($stmt->execute(array($title, $description, $snippet, $language, $currDate, $author)))
+			return $db->lastInsertId();
+		else 
+			return false;
 	}
 
 	function postComment($user, $snippet, $text, $date, $parent) {
