@@ -22,7 +22,7 @@
         
         $data = json_decode(file_get_contents('php://input'), true);
         $id = $_SESSION['user'];
-        $filename = $_SERVER['DOCUMENT_ROOT']."/assets/$id.jpg";
+        $filename = $_SERVER['DOCUMENT_ROOT']."/assets/users/$id.jpg";
 
         $encodedData = str_replace(' ','+', $data['photo']);
         $decodedData = base64_decode($encodedData);

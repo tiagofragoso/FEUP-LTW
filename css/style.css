@@ -430,7 +430,7 @@ nav #logo {
     -moz-user-select: none;
 	margin-right: 1em;
 	padding: 0 1em;
-	background: url(../assets/down-arrow.svg) no-repeat 5px;
+	background: url(../assets/public/down-arrow.svg) no-repeat 5px;
 	background-position: right center;
 	border: none;
 	font-size: inherit;
@@ -880,7 +880,9 @@ nav #logo {
     -moz-padding-end: 20px;
     -webkit-padding-start: 2px;
 	-moz-padding-start: 2px;
-	background-color: #EBEBEB;
+	background: #EBEBEB url(../assets/public/down-arrow.svg) no-repeat;
+	background-size: 1.2em;
+	background-position: 97% 50%;
 	border-radius: 5px;
 	border: none;
 	font-family: 'Montserrat';
@@ -1315,7 +1317,7 @@ h1 {
 		border-bottom: 1px solid var(--transparentgrey);
 	}
 
-	.user-info > *:nth-child(3) {
+	.user-info > *:nth-child(4) {
 		flex-basis: 100%;
 	}
 

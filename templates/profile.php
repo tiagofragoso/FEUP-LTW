@@ -118,6 +118,7 @@ function draw_settings_profile() {
 	<div class="full-card center flex-row-container profile-wrapper">
 		<div class="user-info flex-col-container">
 			<img id="profile-pic" src="<?=$pic?>" />
+			<span class="input-info"></span>
 			<div class="user-details flex-col-container">
 				<h1><?=$user['name']?></h1>
 				<h2><?=$user['username']?><span><?=$user['points']?></span></h2>
@@ -127,37 +128,34 @@ function draw_settings_profile() {
 		</div>
 		<div class="user-settings flex-col-container">
 			<h1>Settings</h1>
-			<form action="#" method="post">
+			<form>
 				<div class="row">
-					<label for="name">Name</label>
+					<label for="name"><span>Name</span><span class="input-info"></span></label>
 					<input type="text" name="name" id="name" />
 				</div>
 				<div class="row">
-					<label for="username">Username</label>
+					<label for="username"><span>Username</span><span class="input-info"></span></label>
 					<input type="text" name="username" id="username" required="required"/>
 				</div>
 				<div class="row">
-					<label for="email">Email</label>
+					<label for="email"><span>Email</span><span class="input-info"></span></label>
 					<input type="email" name="email" id="email" required="required" />
 				</div>
 				<input type="submit" name="submit" value="Update profile" />
 			</form>
-			<form action="#" method="post">
+			<form>
 				<div class="row">
-					<label for="old_password">Old password</label>
+					<label for="old_password"><span>Old password</span><span class="input-info"></span></label>
 					<input type="password" name="old_password" id="old_password" required="required" />
 				</div>
 				<div class="row">
-					<label for="new_password">New password</label>
+					<label for="new_password"><span>New password</span><span class="input-info"></span></label>
 					<input type="password" name="new_password" id="new_password" required="required" />
 				</div>
 				<input type="submit" name="submit-password" value="Update password" />
 			</form>
 			<div class="delete-profile">
-				<div class="row">
-					<span> Delete profile </span>
-				</div>
-				<span class="delete-button"> Delete profile </span>
+				<span class="delete-button">Delete account</span>
 			</div>
 		</div>
 	</div>

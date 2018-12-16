@@ -1,14 +1,17 @@
 import { request } from "./request.js";
 
+const RFC5322EmailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const MAX_FILE_SIZE_BYTES = 2* (10 ** 6);
+
 const settings = document.querySelector('.user-settings');
-let formSettings = {};
-formSettings.usernameInput = settings.querySelector('#username');
-formSettings.nameInput = settings.querySelector('#name');
-formSettings.emailInput = settings.querySelector('#email');
-formSettings.oldPassword = settings.querySelector('#old_password');
-formSettings.newPassword = settings.querySelector('#new_password');
-formSettings.photo = document.querySelector('.user-info img');
-getSettings.call(formSettings);
+const inputs = settings.querySelectorAll('.row');
+const nameEl = inputs[0];
+const usernameEl = inputs[1];
+const emailEl = inputs[2];
+const oldPasswordEl = inputs[3];
+const newPasswordEl = inputs[4];
+const photoEl = document.querySelector('.user-info img');
+getSettings();
 
 let userInfo = {};
 userInfo.username = document.querySelector('.user-details h2');
@@ -22,28 +25,28 @@ document.querySelector('.delete-button').addEventListener('click', deleteUser);
 async function getSettings() {
     try {
         const res = await request('/api/settings.php', 'GET', {});
-        this.usernameInput.value = res.username;
-        this.nameInput.value = res.name;
-        this.emailInput.value = res.email;
+        usernameEl.querySelector('input').value = res.username;
+        nameEl.querySelector('input').value = res.name;
+        emailEl.querySelector('input').value = res.email;
     } catch (e) {
         console.log(e);
     }
 }
 
 async function submitSettings(event) {
-    event.preventDefault(event);
-    const name = formSettings.nameInput.value;
-    const username = formSettings.usernameInput.value;
-    const email = formSettings.emailInput.value;
+    event.preventDefault();
+    if (!validateInfoForm())
+		return;
+    const name = nameEl.querySelector('input').value;
+    const username = usernameEl.querySelector('input').value;
+    const email = emailEl.querySelector('input').value;
     const settings = {name, username, email};
-    console.log(settings);
     try {
         await request('/api/settings.php', 'POST', settings);
         alert("Updated profile!");
     } catch (e) {
         alert(e);
     }
-    
     updateVisual();
 }
 
@@ -53,14 +56,16 @@ function updateVisual() {
 }
 
 async function changePassword(event) {
-    event.preventDefault(event);
-    const oldPassword = formSettings.oldPassword.value;
-    const newPassword = formSettings.newPassword.value;
+    event.preventDefault();
+    if (!validatePassForm())
+        return;
+    const oldPassword = oldPasswordEl.querySelector('input').value;
+    const newPassword = newPasswordEl.querySelector('input').value;
     const passwords = {oldPassword, newPassword};
     try {
         await request('/api/change-password.php', 'POST', passwords);
-        formSettings.oldPassword.value = '';
-        formSettings.newPassword.value = '';
+        oldPasswordEl.querySelector('input').value = '';
+        newPasswordEl.querySelector('input').value = '';
         alert('Changed password!');
     } catch(e) {
         alert(e);
@@ -77,7 +82,10 @@ async function deleteUser() {
 }
 
 function changePhoto() {
+    removeErrors();
     const file = event.currentTarget.files[0];
+    if (!validateImage(file))
+		return;
     let img = new Image();
     img.onload = function() {
         let size = 0;
@@ -86,14 +94,14 @@ function changePhoto() {
         } else {
             size = img.width;
         }
-        formSettings.photo.src = getImagePortion(img, size, size, 0, 0, 1);
+        photoEl.src = getImagePortion(img, size, size, 0, 0, 1);
         savePhoto();
     }
     img.src = URL.createObjectURL(file);
 }
 
 async function savePhoto() {
-    const photo = formSettings.photo.src.replace(/^data:image\/[a-z]+;base64,/, '');
+    const photo = photoEl.src.replace(/^data:image\/[a-z]+;base64,/, '');
     const photos = { photo };
     try {
         await request('/api/change-photo.php', 'POST', photos);
@@ -119,4 +127,99 @@ function getImagePortion(imgObj, newWidth, newHeight, startX, startY, ratio) {
     /* now we use the drawImage method to take the pixels from our bufferCanvas and draw them into our thumbnail canvas */
     tnCanvasContext.drawImage(bufferCanvas, startX,startY,newWidth * ratio, newHeight * ratio,0,0,newWidth,newHeight);
     return tnCanvas.toDataURL();
+}
+
+function validateInfoForm() {
+    removeErrors();
+    let valid = true;
+    const name = nameEl.querySelector('input').value;	
+    const user = usernameEl.querySelector('input').value;	
+	const email = emailEl.querySelector('input').value;	
+	
+    if (!name.match(/^[\-a-zA-Z\s]{5,30}$/)) {
+        setError('name', 'Name must be between 5-30 characters.');
+        valid = false;
+    }
+
+	if (!user.match(/^[-\w]{5,25}$/)) {
+		setError('username', 'Username must be between 5-25 characters.');
+		valid = false;
+    }
+     
+    if (!email.match(RFC5322EmailRegex)) {
+        setError('email', 'Invalid email address');
+        valid = false;
+    }
+	
+	return valid;
+}
+
+function validatePassForm() {
+    removeErrors();
+    let valid = true;
+    const oldPassword = oldPasswordEl.querySelector('input').value;	
+    const newPassword = newPasswordEl.querySelector('input').value;	
+	
+    if (!oldPassword.match(/^.{5,25}$/)) {
+		setError('oldPassword', 'Password must be between 5-30 characters.');
+		valid = false;
+    }
+    
+    if (!newPassword.match(/^.{5,25}$/)) {
+		setError('newPassword', 'Password must be between 5-30 characters.');
+		valid = false;
+	}
+	
+	return valid;
+}
+
+function setFormError(message) {
+	submitEl.querySelector('p').textContent = message;
+}
+
+function setError(field, message) {
+	let element;
+	switch(field) {
+        case 'name':
+            element = nameEl;
+            break;
+		case 'username':
+			element = usernameEl;
+			break;
+        case 'email':
+            element = emailEl;
+            break;
+        case 'oldPassword':
+            element = oldPasswordEl;
+            break;
+		case 'newPassword':
+			element = newPasswordEl;
+            break;
+        case 'image':
+            element = photoEl;
+            break;
+	}
+	(element.querySelector('input') || element).classList.add('invalid');
+	(element.querySelector('.input-info') || element.parentElement.querySelector('.input-info')).textContent = message; 
+}
+
+function validateImage(file) {
+	if (file.size > MAX_FILE_SIZE_BYTES) {
+		setError('image', 'File size must be under 2MB');
+		return false;
+	} 
+	if (!file.type.match(/^image\/.*$/)) {
+		setError('image', 'Invalid file type');
+		return false;
+	}
+	return true;
+}
+
+function removeErrors() {
+    inputs.forEach(element => {
+        element.querySelector('input').classList.remove('invalid');
+        element.querySelector('.input-info').textContent = ""; 
+    });
+    photoEl.classList.remove('invalid');
+    photoEl.parentElement.querySelector('.input-info').textContent = ""; 
 }

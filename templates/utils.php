@@ -41,8 +41,8 @@
 	}
 
 	function getPicture($user) {
-		$photo = "../assets/$user.jpg";
-		$default = "../assets/profile-placeholder.png";
+		$photo = "../assets/users/$user.jpg";
+		$default = "../assets/public/profile-placeholder.png";
 		if (file_exists($photo)) {
 			return $photo;
 		} else {
