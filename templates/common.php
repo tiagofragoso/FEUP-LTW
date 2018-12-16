@@ -124,7 +124,6 @@
 				</footer>
 			</div>
 		<?php }
-		echo '<button id="loadSnippets">Load more snippets</button>';
 		?>
 	</div>
 <?php

@@ -45,7 +45,7 @@ async function submitSettings(event) {
         await request('/api/settings.php', 'POST', settings);
         alert("Updated profile!");
     } catch (e) {
-        alert(e);
+       setInfoFormError(e);
     }
     updateVisual();
 }
@@ -68,7 +68,7 @@ async function changePassword(event) {
         newPasswordEl.querySelector('input').value = '';
         alert('Changed password!');
     } catch(e) {
-        alert(e);
+        setPassFormError(e);
     }
 }
 
@@ -77,7 +77,8 @@ async function deleteUser() {
         await request('/api/settings.php', 'DELETE', {});
         window.location.href = '/actions/action_logout.php';
     } catch(e) {
-        console.log(e);
+        alert('An error occurred');
+        window.location.href = '/actions/action_logout.php';
     }
 }
 
@@ -106,7 +107,7 @@ async function savePhoto() {
     try {
         await request('/api/change-photo.php', 'POST', photos);
     } catch (e) {
-        console.log(e);
+        setError('image', 'Could not save photo');
     }
 }
 
@@ -173,8 +174,12 @@ function validatePassForm() {
 	return valid;
 }
 
-function setFormError(message) {
-	submitEl.querySelector('p').textContent = message;
+function setInfoFormError(message) {
+	document.querySelectorAll('p.input-info')[0].textContent = message;
+}
+
+function setPassFormError(message) {
+	document.querySelectorAll('p.input-info')[1].textContent = message;
 }
 
 function setError(field, message) {
@@ -222,4 +227,5 @@ function removeErrors() {
     });
     photoEl.classList.remove('invalid');
     photoEl.parentElement.querySelector('.input-info').textContent = ""; 
+    document.querySelectorAll('p.input-info').forEach(e => e.textContent = "");
 }

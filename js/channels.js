@@ -53,13 +53,13 @@ function createCard(channel) {
 		</div>`;
 
 	const button = document.createElement('button');
-	button.textContent = `${channel.follows? 'Unf': 'F'}ollow`;
+	button.innerHTML = `<span>${channel.follows? 'x': '+'}</span><span>${channel.follows? 'Unf': 'F'}ollow</span></span>`;
 
 	button.addEventListener('click', async () => {
 		try {
 			await request(API_ENDPOINT, channel.follows? 'DELETE' : 'POST', {channel: channel.code});
 			channel.follows = !channel.follows;
-			button.textContent = `${channel.follows? 'Unf': 'F'}ollow`;
+			button.innerHTML = `<span>${channel.follows? 'x': '+'}</span><span>${channel.follows? 'Unf': 'F'}ollow</span></span>`;
 			moveCard(card, !channel.follows);
 		} catch (e) {
 			console.log(e);

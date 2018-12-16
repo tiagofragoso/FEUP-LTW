@@ -1,46 +1,30 @@
-<?php
-    function draw_snippet() { ?>
-        <div class="full-card center">
-            <h1 class="error-title">404: There's nothing to see here</h1>
-		<div class="snippet-wrapper flex-col-container">
-			<header class="snippet-header flex-row-container flex-space-between flex-vert-center">
+<?php 
+function draw_snippet(){?>
+	<div class="main-content center">
+		<h1 class="error-title">404: There's nothing to see here</h1>
+		<div class="snippet-wrapper">
+			<header id="page404" class="snippet-header flex-row-container flex-space-between flex-vert-center">
 				<div class="rating-wrapper">
 				</div>
 				<h1 class="card-title">Setting up a 404 ErrorDocument</h1>
-				<a href="../pages/channels.php?code=none">
-					<div class="language-wrapper">
-						Plain Text
-					</div>
-				</a>
+				<div class="language-wrapper">
+				</div>
 			</header>
-			<div class="card-content flex-row-container">
-				<div class="snippet-left-wrapper">
-					<pre class="line-numbers"><code class="language-none">
+			<div>
+			<pre class="line-numbers"><code class="language-none">
 1. Navigate to the document root of your website
                         
 2. Open/Create the .htacess file
                         
-3. Add the following line ErrorDocument 404 /your/404/page/path</code></pre>
-					<div class="comments-wrapper">
-					</div>
-				</div>
-				<div class="info-wrapper flex-col-container">
-					<h2 class="expand-title"><span>+</span> Author</h2>
-					<div class="author-wrapper">
-						<div class="author-row">
-								<span class="author-name">SNIPZ</span>
-								<img class="round-img" src="../assets/profile-placeholder.png" alt="profile picture" />
-						</div>
-					</div>
-					<h2 class="expand-title"><span>+</span> Description</h2>
-					<div class="description-wrapper">
-						<h1>Description</h1>
-						<p class="description"> How to set up a 404 ErrorDocument</p>
-                    </div>
-				</div>
+3. Add the following line ErrorDocument 404 /your/404/page/path
+
+</code></pre>
 			</div>
+			<footer class="snippet-footer flex-row-container flex-space-between flex-vert-center">
+				<div class="snippet-author-date flex-row-container flex-vert-center">
+					<a class="author-name">SNIPZ</a>
+				</div>
+			</footer>
 		</div>
 	</div>
-
-    <?php }
-?>
+<?php }?>
