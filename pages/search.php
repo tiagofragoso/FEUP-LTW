@@ -2,7 +2,7 @@
     include_once('../database/db_user.php');
 
     $query = $_GET['query'];
-    if (!isset($query)) {
+    if (empty($query)) {
         die(header('Location: /pages/feed.php'));
     }
 
