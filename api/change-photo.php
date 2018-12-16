@@ -12,7 +12,7 @@
     function change_photo() {
         header('Content-Type: application/json');
         if (empty($_SESSION['user'])) {
-            http_response_code(400);
+            http_response_code(403);
             echo json_encode(array(
                 'success' => false,
                 'reason' => 'Requires login'

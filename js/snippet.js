@@ -31,6 +31,6 @@ async function deleteSnippet() {
 		await request('../api/snippet.php', 'DELETE', snippets);
 		window.location.href = '../pages/feed.php'; 
 	} catch(e) {
-		console.log(e);
+		alert(e);
 	}
 }

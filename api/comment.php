@@ -16,7 +16,7 @@
 
 	function get_comments() {
 		header('Content-Type: application/json');
-		if (isset($_GET['snippet'])){
+		if (!empty($_GET['snippet'])){
 			$res = getSnippetComments($_GET['snippet']);
 			foreach ($res as &$r) {
 				$r['date'] = getTimeElapsed($r['date']);
@@ -39,8 +39,8 @@
 
 	function post_comment() {
 		header('Content-Type: application/json');
-		if (!isset($_SESSION['user'])) {
-			http_response_code(400);
+		if (empty($_SESSION['user'])) {
+			http_response_code(403);
 			echo json_encode(array (
 				'success' => false,
 				'reason' => 'Requires login' 
@@ -48,14 +48,14 @@
 			exit;
 		}
 		$data = json_decode(file_get_contents('php://input'), true);
-		if (!isset($data['snippet'])) {
+		if (empty($data['snippet'])) {
 			http_response_code(400);
 			echo json_encode(array(
 				'success' => false,
 				'reason' => 'Missing snippet id'
 			));
 			exit;
-		} else if (!isset($data['text'])) {
+		} else if (empty($data['text'])) {
 			http_response_code(400);
 			echo json_encode(array(
 				'success' => false,

@@ -109,7 +109,7 @@
 			http_response_code(403);
 			echo json_encode(array(
 				'success' => false,
-				'reason' => 'No permissions'
+				'reason' => 'Requires login'
 			));
 			exit;
 		}else {
