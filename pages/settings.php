@@ -2,7 +2,7 @@
     include_once('../includes/session.php');
     
     if (!isset($_SESSION['user'])) {
-        die(header('Location: /pages/login.php'));
+        die(header('Location: ../pages/login.php'));
     }
     
     include_once('../templates/profile.php');

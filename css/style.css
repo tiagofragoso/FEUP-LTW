@@ -19,7 +19,6 @@ body {
 * {
 	box-sizing: border-box;
 	outline: none;
-	text-overflow: ellipsis;
 }
 
 a {
@@ -1239,9 +1238,28 @@ h1 {
 	font-family: 'Montserrat', sans-serif;
 }
 
+.hover-content button span:first-of-type {
+	display: none;
+}
+
 .hoverable-card:hover .hover-content {
 	width: 15%;
 	font-size: 16px;
+}
+
+@media(max-width:768px) {
+	.hover-content {
+		width: 15%;
+		font-size: 16px;
+	}
+
+	.hover-content button span:first-of-type {
+		display: block;
+	}
+
+	.hover-content button span:last-of-type {
+		display: none;
+	}
 }
 
 .hover-content-points {
@@ -1314,7 +1332,7 @@ h1 {
 	color: var(--darkgrey);
 }
 
-.user-settings input {
+.user-settings input:not([type="submit"]) {
 	font-size: 16px;
 	border-radius: 5px;
 	border: none;
@@ -1331,6 +1349,9 @@ h1 {
 	font-size: 16px;
 	font-weight: bold;
 	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	outline: none;
 }
 
 .delete-button {
@@ -1590,7 +1611,7 @@ footer .input-info {
 	
 	.screen-wrapper #logo {
 		margin-top: 1em;
-		width: 50%;
+		width: 20em;
 	}
 
 	.screen-wrapper footer {
@@ -1603,6 +1624,10 @@ footer .input-info {
 	.auth-form-wrapper header {
 		order: 1;
 		margin-bottom: 1em;
+	}
+
+	.auth-form-wrapper header > span {
+		color: white !important;
 	}
 
 	.auth-form-wrapper form {
@@ -1680,6 +1705,10 @@ label > .input-info {
 	margin-bottom: 0.5em;
 }
 
+.flex-row-container > p.input-info {
+	margin-left: 1em;
+}
+
 .user-comment {
 	border-radius: 5px;
 	margin-top: 1em;
@@ -1719,6 +1748,7 @@ label > .input-info {
 
 .error-title {
 	margin-bottom: 1em;
+	text-align: center;
 }
 
 .search-page {
@@ -1812,6 +1842,9 @@ label > .input-info {
 	border-radius: 5px;
 }
 
+#page404 {
+	border-radius: 5px 5px 0px 0px;
+}
 .center-card .user-name {
 	font-weight: bold;
 	color: var(--blue);

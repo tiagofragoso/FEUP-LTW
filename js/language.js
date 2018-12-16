@@ -1,6 +1,6 @@
 import { request } from "./request.js";
 
-const API_ENDPOINT = '/api/channel.php';
+const API_ENDPOINT = '../api/channel.php';
 const button_wrapper = document.querySelector('.follow-button-wrapper');
 if (button_wrapper != null) {
     let follow = {};

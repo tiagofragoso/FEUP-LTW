@@ -1,6 +1,6 @@
 <?php
 
-include_once('utils.php');
+include_once('./utils.php');
 
 function draw_full_snippet($snippet, $comments) { 
 	$lang = 'language-' . $snippet['language'];
@@ -68,7 +68,7 @@ function draw_full_snippet($snippet, $comments) {
 ?>
 	<div class="full-card center new-snippet-wrapper">
 		<h1>Add new snippet</h1>
-		<form action="#" enctype="multipart/form-data" method="post">
+		<form method="post">
 			<div class="row">
 				<label class="required" for="title"><span>Title</span><span class="input-info"></span></label>
 				<input type="text" name="title" id="title" placeholder="Give your awesome snippet a catchy title" maxlength="70">

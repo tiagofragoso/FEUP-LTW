@@ -112,8 +112,8 @@ async function submitSnippet(event) {
 	const newSnippet = {title, description, language, code};
 
 	try {
-		await request('/api/snippet.php', 'POST', newSnippet);
-		window.location.assign('/pages/feed.php');
+		await request('../api/snippet.php', 'POST', newSnippet);
+		window.location.assign('../pages/feed.php');
 	} catch (err) {
 		setFormError(err);
 	}

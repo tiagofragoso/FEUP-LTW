@@ -3,7 +3,7 @@
 
     $query = $_GET['query'];
     if (empty($query)) {
-        die(header('Location: /pages/feed.php'));
+        die(header('Location: ../pages/feed.php'));
     }
 
     $res = search($query);

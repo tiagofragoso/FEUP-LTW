@@ -1,5 +1,5 @@
 <?php
-include_once('utils.php');
+include_once('./utils.php');
 function draw_profile($user, $snippets, $following, $followers, $languages, $settings, $comments){ 
 	$pic = getPicture($user['id']);
 	?>
@@ -67,7 +67,7 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 					<?php foreach ($snippets as $snippet) { ?>
 						<div class="snippet-preview flex-row-container flex-space-between flex-vert-center">
 							<div class="snippet-preview-content flex-row-container flex-space-between flex-vert-center">
-								<a class="card-title" href="/pages/snippet.php?id=<?=$snippet['id']?>"><?=$snippet['title']?></a>
+								<a class="card-title" href="../pages/snippet.php?id=<?=$snippet['id']?>"><?=$snippet['title']?></a>
 								<a href="../pages/channels.php?code=<?=$snippet['language']?>">
 									<div class="language-wrapper">
 										<?=$snippet['languageName']?>
@@ -141,7 +141,10 @@ function draw_settings_profile() {
 					<label for="email"><span>Email</span><span class="input-info"></span></label>
 					<input type="email" name="email" id="email" required="required" />
 				</div>
-				<input type="submit" name="submit" value="Update profile" />
+				<div class="flex-row-container flex-vert-center">
+					<input type="submit" name="submit" value="Update profile" />
+					<p class="input-info"></p>
+				</div>
 			</form>
 			<form>
 				<div class="row">
@@ -152,7 +155,10 @@ function draw_settings_profile() {
 					<label for="new_password"><span>New password</span><span class="input-info"></span></label>
 					<input type="password" name="new_password" id="new_password" required="required" />
 				</div>
-				<input type="submit" name="submit-password" value="Update password" />
+				<div class="flex-row-container flex-vert-center"> 
+					<input type="submit" name="submit-password" value="Update password" />
+					<p class="input-info"></p>
+				</div>
 			</form>
 			<div class="delete-profile">
 				<span class="delete-button">Delete account</span>

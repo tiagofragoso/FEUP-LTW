@@ -6,7 +6,7 @@
 			<div class="card">
 				<?php echo empty($_SESSION['user'])? 
 				'<span class="channels-info">
-				<a href="/pages/login.php">Login</a> to follow language channels
+				<a href="../pages/login.php">Login</a> to follow language channels
 				</span>' : null
 				?>
 			</div>
@@ -47,12 +47,12 @@
                             <span class="snippet-rating"><?=$snippet['points']?></span>
                             <i class="fas fa-caret-down"></i>
                         </div>
-                        <a href="/pages/snippet.php?id=<?=$snippet['id']?>"><h1 class="card-title"><?=$snippet['title']?></h1></a>
+                        <a href="../snippet.php?id=<?=$snippet['id']?>"><h1 class="card-title"><?=$snippet['title']?></h1></a>
                         <div class="language-wrapper">
                             <?=$snippet['languageName']?>
                         </div>
                     </header>
-                    <a href="/pages/snippet.php?id=<?=$snippet['id']?>" target="_blank">
+                    <a href="../pages/snippet.php?id=<?=$snippet['id']?>" target="_blank">
                         <pre class="line-numbers"><code class="<?=$lang?>"><?=htmlspecialchars($snippet['code'])?></code></pre>
                     </a>
                     <footer class="snippet-footer flex-row-container flex-space-between flex-vert-center">

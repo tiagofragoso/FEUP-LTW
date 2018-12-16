@@ -1,6 +1,6 @@
 import { request } from './request.js';
 
-const API_ENDPOINT = '/api/comment.php'
+const API_ENDPOINT = '../api/comment.php'
 const comments = document.querySelector('.comments-wrapper');
 const newCommentRef = comments.querySelector('#new-comment');
 newCommentRef.querySelector('form').addEventListener('submit', postComment);
@@ -36,7 +36,7 @@ function createComment(comment) {
 	commentWrapper.innerHTML = 
 	`<div class="comment-content-wrapper flex-row-container flex-space-between">
 		<div class="comment-user-wrapper ">
-			<a href="/pages/profile.php?id=${comment.user}" class="comment-user">
+			<a href="../pages/profile.php?id=${comment.user}" class="comment-user">
 				${comment.name? comment.name : comment.username}
 			</a>
 			<span class="comment-text"></span>
@@ -107,7 +107,7 @@ function updateVisual() {
 
 async function checkLike() {
 	try {
-		const res = await request('/api/like-comment.php', 'GET', {comment: this.commentId});
+		const res = await request('../api/like-comment.php', 'GET', {comment: this.commentId});
 		if (res.hasLike === 1){
 			this.like = 1;
 		} else if (res.hasLike === -1) {
@@ -123,7 +123,7 @@ async function likeHandler(event) {
 	if (event.currentTarget === this.upvoteBtn){
 		if (this.like === 1){
 			try {
-				await request('/api/like-comment.php', 'DELETE', {comment: this.commentId});
+				await request('../api/like-comment.php', 'DELETE', {comment: this.commentId});
 				this.like = 0;
 				this.points.textContent = parseInt(this.points.textContent) - 1;
 				updateVisual.call(this);
@@ -133,7 +133,7 @@ async function likeHandler(event) {
 		}
 		else if (this.like === 0 || this.like === -1){
 			try {
-				await request('/api/like-comment.php', 'POST', {comment: this.commentId, isLike: 1});
+				await request('../api/like-comment.php', 'POST', {comment: this.commentId, isLike: 1});
 				this.points.textContent = parseInt(this.points.textContent) + 1 - this.like;
 				this.like = 1;
 				updateVisual.call(this);
@@ -144,7 +144,7 @@ async function likeHandler(event) {
 	} else if (event.currentTarget === this.downvoteBtn){
 		if (this.like === -1) {
 			try {
-				await request('/api/like-comment.php', 'DELETE', {comment: this.commentId});
+				await request('../api/like-comment.php', 'DELETE', {comment: this.commentId});
 				this.like = 0;
 				this.points.textContent = parseInt(this.points.textContent) + 1;
 				updateVisual.call(this);
@@ -153,7 +153,7 @@ async function likeHandler(event) {
 			}
 		} else if (this.like === 0 || this.like === 1) {
 			try {
-				await request('/api/like-comment.php', 'POST', {comment: this.commentId, isLike: 0});
+				await request('../api/like-comment.php', 'POST', {comment: this.commentId, isLike: 0});
 				this.points.textContent = parseInt(this.points.textContent) - 1 - this.like;
 				this.like = -1;
 				updateVisual.call(this);
