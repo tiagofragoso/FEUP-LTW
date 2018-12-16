@@ -11,7 +11,7 @@
 
     include_once('../templates/common.php');
     include_once('../templates/search.php');
-    draw_header('SNIPZ - SEARCH');
+    draw_header('SNIPZ - SEARCH', array('search'));
     draw_nav();
     draw_search($res['users'], $res['channels'], $res['snippets'], $search);
     draw_footer();

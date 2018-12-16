@@ -5,10 +5,10 @@
             <header class="flex-row-container flex-space-between flex-vert-center">
                  <h1> Search results for "<?=htmlspecialchars($search)?>": </h1>
                 <div class="tabs">
-                    <button> All </button>
-                    <button> Users </button>
-                    <button> Channels </button>
-                    <button> Snippets </button>
+                    <button class="active" id="all"> All </button>
+                    <button id="users"> Users </button>
+                    <button id="channels"> Channels </button>
+                    <button id="snippets"> Snippets </button>
                 </div>
             </header>
             <div class="users-search">
