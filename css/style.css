@@ -1605,7 +1605,7 @@ footer .input-info {
 	
 	.screen-wrapper #logo {
 		margin-top: 1em;
-		width: 50%;
+		width: 20em;
 	}
 
 	.screen-wrapper footer {
@@ -1618,6 +1618,10 @@ footer .input-info {
 	.auth-form-wrapper header {
 		order: 1;
 		margin-bottom: 1em;
+	}
+
+	.auth-form-wrapper header > span {
+		color: white !important;
 	}
 
 	.auth-form-wrapper form {
