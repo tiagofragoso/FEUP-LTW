@@ -1667,3 +1667,41 @@ label > .input-info {
 .error-title {
 	margin-bottom: 1em;
 }
+
+.search-page {
+	color: var(--darkgrey);
+}
+
+.users-search img {
+	width: 40px;
+	border-radius: 5px;
+	margin-right: 1.5em;
+}
+
+.search-page h2 {
+	border-left: 2px solid var(--darkgrey);
+	margin-left: 0.5em;
+	padding-left: 0.5em;
+	color: var(--darkgrey);
+}
+
+.search-page .name {
+	color: var(--blue);
+	font-weight: bold;
+	margin-right: 1em;
+}
+
+.users-search .username {
+	color: var(--grey);
+	font-weight: lighter;
+}
+
+.snippets-search .title {
+	font-weight: bold;
+	color: var(--darkgrey);
+}
+
+.snippets-search .points {
+	color: white;
+}
+

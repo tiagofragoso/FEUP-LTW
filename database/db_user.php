@@ -326,9 +326,9 @@
 	}
 	function searchSnippets($query) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT id, title AS match 
-		FROM Snippet 
-		WHERE Snippet.title LIKE ?');
+		$stmt = $db->prepare('SELECT id, points, title AS match, Language.name AS languageName
+		FROM Snippet, Language
+		WHERE Snippet.title LIKE ? AND Snippet.language = Language.code');
 		$stmt->execute(array("%{$query}%"));
 		return $stmt->fetchAll();
 	}

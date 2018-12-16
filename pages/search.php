@@ -1,19 +1,18 @@
 <?php
     include_once('../database/db_user.php');
+    include_once('../templates/utils.php');
 
     $search = $_GET['search'];
     if (!isset($search)) {
         die(header('Location: /pages/feed.php'));
     }
 
-    $users = searchSnippets($search);
-    $channels = searchChannels($search);
-    $snippets = searchSnippets($search);
+    $res = search($search);
 
     include_once('../templates/common.php');
     include_once('../templates/search.php');
     draw_header('SNIPZ - SEARCH');
     draw_nav();
-    draw_search();
+    draw_search($res['users'], $res['channels'], $res['snippets'], $search);
     draw_footer();
 ?>
