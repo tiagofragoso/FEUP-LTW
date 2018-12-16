@@ -144,7 +144,7 @@ function validateFile(file) {
 		setError('file', 'File size must be under 1MB');
 		return false;
 	} 
-	if (file.type.match(/^(application|image|audio|video)\/.*$/)) {
+	if (file.type.match(/^(image|audio|video)\/.*$/)) {
 		setError('file', 'Invalid file type');
 		return false;
 	}
