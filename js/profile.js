@@ -51,8 +51,8 @@ function createCard(title, elems) {
 		if (name == null) {
 			name = "";
 		}
-		li.innerHTML = `<a class="user-preview" href="/pages/profile.php?id=${e.id}">
-							<img class="user-pic" src="/assets/users/${e.id}.jpg" onerror="this.src='/assets/public/profile-placeholder.png'" />
+		li.innerHTML = `<a class="user-preview" href="../pages/profile.php?id=${e.id}">
+							<img class="user-pic" src="../assets/users/${e.id}.jpg" onerror="this.src='../assets/public/profile-placeholder.png'" />
 							<span class="user-name"> ${name} </span>
 							<span class="user-username"> ${e.username} </span>
 						</a>`;
