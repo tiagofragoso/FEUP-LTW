@@ -14,7 +14,10 @@ async function showFollowingModal() {
 		const res = await request(API_ENDPOINT, 'GET', {id: id, query: 'following'});
 		const card = createCard('Following', [...res.data]);
 		const modal = createModal(card);
+		card.querySelector('i').addEventListener('click', () => modal.remove());
+		card.querySelector('i').addEventListener('click', () => document.querySelector('body').style.overflow = "auto");
 		document.querySelector('.full-card').appendChild(modal);
+		document.querySelector('body').style.overflow = "hidden";
 	} catch (e) {
 		console.log(e);
 	}
@@ -25,7 +28,10 @@ async function showFollowersModal() {
 		const res = await request(API_ENDPOINT, 'GET', {id: id, query: 'followers'});
 		const card = createCard('Followers', [...res.data]);
 		const modal = createModal(card);
+		card.querySelector('i').addEventListener('click', () => modal.remove());
+		card.querySelector('i').addEventListener('click', () => document.querySelector('body').style.overflow = "auto");
 		document.querySelector('.full-card').appendChild(modal);
+		document.querySelector('body').style.overflow = "hidden";
 	} catch (e) {
 		console.log(e);
 	}
@@ -33,16 +39,20 @@ async function showFollowersModal() {
 
 function createCard(title, elems) {
 	const div = document.createElement('div');
-	div.innerHTML = `<header><h1>${title}</h1></header>
-	<ul></ul>`;
+	div.innerHTML = `<header>
+						<i class="fas fa-times"></i>
+						<h1>${title}</h1>
+					</header>
+					<ul></ul>`;
 	const ul = div.querySelector('ul');
 	elems.forEach(e => {
+		const li = document.createElement('li');
 		let name = e.name;
-		if (name === null) {
+		if (name == null) {
 			name = "";
 		}
-		const li = document.createElement('li');
-		li.innerHTML = `<a href="/pages/profile.php?id=${e.id}">
+		li.innerHTML = `<a class="user-preview" href="/pages/profile.php?id=${e.id}">
+							<img class="user-pic" src="/assets/users/${e.id}.jpg" onerror="this.src='/assets/public/profile-placeholder.png'" />
 							<span class="user-name"> ${name} </span>
 							<span class="user-username"> ${e.username} </span>
 						</a>`;

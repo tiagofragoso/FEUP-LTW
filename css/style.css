@@ -1271,6 +1271,12 @@ h1 {
 	background-color: #EBEBEB;
 }
 
+@media(max-width: 768px) {
+	.snippet-preview {
+		height: 90px;
+	}
+}
+
 .user-settings {
 	margin-left: 2em;
 	background-color: white;
@@ -1805,3 +1811,54 @@ label > .input-info {
 	padding: 2em;
 	border-radius: 5px;
 }
+
+.center-card .user-name {
+	font-weight: bold;
+	color: var(--blue);
+	margin-right: 1em;
+}
+
+.center-card .user-username {
+	margin-right: 0.5em;
+}
+
+.center-card ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.center-card li {
+	background-color: #EBEBEB;
+	border-radius: 5px;
+	margin: 0;
+}
+
+.user-preview {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 1em;
+	padding: 0.5em;
+}
+
+.user-pic {
+	width: 40px;
+	border-radius: 5px;
+	margin-right: 1em;
+}
+
+.center-card header {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+}
+
+.center-card .fas {
+	cursor: pointer;
+}
+
+.user-following, .user-followers h1 {
+	cursor: pointer;
+}
+
