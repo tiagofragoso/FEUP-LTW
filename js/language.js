@@ -19,14 +19,12 @@ function updateVisual() {
             this.button.textContent = 'Unfollow';
         } 
     }
-    console.log(this);
 }
 
 async function checkFollow() {
     try {
         const res = await request(API_ENDPOINT, 'GET', {});
         res.forEach(language => {
-            console.log(language);
             if (language.code === this.code ) {
                 if (language.follows) {
                     this.follow = true;
@@ -48,7 +46,7 @@ async function followHandler() {
             this.follow = !this.follow;
             updateVisual.call(this);
         } catch(e) {
-            console.log(e);
+            alert(e);
         }
     } else {
         try {
@@ -56,7 +54,7 @@ async function followHandler() {
             this.follow = !this.follow;
             updateVisual.call(this);
         } catch (e) {
-            console.log(e);
+            alert(e);
         }
     }
 }

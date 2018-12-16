@@ -60,7 +60,7 @@ function createCard(channel) {
 			button.innerHTML = `<span>${channel.follows? 'x': '+'}</span><span>${channel.follows? 'Unf': 'F'}ollow</span></span>`;
 			moveCard(card, !channel.follows);
 		} catch (e) {
-			console.log(e);
+			alert(e);
 		}
 	});
 
@@ -81,7 +81,6 @@ function updateDisplay() {
 	if (userLanguages.children.length > 1) {
 		user_languages.style.display = "none";
 	} else {
-		console.log(userLanguages.children.length);
 		user_languages.style.display = "initial";
 	}
 
@@ -89,6 +88,5 @@ function updateDisplay() {
 		explore_languages.style.display = "none";
 	} else {
 		explore_languages.style.display = "initial";
-		console.log(exploreLanguages.children.length);
 	}
 }

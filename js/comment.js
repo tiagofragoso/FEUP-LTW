@@ -82,7 +82,7 @@ async function postComment(event) {
 		insertComment(createComment({...data, text: text, points: 0}));
 		newCommentRef.querySelector('textarea').value = "";
 	} catch (e) {
-
+		alert(e);
 	}
 }
 
@@ -128,7 +128,7 @@ async function likeHandler(event) {
 				this.points.textContent = parseInt(this.points.textContent) - 1;
 				updateVisual.call(this);
 			} catch (e){
-				console.log(e);
+				alert(e);
 			}
 		}
 		else if (this.like === 0 || this.like === -1){
@@ -138,7 +138,7 @@ async function likeHandler(event) {
 				this.like = 1;
 				updateVisual.call(this);
 			} catch (e) {
-				console.log(e)
+				alert(e);
 			}	
 		}
 	} else if (event.currentTarget === this.downvoteBtn){
@@ -149,7 +149,7 @@ async function likeHandler(event) {
 				this.points.textContent = parseInt(this.points.textContent) + 1;
 				updateVisual.call(this);
 			} catch (e) {
-				console.log(e);
+				alert(e);
 			}
 		} else if (this.like === 0 || this.like === 1) {
 			try {
@@ -158,7 +158,7 @@ async function likeHandler(event) {
 				this.like = -1;
 				updateVisual.call(this);
 			} catch (e) {
-				console.log(e);	
+				alert(e);	
 			}
 		}
 	}
@@ -191,7 +191,7 @@ async function postChildComment(event) {
 		removeReplyForm();
 		insertComment(createComment({...data, text: text, points: 0, parent: replyId}), replyId);
 	} catch (e) {
-		console.log(e);
+		alert(e);
 	}
 }
 

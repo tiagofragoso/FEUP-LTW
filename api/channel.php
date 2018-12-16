@@ -37,7 +37,7 @@
 		header('Content-Type: application/json');
 		$data = json_decode(file_get_contents('php://input'), true);
 		if (empty($_SESSION['user'])){
-			http_response_code(400);
+			http_response_code(403);
 			echo json_encode(array(
 				'success' => false,
 				'reason' => 'Requires login'
@@ -70,7 +70,7 @@
 	function delete_follow() {
 		header('Content-Type: application/json');
 		if (empty($_SESSION['user'])){
-			http_response_code(400);
+			http_response_code(403);
 			echo json_encode(array(
 				'success' => false,
 				'reason' => 'Requires login'

@@ -4,7 +4,7 @@
 	
 	if (!isset($_SESSION['user'])) {
 		header('Content-Type: application/json');
-		http_response_code(400);
+		http_response_code(403);
 		echo json_encode(array (
 			'success' => false,
 			'reason' => 'Requires login' 
@@ -28,7 +28,7 @@
 
 	function get_like() {
 		header('Content-Type: application/json');
-		if (isset($_GET['snippet'])){
+		if (!empty($_GET['snippet'])){
 			$res = hasLike($_SESSION['user'], $_GET['snippet']);
 			http_response_code(200);
 			echo json_encode(array(
@@ -50,7 +50,7 @@
 	function post_like() {
 		header('Content-Type: application/json');
 		$data = json_decode(file_get_contents('php://input'), true);
-		if (!isset($data['snippet'])) {
+		if (empty($data['snippet'])) {
 			http_response_code(400);
 			echo json_encode(array(
 				'success' => false,
@@ -85,7 +85,7 @@
 
 	function delete_like() {
 		header('Content-Type: application/json');
-		if (!isset($_GET['snippet'])) {
+		if (empty($_GET['snippet'])) {
 			http_response_code(400);
 			echo json_encode(array(
 				'success' => false,

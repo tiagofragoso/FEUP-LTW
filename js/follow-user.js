@@ -6,7 +6,6 @@ if (button_wrapper != null) {
     let follow = {};
     follow.value = 0;
     follow.userId = document.querySelector('.full-card').getAttribute('data-id');
-    console.log(follow.userId);
     follow.button = button_wrapper;
     follow.button.addEventListener('click', followHandler.bind(follow));
     checkFollow.call(follow);
@@ -45,7 +44,7 @@ async function followHandler() {
             this.value = 0;
             updateVisual.call(this);
         } catch(e) {
-            console.log(e);
+            alert(e);
         }
     } else if (this.value == 0) {
         try {
@@ -53,7 +52,7 @@ async function followHandler() {
             this.value = 1;
             updateVisual.call(this);
         } catch (e) {
-            console.log(e);
+            alert(e);
         }
     }
 }

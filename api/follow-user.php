@@ -28,7 +28,7 @@
 
     function get_follow() {
         header('Content-Type: application/json');
-        if (isset($_GET['id'])) {
+        if (!empty($_GET['id'])) {
             $res  = hasFollow($_SESSION['user'], $_GET['id']);
             http_response_code(200);
             echo json_encode(array(
@@ -53,7 +53,7 @@
             http_response_code(400);
             echo json_encode(array(
                 'success' => false,
-                'reason' => 'Missing user1 id'
+                'reason' => 'Missing user id'
             ));
             exit;
         } else {
@@ -76,11 +76,11 @@
 
     function unfollow() {
         header('Content-Type: application/json');
-        if (!isset($_GET['id'])) {
+        if (empty($_GET['id'])) {
             http_response_code(400);
             echo json_encode(array(
                 'success' => false,
-                'reason' => 'Missing user2 id'
+                'reason' => 'Missing user id'
             ));
         } else {
             try {

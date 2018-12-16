@@ -11,7 +11,7 @@
 
     function change_password() {
         if (empty($_SESSION['user'])) {
-            http_response_code(400);
+            http_response_code(403);
             echo json_encode(array(
                 'success' => false,
                 'reason' => 'Requires login'
@@ -32,6 +32,20 @@
             echo json_encode(array(
                 'success' => false,
                 'reason' => 'Missing new password'
+            ));
+            exit;
+        } else if(!preg_match('/^.{5,25}$/', $data['oldPassword'])) {
+            http_response_code(400);
+            echo json_encode(array(
+                'success' => false,
+                'reason' => 'Invalid old password'
+            ));
+            exit;
+        } else if(!preg_match('/^.{5,25}$/', $data['newPassword'])) {
+            http_response_code(400);
+            echo json_encode(array(
+                'success' => false,
+                'reason' => 'Invalid new password'
             ));
             exit;
         } else if ($res = validUserId($_SESSION['user'], $data['oldPassword'])) {
