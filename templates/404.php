@@ -14,7 +14,7 @@ function draw_snippet(){?>
 			<pre class="line-numbers"><code class="language-none">
 1. Navigate to the document root of your website
                         
-2. Open/Create the .htacess file
+2. Open/Create the .htaccess file
                         
 3. Add the following line ErrorDocument 404 /your/404/page/path
 
