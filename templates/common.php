@@ -11,6 +11,7 @@
 			<title><?=$title?></title>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<meta name="theme-color" content="#74B2B7">
+			<link rel="icon" href="/assets/public/snipz.png" type="image/png" sizes="16x16">
 			<link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
 			<link rel="stylesheet" type="text/css" media="screen" href="../css/prism.css" />
 			<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">

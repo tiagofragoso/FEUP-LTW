@@ -1,6 +1,6 @@
 <?php
 
-include_once('./utils.php');
+include_once('utils.php');
 
 function draw_full_snippet($snippet, $comments) { 
 	$lang = 'language-' . $snippet['language'];
