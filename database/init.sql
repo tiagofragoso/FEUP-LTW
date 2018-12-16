@@ -26,7 +26,11 @@ CREATE TABLE Comment (
     FOREIGN KEY (
         snippet
     )
-    REFERENCES Snippet (id) ON DELETE CASCADE
+    REFERENCES Snippet (id) ON DELETE CASCADE,
+    FOREIGN KEY (
+        parent
+    )
+    REFERENCES Comment (id) ON DELETE CASCADE
 );
 
 
