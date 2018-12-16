@@ -32,7 +32,7 @@
 			<a href="/pages/feed.php"><?php include("../includes/logo.php") ?></a>
 			<div class="search">
 				<i class="fas fa-search"></i>
-				<form action="#">
+				<form action="/pages/search.php">
 					<input type="text" name="search" placeholder="Looking for something?" size="22">
 					<button type="submit"><i class="fas fa-search"></i></button>
 				</form>
