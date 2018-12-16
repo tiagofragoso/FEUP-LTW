@@ -10,6 +10,9 @@ export const createOverlay = (el, direction) => {
 export const createModal = (el) => {
 	const modal = document.createElement('div');
 	modal.className = 'modal';
+	modal.addEventListener('click', () => modal.remove());
+	el.addEventListener('click', event => event.stopPropagation());
+	el.classList.add('center-card');
 	modal.appendChild(el);
 	return modal;
 }

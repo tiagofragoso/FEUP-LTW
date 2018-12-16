@@ -1757,3 +1757,7 @@ label > .input-info {
 	justify-content: center;
 	align-items: center;
 }
+
+.center-card {
+	background-color: white;
+}

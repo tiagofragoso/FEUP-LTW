@@ -28,7 +28,7 @@ $comments = getSnippetComments($id);
 $comments = getUserComments($id);
 $settings = $id === $_SESSION['user'];
 
-draw_header('SNIPZ - ' . $user['username'], array('follow-user'));
+draw_header('SNIPZ - ' . $user['username'], array('follow-user', 'profile'));
 draw_nav();
 draw_profile($user, $snippets, $following, $followers, $languages, $settings, $comments);
 draw_footer();

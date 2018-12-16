@@ -256,7 +256,7 @@
 
 	function getFollowing($id) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT u2.*
+		$stmt = $db->prepare('SELECT u2.id, u2.name, u2.username
 		FROM FollowUser, User as u2
 		WHERE FollowUser.user1 = ? AND FollowUser.user2 = u2.id');
 		$stmt->execute(array($id));
@@ -265,7 +265,7 @@
 
 	function getFollowers($id) {
 		$db = Database::instance()->getConnection();
-		$stmt = $db->prepare('SELECT u1.*
+		$stmt = $db->prepare('SELECT u1.id, u1.name, u1.username
 		FROM FollowUser, User as u1
 		WHERE FollowUser.user2 = ? AND FollowUser.user1 = u1.id');
 		$stmt->execute(array($id));

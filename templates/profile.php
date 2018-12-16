@@ -88,7 +88,7 @@ function draw_profile($user, $snippets, $following, $followers, $languages, $set
 				<div class="user-comments">
 						<?php 
 						if (count($comments) == 0) { ?>
-							<span class="no-activity"> No activity </span>
+							<span class="no-activity">No activity</span>
 						<?php } else {
 							foreach($comments as $comment) { ?>
 								<div class="user-comment flex-col-container">
